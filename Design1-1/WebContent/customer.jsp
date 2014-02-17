@@ -235,7 +235,7 @@ Welcome, <%= session.getAttribute("first") %>  <%= session.getAttribute("last") 
    <li class='has-sub'><a href='#'><span>จัดการข้อมูลส่วนตัว</span></a>
       <ul>
          <li><a href='#'><span>แก้ไขข้อมูลส่วนตัว</span></a></li>
-         <li class='last'><a href='#'><span>ยกเลิกสมาชิก</span></a></li>
+         <li class='last'><a href='rev_conf.jsp'><span>ยกเลิกสมาชิก</span></a></li>
       </ul>
    </li>
 </ul>

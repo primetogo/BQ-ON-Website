@@ -30,6 +30,8 @@
 	-webkit-box-shadow: 0px 0px 16px #000000;
 	box-shadow: 0px 0px 16px #000000;
 	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/	
+	opacity: 100;
+	background-color:#E2F7F4;
 }
 .loginButton {
 	-moz-box-shadow:inset 0px 1px 0px 0px #54a3f7;
@@ -73,14 +75,13 @@
 </style>
 <title>การถอนการสมัครสมาชิก</title>
 </head>
-<body>
+<body bgcolor="#DDF2CB">
 <div id="dis-cus-media" align="center">
 <br><br>
 คุณแน่ใจหรือไม่ที่จะถอนการสมัครสมาชิก?<br><br>
-<form action="delete.do" method="post">
-<input type="submit" value="ต้องการ" class="loginButton"/>
-<button class="loginButton" >ไม่ต้องการ</button>
-</form>
+<button class="loginButton" onclick="location.href='remove.do'" >ต้องการ</button>
+<button class="loginButton" onclick="location.href='customer.jsp'" >ไม่ต้องการ</button>
+
 </div>
 </body>
 </html>
