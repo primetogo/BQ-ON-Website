@@ -140,6 +140,7 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  cursor: url(Res/mouse.png), auto;
 }
 #user-detail-box{
     margin-top: 20px;
@@ -214,6 +215,7 @@
 	-moz-box-shadow: 0px 0px 11px #000000;
 	-webkit-box-shadow: 0px 0px 11px #000000;
 	box-shadow: 0px 0px 11px #000000;
+	cursor: url(Res/mouse.png), auto;
 	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
    
 }
@@ -222,20 +224,20 @@
 </head>
 <body id="bg">
 <div id="user-detail-box" align="center">
-Welcome, <%= session.getAttribute("first") %>  <%= session.getAttribute("last") %>
+ยินดีต้อนรับ, <%= session.getAttribute("first") %>  <%= session.getAttribute("last") %>
 <br><br>
 <form action="logout" method="post" >
-<input type="submit" value="Logout" class="logoutButton" />
-<a href="index.jsp" class="logoutButton" >Home</a><br>
+<input type="submit" value="ออกจากระบบ" class="logoutButton" />
+<a href="index.jsp" class="logoutButton" style="cursor: url(Res/mouse.png), auto;" >หน้าหลัก</a><br>
 </form>
 </div>
 <div id='cssmenu'>
 <ul>
    <li class='active'><a href='customer.jsp'><span>จองโต๊ะ-สั่งอาหาร</span></a></li>
-   <li class='has-sub'><a href='#'><span>จัดการข้อมูลส่วนตัว</span></a>
+   <li class='has-sub'><a href='#' style="cursor: url(Res/mouse.png), auto;" ><span>จัดการข้อมูลส่วนตัว</span></a>
       <ul>
-         <li><a href='#'><span>แก้ไขข้อมูลส่วนตัว</span></a></li>
-         <li class='last'><a href='rev_conf.jsp'><span>ยกเลิกสมาชิก</span></a></li>
+         <li><a href='#' style="cursor: url(Res/mouse.png), auto;" ><span>แก้ไขข้อมูลส่วนตัว</span></a></li>
+         <li class='last'><a href='rev_conf.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ยกเลิกสมาชิก</span></a></li>
       </ul>
    </li>
 </ul>

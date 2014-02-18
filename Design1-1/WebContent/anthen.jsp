@@ -83,6 +83,7 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  cursor: url(Res/mouse.png), auto;
 }
 /* Start login style section */
 /* login panel style */
@@ -172,7 +173,7 @@
 <!-- Start navigator bar -->
 <div id='cssmenu'>
 <ul>
-   <li><a href='index.jsp'><span>ย้อนกลับไปหน้าหลัก</span></a></li>
+   <li><a href='index.jsp' style="cursor: url(Res/mouse.png), auto;"><span>ย้อนกลับไปหน้าหลัก</span></a></li>
 </ul>
 </div><br><br><br><br><br><br>
 <!-- End navigator bar -->
@@ -183,8 +184,8 @@
 ยินดีต้อนรับ กรุณาเข้าสู่ระบบ<br><br>
 <input name="id" class="loginInputBox" placeholder=" ชื่อผู้ใช้" required /><br><br>
 <input name="pass" type="password" class="loginInputBox" placeholder=" รหัสผ่าน" required /><br><br>
-<input class="loginButton" type="submit" value="เข้าสู่ระบบ"><br>
-<div id="letter"><a href="addmem.html">ยังไม่เป็นสมาชิก? สมัครเลย!</a></div>
+<input class="loginButton" type="submit" value="เข้าสู่ระบบ" style="cursor: url(Res/mouse.png), auto;"><br>
+<div id="letter"><a href="reg_new.jsp" style="cursor: url(Res/mouse.png), auto;">ยังไม่เป็นสมาชิก? สมัครเลย!</a></div>
 </form>
 </div>
 <!-- End of login section -->

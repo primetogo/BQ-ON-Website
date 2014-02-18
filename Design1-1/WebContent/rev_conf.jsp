@@ -57,6 +57,7 @@
 	padding:6px 24px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #154682;
+	cursor: url(Res/mouse.png), auto;
 }
 .loginButton:hover {
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0061a7), color-stop(1, #007dc1));
