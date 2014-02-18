@@ -44,6 +44,17 @@
 	box-shadow: 0px 0px 10px #000000;
 	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
    
+}
+a {
+    color: #28B731;
+    text-decoration: none;
+}
+
+a:hover 
+{
+     color:#0C4F11; 
+     text-decoration:none; 
+     cursor:pointer;  
 }​
 </style>
 <title>การสมัครสมาชิกสำเร็จ!</title>
