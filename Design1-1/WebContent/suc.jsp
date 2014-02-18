@@ -46,7 +46,7 @@
    
 }​
 </style>
-<title>Successfully Register</title>
+<title>การสมัครสมาชิกสำเร็จ!</title>
 </head>
 <body id="bg">
 

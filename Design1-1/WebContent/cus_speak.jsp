@@ -1,6 +1,9 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">
 @font-face {
 	font-family: 'RaiNgan';
@@ -80,6 +83,21 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+#image-logo{
+   height: 150px;
+   width: 150px;
+   position:fixed;
+   top: 20px;
+   border-radius: 5px;
+}
+#name-banner{
+  height: 150px;
+  width: 87%;
+  position:fixed;
+  top: 20px;
+  right: 10px;
+  border-radius: 5px;
 }
 /* Start form style  */
 #wrapper {
@@ -191,67 +209,38 @@
         color:#999898;
         margin-bottom:3px;
 }
-#image-logo{
-   height: 150px;
-   width: 150px;
-   position:fixed;
-   top: 20px;
-   border-radius: 5px;
-}
-#name-banner{
-  height: 150px;
-  width: 87%;
-  position:fixed;
-  top: 20px;
-  right: 10px;
-  border-radius: 5px;
-}
 </style>
-<meta charset="UTF-8">
-<title>สมัครสมาชิก</title>
+<title>แนะนำหรือติชม-ติดต่อ</title>
 </head>
-<body class="bg">
+<body class="bg" >
 <img src="Res/ShizenLogo.png" id="image-logo">
 <img src="Res/Fix1.jpg" id="name-banner">
 <div id='cssmenu'>
 <ul>
    <li><a href='index.jsp'><span>หน้าหลัก</span></a></li>
    <li><a href='customer.jsp'><span>จองโต๊ะ-รายการอาหาร</span></a></li>
-   <li class='active'><a href='addmem.html'><span>สมัครสมาชิก</span></a></li>
+   <li><a href='reg_new.jsp'><span>สมัครสมาชิก</span></a></li>
    <li><a href='about_res.jsp'><span>เกี่ยวกับภัตตาคาร</span></a></li>
-   <li class='last'><a href='cus_comment.html'><span>ความคิดเห็น-ติชม</span></a></li>
+   <li class='active'><a href='cus_speak.jsp'><span>ความคิดเห็น-ติชม</span></a></li>
 </ul>
 </div><br><br><br><br><br><br>
 <div id="wrapper">
-        <form action="Addmem.do" method="post">
+        <form action="comment.do" method="post">
             <fieldset>
-                <legend>สมัครสมาชิก</legend>
+                <legend>ความคิดเห็น-ติชมต่อบริการและภัตตาคาร</legend>
                 <div>
-                    <input type="text" name="first" placeholder="ชื่อ" required /><font color="red"> *จำเป็น</font>
+                    <input type="text" name="cus_name" placeholder="กรุณากรอก ชื่อ-นามสกุลของท่าน" required />
                 </div>
                 <div>
-                    <input type="text" name="last" placeholder="นามสกุล" required /><font color="red"> *จำเป็น</font>
+                    <input type="text" name="cus_adr" placeholder= "ที่อยู่ของลูกค้า" required />
                 </div>
                 <div>
-                    <input type="text" name="user" placeholder="ชื่อผู้ใช้" required /><font color="red"> *จำเป็น</font>
-                </div>
-                <div>
-                    <input type="password" name="pass" placeholder="รหัสผ่าน" required /><font color="red"> *จำเป็น</font>
-                </div>
-                <div>
-                    <input type="text" name="email" placeholder="Email"/>
-                </div> 
-                <div>
-                    <input type="text" name="phone" placeholder="หมายเลขโทรศัพท์" required /><font color="red"> *จำเป็น</font>
-                </div>
-                <div>
-                    <div class="small">กรุณาใส่ที่อยู่สำหรับจัดส่งข้อมูลข่าวสาร อย่างครบถ้วน<font color="red"> *จำเป็น</font></div>
-                    <textarea name="adr" placeholder="ที่อยู่จัดส่งข่าว" required></textarea>
+                    <div class="small">ใส่ความคิดเห็นของท่านลงในช่องด้านล่าง</div>
+                    <textarea name="cus_comment" placeholder="ความคิดเห็น-ติชมของท่าน" required></textarea>
                 </div>          
-                <input type="submit" name="submit" value="สมัครสมาชิก"/>
+                <input type="submit" name="submit" value="ส่งความคิดเห็น"/>
             </fieldset>    
         </form>
     </div>
 </body>
- 
 </html>

@@ -33,7 +33,7 @@ public class LoginFilt implements Filter {
 			HttpServletResponse res = (HttpServletResponse) response;
 			HttpSession session = ((HttpServletRequest) request).getSession(false);
 			session.invalidate();
-			res.sendRedirect("anthen_cus.html");
+			res.sendRedirect("anthen.jsp");
 			return;
 		}
 	    chain.doFilter(request, response);
