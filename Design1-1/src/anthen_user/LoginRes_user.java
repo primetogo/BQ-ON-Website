@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,10 +35,13 @@ public class LoginRes_user extends HttpServlet {
     		String pwd = request.getParameter("pass");
     		String x = null;
     		String y = null;
+    		System.out.println("-------------------------------------------");
     		System.out.println("User: "+usr+" Password: "+pwd);
     		ResultSet res = stmt.executeQuery(sql1), sht = stma.executeQuery(sql2);    		
     		while(res.next()){
     			System.out.println("From DB Username: "+res.getString("username")+" Password: "+res.getString("password"));
+    			System.out.println("------------------------------------------");
+    			System.out.println(" ");
     			if(usr.equals(res.getString("username")) && pwd.equals(res.getString("password")) && res.getString("status").equals("offline")){
     				loginflag=true;
                     x = res.getString("Cus_id");

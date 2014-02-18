@@ -22,7 +22,10 @@ public class LoginFilter_user implements Filter {
 			loginFlag = false;
 		} else {
 			loginFlag = flag;
-			System.out.println("Login possible: "+flag);
+	        System.out.println("--------------------------");
+			System.out.println("User Login possible: "+flag);
+			System.out.println("--------------------------");
+			System.out.println(" ");
 		}
 		if (!loginFlag) {
 			/* clean up all alive session attribute
