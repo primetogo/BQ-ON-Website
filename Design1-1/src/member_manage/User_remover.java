@@ -14,12 +14,12 @@ import javax.servlet.http.HttpSession;
 
 
 @WebServlet("/remove.do")
-public class rev_member extends HttpServlet {
+public class User_remover extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Connection conn;
        
     
-    public rev_member() {super();}
+    public User_remover() {super();}
     
     public void init() {conn = (Connection) getServletContext().getAttribute("connection");}
 

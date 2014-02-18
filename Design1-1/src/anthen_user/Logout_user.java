@@ -12,11 +12,11 @@ import javax.servlet.http.HttpSession;
 
 
 @WebServlet("/logout")
-public class logout extends HttpServlet {
+public class Logout_user extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Connection conn;
        
-    public logout() {super();}
+    public Logout_user() {super();}
     
     public void init() {conn = (Connection) getServletContext().getAttribute("connection");}
     

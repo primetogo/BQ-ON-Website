@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @WebServlet("/Addmem.do")
-public class Addmem extends HttpServlet {
+public class User_register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Connection conn;
        
-    public Addmem() {super();}
+    public User_register() {super();}
   
     public void init() {conn = (Connection) getServletContext().getAttribute("connection");}
     

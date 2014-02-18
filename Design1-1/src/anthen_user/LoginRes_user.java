@@ -11,11 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/login.do")
-public class LoginRes extends HttpServlet {
+public class LoginRes_user extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Connection conn;
 	
-    public LoginRes() {super();}
+    public LoginRes_user() {super();}
     
     public void init() {conn = (Connection) getServletContext().getAttribute("connection");}
    

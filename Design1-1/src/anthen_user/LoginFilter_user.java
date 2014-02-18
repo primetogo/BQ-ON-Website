@@ -8,7 +8,7 @@ import javax.servlet.http.*;
 
 
 @WebFilter("/customer.jsp")
-public class LoginFilt implements Filter {
+public class LoginFilter_user implements Filter {
 	public void destroy() {
 		
 	}
