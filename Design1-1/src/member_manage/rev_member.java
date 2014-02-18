@@ -28,14 +28,17 @@ public class rev_member extends HttpServlet {
 		   HttpSession session = request.getSession(false);
 		try {
 			Statement cot = conn.createStatement();
+			Statement con = conn.createStatement();
 			String num = (String) request.getSession().getAttribute("stat");
-			int foo = Integer.parseInt(num);
-			String sql1 = "DELETE FROM customer, username WHERE Cus_id="+foo;
+			String sql1 = "DELETE FROM `res`.`customer` WHERE `Cus_id`="+num;
+			String sql2 = "DELETE FROM `res`.`username` WHERE `Cus_id`="+num;
 			cot.execute(sql1);
+			con.execute(sql2);
 			session.invalidate();
 			response.sendRedirect("index.jsp");
 		} catch (SQLException e) {
 			System.out.println(e);
+			response.sendRedirect("customer.jsp");
 		}
 	}
 }
