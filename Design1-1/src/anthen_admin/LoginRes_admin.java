@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/addmin")
+@WebServlet("/admin_sec")
 public class LoginRes_admin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Connection conn;
@@ -22,19 +22,24 @@ public class LoginRes_admin extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		boolean loginflag = false;
-		String name = request.getParameter("admin_name");
-		String password = request.getParameter("admin_pass");
+		String name = request.getParameter("name");
+		String password = request.getParameter("pass");
 		try{
 			Statement stmt = conn.createStatement();
-			String sql = "select * from manager";
-			ResultSet res = stmt.executeQuery(sql);
+			Statement stma = conn.createStatement();
+			String sql1 = "select * from manager";
+			ResultSet res = stmt.executeQuery(sql1);
 			while(res.next()){
 				if(name.equals(res.getString("username")) && password.equals(res.getString("password"))){
 					loginflag=true;
+					String stat = res.getString("mgr_id");
+					stma.execute("update manager set status='online' where mgr_id="+stat);
+					request.getSession().setAttribute("admin_id", stat);
+					
 				}
 			}
 			request.getSession().setAttribute("admin", loginflag);
-     		response.sendRedirect("dash_ad.jsp");
+     		response.sendRedirect("ad_dash.jsp");
 		}catch(Exception e){
 			System.out.println(e);
 		}

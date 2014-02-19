@@ -13,13 +13,13 @@
 	     url('Res/RaiNgan.ttf')  format('truetype'), /* Safari, Android, iOS */
 	     url('Res/RaiNgan.ttf') format('truetype'); /* Legacy iOS */
 	}
-.bg{
+#bg{
   background: url(Res/cloud.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  cursor: url(Res/mouse.png), auto;
+  cursor: url(/Res/mouse.png), auto;
 }
 /* Start form style  */
 #wrapper {
@@ -135,16 +135,16 @@
 </style>
 <title>Secret Portal</title>
 </head>
-<body class="bg">
+<body id="bg">
 <div id="wrapper" align="center">
-        <form action="comment.do" method="post">
+        <form action="admin_sec" method="post">
             <fieldset>
                 <legend>ระบบการจัดการ</legend>
                 <div>
-                    <input type="text" name="cus_name" placeholder="ชื่อ Admin" required />
+                    <input type="text" name="name" placeholder="ชื่อ Admin" required />
                 </div>
                 <div>
-                    <input type="text" name="cus_adr" placeholder= "รหัสผ่าน" required />
+                    <input type="password" name="pass" placeholder= "รหัสผ่าน" required />
                 </div>         
                 <input type="submit" name="submit" value="เข้าสู่ระบบ" />
             </fieldset>    

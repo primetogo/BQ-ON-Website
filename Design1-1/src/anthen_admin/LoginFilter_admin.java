@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter("/dash_ad.jsp")
+@WebFilter("/ad_dash.jsp")
 public class LoginFilter_admin implements Filter {
 
     public LoginFilter_admin() {
