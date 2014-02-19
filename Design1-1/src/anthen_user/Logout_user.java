@@ -32,7 +32,7 @@ public class Logout_user extends HttpServlet {
 			out1.executeUpdate(sql);
 			System.out.println("Logout process: Cleared all session...");
 		    session.invalidate();
-		request.getRequestDispatcher("index.jsp").forward(request,response);}}
+		request.getRequestDispatcher("anthen.jsp").forward(request,response);}}
 		catch(Exception e){
 			System.out.print(e);
 		}

@@ -34,8 +34,6 @@ public class LoginFilter_user implements Filter {
 			 * if fail or in case of re-login with
 			 * another user online */
 			HttpServletResponse res = (HttpServletResponse) response;
-			HttpSession session = ((HttpServletRequest) request).getSession(false);
-			session.invalidate();
 			res.sendRedirect("anthen.jsp");
 			return;
 		}

@@ -23,8 +23,8 @@ public class LoginRes_user extends HttpServlet {
     /* This login function need to check username, password from DB 
      * and also check for user state (offline or online) */
     protected void login(HttpServletRequest request, HttpServletResponse response) throws IOException{
-    	if(request.getSession().getAttribute("flag1")==null){
-    	boolean loginflag = false;
+    	if(request.getSession().getAttribute("flag1")==null || request.getSession().getAttribute("flag1").equals(false)){
+    	boolean loginflag = false, usercheck=false, passcheck=false;
     	try{
     		Statement stmt = conn.createStatement();
     		Statement stma = conn.createStatement();
@@ -42,19 +42,30 @@ public class LoginRes_user extends HttpServlet {
     			System.out.println("From DB Username: "+res.getString("username")+" Password: "+res.getString("password"));
     			System.out.println("------------------------------------------");
     			System.out.println(" ");
-    			if(usr.equals(res.getString("username")) && pwd.equals(res.getString("password")) && res.getString("status").equals("offline")){
-    				loginflag=true;
-                    x = res.getString("Cus_id");
-                    while(sht.next()){
-            			y = sht.getString("Cus_id");
-            			if(x.equals(y)){
-            				request.getSession().setAttribute("first", sht.getString("Cus_Fname"));
-            				request.getSession().setAttribute("last", sht.getString("Cus_Lname"));
-            				stat.executeUpdate("update username set status='online' where Cus_id="+x); 
-            				request.getSession().setAttribute("stat", x);
-            			}
+    			if(usr.equals(res.getString("username")) ){
+    				usercheck=true;
+    				if(pwd.equals(res.getString("password")) && res.getString("status").equals("offline")){
+    					loginflag=true;
+    					passcheck=true;
+                        x = res.getString("Cus_id");
+                        while(sht.next()){
+                			y = sht.getString("Cus_id");
+                			if(x.equals(y)){
+                				request.getSession().setAttribute("first", sht.getString("Cus_Fname"));
+                				request.getSession().setAttribute("last", sht.getString("Cus_Lname"));
+                				stat.executeUpdate("update username set status='online' where Cus_id="+x); 
+                				request.getSession().setAttribute("stat", x);
+                			}
+    				}
+    				
     			}      
     		}
+    		}
+    		if(usercheck==false && passcheck==false){
+    			request.getSession().setAttribute("mess", "101");
+    		}
+    		else if(usercheck==true && passcheck==false){
+    			request.getSession().setAttribute("mess", "102");
     		}
     		request.getSession().setAttribute("flag1", loginflag);
      		response.sendRedirect("customer.jsp");
