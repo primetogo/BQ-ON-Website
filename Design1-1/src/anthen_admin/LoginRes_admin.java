@@ -35,6 +35,9 @@ public class LoginRes_admin extends HttpServlet {
 					String stat = res.getString("mgr_id");
 					stma.execute("update manager set status='online' where mgr_id="+stat);
 					request.getSession().setAttribute("admin_id", stat);
+					request.getSession().setAttribute("admin_first", res.getString("Fname"));
+					request.getSession().setAttribute("admin_last", res.getString("Lname"));
+					
 					
 				}
 			}
