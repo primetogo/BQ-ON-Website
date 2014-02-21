@@ -200,37 +200,32 @@ Admin: <%= session.getAttribute("admin_first") %> <%= session.getAttribute("admi
 	      </table><br>
 	      </div>  
 	  </c:if>
-	  
 	  <c:if test="${param.de=='Removing Food'}">
-	    <div id="text_table" align="center"><br>Choosing item to remove
-	    <form action="remove_food" method="post">
-	    	<table border="1">
-			  	<tr>
-				  <td>Food-Drink</td>
-				  <td>Price</td>
+	    <sql:query var="rt" dataSource="${ds}">
+	  	select * from Food_type
+	 	 </sql:query>
+	 	 <div id="text_table" align="center"><br>Choosing food type
+	 	 <form action="remove_food" method="post">
+	 	   <table border="1">
+			  <tr>
+				  <td>ID</td>
 				  <td>Type</td>
 				  <td></td>
-			  	</tr>
-			  <c:forEach var="food" items="${rt.rows}">
-			   <form>
-			   	  <input type="submit" value="Apertizer" name="dg" />
-			   	  <input type="submit" value="bento" name="dg" /> 
-			   	  <input type="submit" value="dessert" name="dg" />
-			   	  <input type="submit" value="Donburi" name="dg" />
-			   	  <input type="submit" value="drink" name="dg" />
-			   </form>
-			   <c:if test=>
-			  	<tr>
-	 		      <td>${food.Food_name}</td>
-	              <td>${food.Food_price}</td>
-	              <td>${food.Food_type_Food_type}</td>
-                  <td><input type="checkbox" value="${food.Food_id}" name="aha" ></td> 
-	         	 </tr>
-	   		   </c:forEach>
-			 </table><br>
-			      <input type="submit" value="Process!" class="myButton" />
-			 </form><br>
-	    </div>
+			  </tr>
+			  <c:forEach var="type" items="${rt.rows}">
+			  <tr>
+	 		      <td>${type.type_id}</td>
+	              <td>${type.Food_type}</td>
+	              <td><input type="radio" value="${type.type_id}" name="hh"></td>
+	          </tr>
+	      </c:forEach>
+	      </table><br>
+	      <input type="submit" value="Creating list!" class="myButton"/>
+	      </form><br>
+	 	 </div>
+	 	 <c:if test="">
+	 	 hahaha
+	 	 </c:if>
 	  </c:if>
 	  
 	  <c:if test="${param.de=='Add More Food'}">

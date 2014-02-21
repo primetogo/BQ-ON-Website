@@ -23,11 +23,17 @@ public class rev_food extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try{
-			String id = request.getParameter("aha");
-			Statement stmt = conn.createStatement();
-			String sql1 = "delete from food where Food_id="+id;
-			stmt.execute(sql1);
-			response.sendRedirect("ad_dash.jsp");
+			String gee = request.getParameter("hh");
+			if(gee!=null){
+				request.getSession().setAttribute("set", gee);
+			}else{
+				String id = request.getParameter("name_des");
+				Statement stmt = conn.createStatement();
+				String sql1 = "delete from food where Food_id="+id;
+				stmt.execute(sql1);
+				response.sendRedirect("ad_dash.jsp");
+			}
+			
 			
 		}catch(Exception e){
 			System.out.println(e);

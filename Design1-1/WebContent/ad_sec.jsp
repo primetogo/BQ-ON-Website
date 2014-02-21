@@ -13,13 +13,13 @@
 	     url('Res/RaiNgan.ttf')  format('truetype'), /* Safari, Android, iOS */
 	     url('Res/RaiNgan.ttf') format('truetype'); /* Legacy iOS */
 	}
+
 #bg{
   background: url(Res/cloud.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  cursor: url(/Res/mouse.png), auto;
 }
 /* Start form style  */
 #wrapper {
@@ -29,7 +29,6 @@
         z-index: -1;
         width:450px;
         font-family:RaiNgan;
-        cursor: url(Res/mouse.png), auto;
     }
     legend {
         color:#0481b1;
