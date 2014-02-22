@@ -2,9 +2,8 @@ package member_manage;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +16,7 @@ import javax.servlet.http.HttpSession;
 public class User_remover extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Connection conn;
+	PreparedStatement remove;
        
     
     public User_remover() {super();}
@@ -26,15 +26,16 @@ public class User_remover extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		   HttpSession session = request.getSession(false);
-		try {
-			Statement cot = conn.createStatement();
-			Statement con = conn.createStatement();
-			String num = (String) request.getSession().getAttribute("stat");
-			String sql1 = "DELETE FROM `res`.`customer` WHERE `Cus_id`="+num;
-			String sql2 = "DELETE FROM `res`.`username` WHERE `Cus_id`="+num;
-			cot.execute(sql1);
-			con.execute(sql2);
-			session.invalidate();
+		try {			
+			String userF = (String) session.getAttribute("first");
+		    String userL = (String) session.getAttribute("last");
+		    
+		    //starting query data to check with user data attribute
+		    String remove_sql = "delete from from username join customer on (Customer_Cus_id = Cus_id) where Cus_Fname="+"'"+userF+"'"+"and Cus_Lname="+"'"+userL+"'";
+		    remove = conn.prepareStatement(remove_sql);
+		    remove.execute();
+		    remove.close();
+		    session.invalidate();
 			response.sendRedirect("index.jsp");
 		} catch (SQLException e) {
 			System.out.println(e);

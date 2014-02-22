@@ -2,9 +2,8 @@ package anthen_user;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginRes_user extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Connection conn;
+	PreparedStatement logincheck = null;
 	
     public LoginRes_user() {super();}
     
@@ -24,47 +24,29 @@ public class LoginRes_user extends HttpServlet {
      * and also check for user state (offline or online) */
     protected void login(HttpServletRequest request, HttpServletResponse response) throws IOException{
     	if(request.getSession().getAttribute("flag1")==null || request.getSession().getAttribute("flag1").equals(false)){
-    	boolean loginflag = false, usercheck=false, passcheck=false;
+    	Boolean loginflag = false, passcheck=false;
     	try{
-    		Statement stmt = conn.createStatement();
-    		Statement stma = conn.createStatement();
-    		Statement stat = conn.createStatement();
-    		String sql1 = "select * from username";
-    		String sql2 = "select * from customer";
-    		String usr = request.getParameter("id");
-    		String pwd = request.getParameter("pass");
-    		String x = null;
-    		String y = null;
-    		System.out.println("-------------------------------------------");
-    		System.out.println("User: "+usr+" Password: "+pwd);
-    		ResultSet res = stmt.executeQuery(sql1), sht = stma.executeQuery(sql2);    		
+    		//Get required data 
+    		String user = request.getParameter("id");
+    		String pass = request.getParameter("pass");
+    		String sql_datacheck = "select password, Cus_Fname, Cus_Lname from username join customer on (Customer_Cus_id = Cus_id) where username= "+"'"+user+"'";
+    		logincheck = conn.prepareStatement(sql_datacheck);
+    		
+    		//Get data from DB and checking process
+    		ResultSet res = logincheck.executeQuery();
     		while(res.next()){
-    			System.out.println("From DB Username: "+res.getString("username")+" Password: "+res.getString("password"));
-    			System.out.println("------------------------------------------");
-    			System.out.println(" ");
-    			if(usr.equals(res.getString("username")) ){
-    				usercheck=true;
-    				if(pwd.equals(res.getString("password")) && res.getString("status").equals("offline")){
-    					loginflag=true;
-    					passcheck=true;
-                        x = res.getString("Cus_id");
-                        while(sht.next()){
-                			y = sht.getString("Cus_id");
-                			if(x.equals(y)){
-                				request.getSession().setAttribute("first", sht.getString("Cus_Fname"));
-                				request.getSession().setAttribute("last", sht.getString("Cus_Lname"));
-                				stat.executeUpdate("update username set status='online' where Cus_id="+x); 
-                				request.getSession().setAttribute("stat", x);
-                			}
-    				}
-    				
-    			}      
+    			if(pass.equals(res.getString("password"))){
+    				System.out.println(res.getString("password"));
+    				//Send some user data to customer.jsp
+    				request.getSession().setAttribute("first", res.getString("Cus_Fname"));
+    				request.getSession().setAttribute("last", res.getString("Cus_Lname"));
+    				loginflag = true;
+    			}
+    			else{passcheck = false;}
     		}
-    		}
-    		if(usercheck==false && passcheck==false){
-    			request.getSession().setAttribute("mess", "101");
-    		}
-    		else if(usercheck==true && passcheck==false){
+    		res.close();
+    	    logincheck.close();
+    		if(passcheck==false && passcheck!=null){
     			request.getSession().setAttribute("mess", "102");
     		}
     		request.getSession().setAttribute("flag1", loginflag);

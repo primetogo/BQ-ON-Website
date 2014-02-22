@@ -188,10 +188,8 @@
 <div id="letter"><a href="reg_new.jsp" style="cursor: url(Res/mouse.png), auto;">ยังไม่เป็นสมาชิก? สมัครเลย!</a></div>
 </form>
 <%if(session.getAttribute("mess")!=null){ %>
-<%if(session.getAttribute("mess").equals("101")){ %>
-<font color="RED"><b>Wrong username!</b></font>
-<%}else if(session.getAttribute("mess").equals("102")){ %>
-<font color="RED"><b>Wrong password!</b></font>
+<% if(session.getAttribute("mess").equals("102")){ %>
+<font color="RED"><b>Wrong password and username!</b></font>
 <%} %><%} session.invalidate(); %>
 </div>
 <!-- End of login section -->

@@ -14,11 +14,9 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/logout")
 public class Logout_user extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private Connection conn;
        
     public Logout_user() {super();}
     
-    public void init() {conn = (Connection) getServletContext().getAttribute("connection");}
     
 	/* This logout function using for clean up all session attribute that still alive 
 	 * also update user status to offline state */	
@@ -26,10 +24,6 @@ public class Logout_user extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		try{
 		if(session != null){
-			String ID = (String) request.getSession().getAttribute("stat");
-			Statement out1 = conn.createStatement();
-			String sql = "update username set status='offline' where Cus_id="+ID;
-			out1.executeUpdate(sql);
 			System.out.println("Logout process: Cleared all session...");
 		    session.invalidate();
 		request.getRequestDispatcher("anthen.jsp").forward(request,response);}}

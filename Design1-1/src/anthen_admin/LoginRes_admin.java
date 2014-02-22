@@ -25,22 +25,7 @@ public class LoginRes_admin extends HttpServlet {
 		String name = request.getParameter("name");
 		String password = request.getParameter("pass");
 		try{
-			Statement stmt = conn.createStatement();
-			Statement stma = conn.createStatement();
-			String sql1 = "select * from manager";
-			ResultSet res = stmt.executeQuery(sql1);
-			while(res.next()){
-				if(name.equals(res.getString("username")) && password.equals(res.getString("password"))){
-					loginflag=true;
-					String stat = res.getString("mgr_id");
-					stma.execute("update manager set status='online' where mgr_id="+stat);
-					request.getSession().setAttribute("admin_id", stat);
-					request.getSession().setAttribute("admin_first", res.getString("Fname"));
-					request.getSession().setAttribute("admin_last", res.getString("Lname"));
-					
-					
-				}
-			}
+
 			request.getSession().setAttribute("admin", loginflag);
      		response.sendRedirect("ad_dash.jsp");
 		}catch(Exception e){

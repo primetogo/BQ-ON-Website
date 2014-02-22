@@ -234,10 +234,10 @@
 <div id='cssmenu'>
 <ul>
    <li class='active'><a href='customer.jsp'><span>จองโต๊ะ-สั่งอาหาร</span></a></li>
-   <li class='has-sub'><a href='#' style="cursor: url(Res/mouse.png), auto;" ><span>จัดการข้อมูลส่วนตัว</span></a>
+   <li class='has-sub'><a href='#'  ><span>จัดการข้อมูลส่วนตัว</span></a>
       <ul>
-         <li><a href='#' style="cursor: url(Res/mouse.png), auto;" ><span>แก้ไขข้อมูลส่วนตัว</span></a></li>
-         <li class='last'><a href='rev_conf.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ยกเลิกสมาชิก</span></a></li>
+         <li><a href='#'  ><span>แก้ไขข้อมูลส่วนตัว</span></a></li>
+         <li class='last'><a href='rev_conf.jsp'  ><span>ยกเลิกสมาชิก</span></a></li>
       </ul>
    </li>
 </ul>

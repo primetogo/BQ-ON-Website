@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 @WebListener
 public class Init implements ServletContextListener {
 	
-	@Resource(name="jdbc/res")
+	@Resource(name="jdbc/resnew")
 	private DataSource jdbcTest;
 	
 	private Connection conn;
