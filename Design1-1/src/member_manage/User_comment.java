@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,7 +35,8 @@ public class User_comment extends HttpServlet {
 			comment_get = conn.prepareStatement(sql1);
 			comment_get.executeQuery();
 			comment_get.close();
-			response.sendRedirect("suc_comment.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("suc_comment.jsp");
+		    rd.forward(request, response);
 		}catch(SQLException e){
 			System.out.println(e);
 		}
