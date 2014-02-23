@@ -33,8 +33,10 @@ public class LoginFilter_user implements Filter {
 			 * and send user back to login page, 
 			 * if fail or in case of re-login with
 			 * another user online */
-			HttpServletResponse res = (HttpServletResponse) response;
-			res.sendRedirect("anthen.jsp");
+//			HttpServletResponse res = (HttpServletResponse) response;
+//			res.sendRedirect("anthen.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("anthen.jsp");
+			rd.forward(request, response);
 			return;
 		}
 	    chain.doFilter(request, response);

@@ -23,7 +23,6 @@ public class User_remover extends HttpServlet {
     
     public void init() {conn = (Connection) getServletContext().getAttribute("connection");}
 
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		   HttpSession session = request.getSession(false);
 		try {			

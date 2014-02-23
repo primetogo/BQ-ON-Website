@@ -189,7 +189,7 @@
 </form>
 <%if(session.getAttribute("mess")!=null){ %>
 <% if(session.getAttribute("mess").equals("102")){ %>
-<font color="RED"><b>Wrong password and username!</b></font>
+<font color="RED"><b>Wrong password or username!</b></font>
 <%} %><%} session.invalidate(); %>
 </div>
 <!-- End of login section -->
