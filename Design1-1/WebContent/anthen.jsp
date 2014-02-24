@@ -78,7 +78,7 @@
   opacity: 1;
 }
 .bg{
-  background: url(Res/fgff.jpg) no-repeat center center fixed; 
+  background: url(Res/login.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

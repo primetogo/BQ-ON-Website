@@ -13,13 +13,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-
 @WebServlet("/Addmem.do")
 public class User_register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Connection conn;
-	PreparedStatement insert_member, check_member;
+	PreparedStatement insert_member, insert_customer, check_member;
        
     public User_register() {super();}
   
@@ -35,21 +33,15 @@ public class User_register extends HttpServlet {
     		String email = request.getParameter("email");
     		String phone = request.getParameter("phone");
     		String adr = request.getParameter("adr");
-    		check_member = conn.prepareStatement(check);
-    		ResultSet res = check_member.executeQuery();
-    		while(res.next()){
-    			String check1 = res.getString("Cus_Fname");
-    			String check2 = res.getString("Cus_Lname");
-    			String check3 = res.getString("username");
-    			if(!check1.equals(first) && !check2.equals(last)){
-    				String member_insert = "insert into username (Cus_Fname, Cus_Lname, Cus_Address, Cus_Tel, username, password, email) values('"+first+"','"+last+"','"+adr+"','"+phone+"','"+user+"','"+pass+"','"+email+"') join customer on (Customer_Cus_id = Cus_id)";
-    	            insert_member = conn.prepareStatement(member_insert);
-    	            insert_member.execute();
-    	            insert_member.close();
-    			}
-    			else{RequestDispatcher rd = request.getRequestDispatcher("fail_reg.jsp");
-    			     rd.forward(request, response);}
-    		}
+    		String customer_insert = "insert into customer (Cus_Fname, Cus_Lname, Cus_Address, Cus_Tel) values('"+first+"','"+last+"','"+adr+"','"+phone+"')";
+    		String username_insert = "insert into username (username, email, password) values('"+user+"','"+email+"','"+pass+"')";
+    	    insert_customer = conn.prepareStatement(customer_insert);
+    	    insert_customer.execute();
+    	    insert_customer.close();
+    	    insert_member = conn.prepareStatement(username_insert);
+    	    insert_member.execute();
+    	    insert_member.close();
+    		
     	}catch(SQLException e){
     		System.out.println(e);
     	}

@@ -36,7 +36,7 @@
 }
 #cssmenu {
   position: fixed;
-  top: 180px;
+  top: 230px;
   zoom: 1;
   height: 69px;
   background: url(Res/bottom-bg.png) repeat-x center bottom;
@@ -81,7 +81,7 @@
 }
 /* Start css menu style */
 .bg{
-  background: url(Res/fgff.jpg) no-repeat center center fixed; 
+  background: url(Res/WelPage10.jpg) no-repeat fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -119,8 +119,6 @@
 <title>ยินดีต้อนรับสู่ Shizen!</title>
 </head>
 <body class="bg">
-<img src="Res/ShizenLogo.png" id="image-logo">
-<img src="Res/Fix1.jpg" id="name-banner">
 <!-- Start navigator bar -->
 <div id='cssmenu'>
 <ul>
@@ -135,7 +133,7 @@
 <!-- Start of slider body section -->
 <div align="center">
 <div id="wowslider-container1">
-<div id="title-style">Recommend menu for this season</div><br>
+<div id="title-style">เมนูแนะนำสำหรับฤดูกาลนี้</div><br>
 	<div class="ws_images"><ul>
 <li><img src="data1/images/tonkatsu.jpg" alt="Fried Pork (Tongkatsu)" title="Fried Pork (Tongkatsu)" id="wows1_0"/>Good for kids</li>
 <li><img src="data1/images/assorted_japanese_food.jpg" alt="Sushi rice set " title="Sushi rice set " id="wows1_1"/>Luxury set of Sushi</li>

@@ -35,7 +35,7 @@
 }
 #cssmenu {
   position: fixed;
-  top: 180px;
+  top: 230px;
   zoom: 1;
   height: 69px;
   background: url(Res/bottom-bg.png) repeat-x center bottom;
@@ -78,7 +78,7 @@
   opacity: 1;
 }
 .bg{
-  background: url(Res/fgff.jpg) no-repeat center center fixed; 
+  background: url(Res/WelPage10.jpg) no-repeat fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -215,8 +215,6 @@
 <title>แนะนำหรือติชม-ติดต่อ</title>
 </head>
 <body class="bg" >
-<img src="Res/ShizenLogo.png" id="image-logo">
-<img src="Res/Fix1.jpg" id="name-banner">
 <div id='cssmenu'>
 <ul>
    <li><a href='index.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>หน้าหลัก</span></a></li>

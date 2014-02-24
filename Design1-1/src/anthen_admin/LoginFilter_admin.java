@@ -45,7 +45,7 @@ public class LoginFilter_admin implements Filter {
 			HttpServletResponse res = (HttpServletResponse) response;
 			HttpSession session = ((HttpServletRequest) request).getSession(false);
 			session.invalidate();
-			res.sendRedirect("ad_sec.jsp");
+			res.sendRedirect("/sec_ad/ad_sec.jsp");
 			return;
 		}
 		chain.doFilter(request, response);
