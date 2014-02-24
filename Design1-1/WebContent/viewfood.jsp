@@ -222,6 +222,103 @@
 	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
    
 }
+.CSSTableGenerator {
+	margin:0px;padding:0px;
+	width:100%;
+	box-shadow: 10px 10px 5px #888888;
+	border:1px solid #ffffff;
+	
+	-moz-border-radius-bottomleft:0px;
+	-webkit-border-bottom-left-radius:0px;
+	border-bottom-left-radius:0px;
+	
+	-moz-border-radius-bottomright:0px;
+	-webkit-border-bottom-right-radius:0px;
+	border-bottom-right-radius:0px;
+	
+	-moz-border-radius-topright:0px;
+	-webkit-border-top-right-radius:0px;
+	border-top-right-radius:0px;
+	
+	-moz-border-radius-topleft:0px;
+	-webkit-border-top-left-radius:0px;
+	border-top-left-radius:0px;
+}.CSSTableGenerator table{
+    border-collapse: collapse;
+        border-spacing: 0;
+	width:100%;
+	height:100%;
+	margin:0px;padding:0px;
+}.CSSTableGenerator tr:last-child td:last-child {
+	-moz-border-radius-bottomright:0px;
+	-webkit-border-bottom-right-radius:0px;
+	border-bottom-right-radius:0px;
+}
+.CSSTableGenerator table tr:first-child td:first-child {
+	-moz-border-radius-topleft:0px;
+	-webkit-border-top-left-radius:0px;
+	border-top-left-radius:0px;
+}
+.CSSTableGenerator table tr:first-child td:last-child {
+	-moz-border-radius-topright:0px;
+	-webkit-border-top-right-radius:0px;
+	border-top-right-radius:0px;
+}.CSSTableGenerator tr:last-child td:first-child{
+	-moz-border-radius-bottomleft:0px;
+	-webkit-border-bottom-left-radius:0px;
+	border-bottom-left-radius:0px;
+}.CSSTableGenerator tr:hover td{
+	background-color:#cccccc;
+		
+
+}
+.CSSTableGenerator td{
+	vertical-align:middle;
+	
+	background-color:#6699cc;
+
+	border:1px solid #ffffff;
+	border-width:0px 1px 1px 0px;
+	text-align:left;
+	padding:11px;
+	font-size:10px;
+	font-family:Helvetica;
+	font-weight:normal;
+	color:#000000;
+}.CSSTableGenerator tr:last-child td{
+	border-width:0px 1px 0px 0px;
+}.CSSTableGenerator tr td:last-child{
+	border-width:0px 0px 1px 0px;
+}.CSSTableGenerator tr:last-child td:last-child{
+	border-width:0px 0px 0px 0px;
+}
+.CSSTableGenerator tr:first-child td{
+		background:-o-linear-gradient(bottom, #003366 5%, #003f7f 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #003366), color-stop(1, #003f7f) );
+	background:-moz-linear-gradient( center top, #003366 5%, #003f7f 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#003366", endColorstr="#003f7f");	background: -o-linear-gradient(top,#003366,003f7f);
+
+	background-color:#003366;
+	border:0px solid #ffffff;
+	text-align:center;
+	border-width:0px 0px 1px 1px;
+	font-size:18px;
+	font-family:Helvetica;
+	font-weight:bold;
+	color:#ffffff;
+}
+.CSSTableGenerator tr:first-child:hover td{
+	background:-o-linear-gradient(bottom, #003366 5%, #003f7f 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #003366), color-stop(1, #003f7f) );
+	background:-moz-linear-gradient( center top, #003366 5%, #003f7f 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#003366", endColorstr="#003f7f");	background: -o-linear-gradient(top,#003366,003f7f);
+
+	background-color:#003366;
+}
+.CSSTableGenerator tr:first-child td:first-child{
+	border-width:0px 0px 1px 0px;
+}
+.CSSTableGenerator tr:first-child td:last-child{
+	border-width:0px 0px 1px 1px;
+}
 </style>
 <title>การรับออเดอร์และจองโต๊ะ</title>
 </head>
@@ -246,82 +343,33 @@
 </ul>
 </div>
 <div id="map-panel" align="center">
-<form  method="post">
-<sql:setDataSource var="ds" driver="com.mysql.jdbc.Driver" url="jdbc:mysql:///resnew" user="root" password="root"/>
-	
-<h2>กรุณาใส่จำนวนที่นั่งและโซนที่ท่านต้องการจอง  <input type="text" name="seat">
-<sql:query var="rs1" dataSource="${ds}">select distinct Zone from resnew.table</sql:query>
-<select name="zone"><c:forEach var="zones" items="${rs1.rows}"><option value="${zones.Zone}">${zones.Zone}</option></c:forEach></select>
-<input type="submit" value="Go!!" name="go"></h2></form>
-<c:if test="${param.go !=null}">
-<c:choose>
-<c:when test="${param.zone=='outdoor'}">
-<img  src="Res/outdoor.png"/>
-<sql:query var="rs" dataSource="${ds}">select * from resnew.table where table_status="no" and Zone="outdoor"</sql:query>
-<form action="table_re" method="post">
-<table border="1">
-<thead><tr><th></th>
-<th>table_id</th>
-<th>Seat_amount</th>
-<th>Status</th></tr></thead><tbody>
-<c:forEach var="table1" items="${rs.rows}">
-<tr><td><input type="checkbox" name="table_id" value="${table1.Table_id}"></td>
-<td>${table1.Table_id}</td>
-<td>${table1.Seat_amount}</td>
-<td>ว่าง</td></tr>
+<form action="commit" method="post">
+<h2>รายการโต๊ะที่จอง</h2>
+<c:forEach var="Table" items="${sessionScope.tc.table_reserve}">
+<h3>หมายเลขโต๊ะ : ${Table.table_id}</h3>
+<h3>โซนที่นั่ง : ${Table.zone}</h3> 
+<h3>จำนวนที่นั่ง : ${Table.seat_amount}</h3> 
 </c:forEach>
-</tbody></table>
-<input type="submit"  value="จอง!!!"></form>
-</c:when>
-<c:when test="${ param.zone=='cassic'}">
-<img  src="Res/cassic.png"/>
-<sql:query var="rs" dataSource="${ds}">select * from resnew.table where table_status="no" and Zone="cassic"</sql:query>
-<form action="table_re" method="post">
-<table border="1">
-<thead><tr>
-<th></th>
-<th>table_id</th>
-<th>Seat_amount</th>
-<th>Status</th>
-</tr>
-</thead>
-<tbody>
-<c:forEach var="table1" items="${rs.rows}">
-<tr>
-<td><input type="checkbox" name="table_id" value="${table1.Table_id}"></td>
-<td>${table1.Table_id}</td>
-<td>${table1.Seat_amount}</td>
-<td>ว่าง</td>
-</tr>
+<h2>รายการอาหารที่สั่ง</h2>
+<div class="CSSTableGenerator" >
+<table> <tr><td>Food name</td>
+<td >Food Type</td>
+<td>Food price</td>
+<td>Food amount</td></tr>
+<c:forEach var="Food" items="${sessionScope.fc.food_reserve}">
+<tr><td>${Food.food_name}</td>
+<td>${Food.food_type}</td>
+<td>${Food.food_price}</td> 
+<td><input type="text" name="${Food.food_id}"  value="1"></td>
+ </tr>                            
 </c:forEach>
-</tbody></table><input type="submit"  value="จอง!!!"></form>
-</c:when>
-<c:when test="${param.zone=='modern'}">
-<img  src="Res/modern.png"/>
-<sql:query var="rs" dataSource="${ds}">select * from resnew.table where   table_status="no" and Zone="modern"</sql:query>
-<form action="table_re" method="post">
-<table border="1">
-<thead><tr>
-<th></th>
-<th>table_id</th>
-<th>Seat amonut</th>
-<th>Status</th>
-</tr>
-</thead>
-<tbody>
-<c:forEach var="table1" items="${rs.rows}">
-<tr>
-<td><input type="checkbox" name="table_id" value="${table1.Table_id}"></td>
-<td>${table1.Table_id}</td>
-<td>${table1.Seat_amount}</td>
-<td>ว่าง</td>
-</tr>
-</c:forEach>
-</tbody></table><input type="submit"  value="จอง!!!"></form>
-</c:when>
-<c:otherwise>Error!!!!  try again!!!</c:otherwise>
-</c:choose>
-</c:if>
+   </table>
+ </div>   
+<input type="submit" value="ตกลง" name="Go">     
+</form>
+<form action="menu.jsp">
+    <input type="submit" value="สั่งอาหารเพิ่ม">
+</form>
 </div>
 </body>
 </html>
