@@ -30,7 +30,7 @@
 #box{
     margin: 0px auto;
     height: 500px;
-    width: 450px;
+    width: 650px;
     font-family: RaiNgan;
 	font-size: 40px;
 	font-weight: bold;

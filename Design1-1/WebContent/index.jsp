@@ -36,7 +36,7 @@
 }
 #cssmenu {
   position: fixed;
-  top: 230px;
+  top: 230px ;
   zoom: 1;
   height: 69px;
   background: url(Res/bottom-bg.png) repeat-x center bottom;
@@ -111,6 +111,36 @@
   right: 10px;
   border-radius: 5px;
 }
+#di
+{
+    background: url(Res/animated.jpg);
+    height: 100px;
+    width: 100px;
+
+    -webkit-animation: slide 2s linear infinite;
+       -moz-animation: slide 2s linear;
+            animation: slide 2s linear infinite;
+}
+
+
+@-webkit-keyframes slide
+{
+    0%   {background-position: 0 0;}
+    100% {background-position: 100px 0;}
+}
+
+@-moz-keyframes slide
+{
+    0%   {background-position: 0 0;}
+    100% {background-position: 100px 0;}
+}
+
+@keyframes slide
+{
+    0%   {background-position: 0 0;}
+    100% {background-position: 100px 0;}
+}
+
 </style>
     <!-- Start of slider header section -->
     <link rel="stylesheet" type="text/css" href="engine1/style.css" />

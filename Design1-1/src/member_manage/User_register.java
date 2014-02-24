@@ -17,7 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 public class User_register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Connection conn;
-	PreparedStatement insert_member, insert_customer, check_member;
+	private PreparedStatement insert_member, insert_customer, check_member;
+	private boolean flag = true;
        
     public User_register() {super();}
   
@@ -25,7 +26,7 @@ public class User_register extends HttpServlet {
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	try{
-    		String check = "select Cus_Fname, Cus_Lname, username from username join customer on (Customer_Cus_id = Cus_id)";
+    		boolean chet = true;
     		String first = request.getParameter("first");
     		String last = request.getParameter("last");
     		String pass = request.getParameter("pass");
@@ -33,7 +34,18 @@ public class User_register extends HttpServlet {
     		String email = request.getParameter("email");
     		String phone = request.getParameter("phone");
     		String adr = request.getParameter("adr");
-    		String customer_insert = "insert into customer (Cus_Fname, Cus_Lname, Cus_Address, Cus_Tel) values('"+first+"','"+last+"','"+adr+"','"+phone+"')";
+    		String check = "select Cus_Fname, Cus_Lname from customer";
+    		check_member = conn.prepareStatement(check);
+    		ResultSet res = check_member.executeQuery();
+    		while(res.next()){
+    			if(first.equals(res.getString("Cus_Fname")) && last.equals(res.getString("Cus_Lname"))){
+    				chet = false;
+    			}
+    		}
+    		
+    		System.out.println("Can register? => "+chet);
+    		if(chet==true){
+    		String customer_insert = "insert into customer (Cus_id, Cus_Fname, Cus_Lname, Cus_Address, Cus_Tel) values("+0+",'"+first+"','"+last+"','"+adr+"','"+phone+"')";
     		String username_insert = "insert into username (username, email, password) values('"+user+"','"+email+"','"+pass+"')";
     	    insert_customer = conn.prepareStatement(customer_insert);
     	    insert_customer.execute();
@@ -41,7 +53,11 @@ public class User_register extends HttpServlet {
     	    insert_member = conn.prepareStatement(username_insert);
     	    insert_member.execute();
     	    insert_member.close();
-    		
+    	    request.getSession().setAttribute("hi1", first);
+    	    request.getSession().setAttribute("hi2", last);
+    	    RequestDispatcher re = request.getRequestDispatcher("suc.jsp");
+    	    re.forward(request, response);
+    		}else{response.sendRedirect("reg_new.jsp");}
     	}catch(SQLException e){
     		System.out.println(e);
     	}
