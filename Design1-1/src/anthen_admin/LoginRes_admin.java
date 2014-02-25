@@ -7,13 +7,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/admin_sec")
+@WebServlet("/admin")
 public class LoginRes_admin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Connection conn;
@@ -33,7 +34,7 @@ public class LoginRes_admin extends HttpServlet {
 			ResultSet res = admin_login.executeQuery();
 			while(res.next()){
 				request.getSession().setAttribute("admin_first", res.getString("Emp_Fname"));
-				request.getSession().setAttribute("Emp_Lname", res.getString("Emp_Lname"));
+				request.getSession().setAttribute("admin_last", res.getString("Emp_Lname"));
 			}
 			loginflag = true;
 			
@@ -42,7 +43,9 @@ public class LoginRes_admin extends HttpServlet {
 			System.out.println(e);
 		}
 		request.getSession().setAttribute("admin", loginflag);
- 		response.sendRedirect("/sec_ad/ad_dash.jsp");
+// 		response.sendRedirect("ad_dash.jsp");
+		RequestDispatcher rg = request.getRequestDispatcher("ad_dash.jsp");
+		rg.forward(request, response);
 	}
 
 }

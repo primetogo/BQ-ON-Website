@@ -1,7 +1,7 @@
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -152,11 +152,11 @@ table, th, td
 	background-color: #6BE08C;
 }
 #type_panel{
-    margin-top: -100px;
+    margin-top: 10px;
 	margin-left: auto;
 	margin-right: auto;
-	height: 470px;
-	width: 300px;
+	height: 730px;
+	width: 800px;
 	font-family: RaiNgan;
 	font-size: 30px;
  	background-color: #bdffb0;
@@ -170,74 +170,62 @@ table, th, td
 	box-shadow: 0px 0px 20px #000000;
 	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
 }
-#food_panel{
-	margin-top: -100px;
-	margin-left: auto;
-	margin-right: auto;
-	height: 400px;
-	width: 300px;
-	font-family: RaiNgan;
-	font-size: 30px;
- 	background-color: #bdffb0;
-	border: 2px solid #999999;
-	-moz-border-radius: 6px;
-	-webkit-border-radius: 6px;
-	border-radius: 6px;
-	/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
-	-moz-box-shadow: 0px 0px 20px #000000;
-	-webkit-box-shadow: 0px 0px 20px #000000;
-	box-shadow: 0px 0px 20px #000000;
-	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
-}
+
 </style>
-<title>ส่วนการจัดการ</title>
 </head>
 <body id="bg">
-<form method="post">
-<input type="submit" value="Main Page" class="firstButton" name="de" /><br>
-<input type="submit" value="Removing Food" name="de" class="firstButton" /><br>
-<input type="submit" value="Add More Food" name="de" class="firstButton" /><br>
-</form><br>
-
-<sql:setDataSource var="ds" driver="com.mysql.jdbc.Driver"
-url="jdbc:mysql:///res" user="root" password="123456" ></sql:setDataSource>
-
-
-<div id="inf_panel" align="center">
-Admin: <%= session.getAttribute("admin_first") %> <%= session.getAttribute("admin_last") %>
-</div><br>
-<form action="admingo" method="post">
-  <input type="submit" value="logout" class="myButton" />
-</form>
-
-<c:if test="${param.de!=null}">     
-	<c:if test="${param.de=='Main page'}"></c:if>	
-	<c:if test="${param.de=='Removing Food'}">
+    
+	<sql:setDataSource var="ds" driver="com.mysql.jdbc.Driver"
+	url="jdbc:mysql:///res" user="root" password="123456" ></sql:setDataSource>
+	<%if(request.getSession().getAttribute("typo").equals("Appetizer")){ %>
 		<sql:query dataSource="${ds}" var="res">
-			select distinct food_type from resnew.food;
+			select Food_name, Food_price from resnew.food where Food_type='Appetizer';
 		</sql:query>
+    <%}else if(request.getSession().getAttribute("typo").equals("dessert")){%>
+    	<sql:query dataSource="${ds}" var="res">
+			select Food_name, Food_price from resnew.food where Food_type='dessert';
+		</sql:query>
+    <%}else if(request.getSession().getAttribute("typo").equals("Donburi")){%>
+    	<sql:query dataSource="${ds}" var="res">
+			select Food_name, Food_price from resnew.food where Food_type='Donburi';
+		</sql:query>
+    <%}else if(request.getSession().getAttribute("typo").equals("drink")){%>
+    	<sql:query dataSource="${ds}" var="res">
+			select Food_name, Food_price from resnew.food where Food_type='drink';
+		</sql:query>
+    <%}else if(request.getSession().getAttribute("typo").equals("noodle")){%>
+    	<sql:query dataSource="${ds}" var="res">
+			select Food_name, Food_price from resnew.food where Food_type='noodle';
+		</sql:query>
+    <%}else if(request.getSession().getAttribute("typo").equals("Set menu")){%>
+    	<sql:query dataSource="${ds}" var="res">
+			select Food_name, Food_price from resnew.food where Food_type='Set menu';
+		</sql:query>
+    <%}else if(request.getSession().getAttribute("typo").equals("sushi")){%>
+    	<sql:query dataSource="${ds}" var="res">
+			select Food_name, Food_price from resnew.food where Food_type='sushi';
+		</sql:query>
+    <%}%>
 		<div id="type_panel" align="center">
-			<form action="get_food" method="post"><br>
+			<form action="remove_food" method="post"><br>
 				<table border="1" width="80%" >
 					<tr>
-						<td>Food Type</td>
-						<td>check</td>
+						<td>Food name</td>
+						<td>Food price</td>
+						<td>Check</td>
 					</tr>
 					<c:forEach var="gg" items="${res.rows}">
 						<tr>
-							<td><c:out value="${gg.Food_type}" /></td>
-							<td><input type="radio" name="kindy" value="${gg.Food_type}" /></td>
+							<td><c:out value="${gg.Food_name}" /></td>
+							<td><c:out value="${gg.Food_price}" /></td>
+							<td><input type="checkbox" name="kindy" value="${gg.Food_id}" /></td>
 						</tr>
 					</c:forEach>
 				</table>
 				<br>
 				<input type="submit" value="Next!" class="myButton" width="50%"/>
-			</form>
+			</form><br>
+			    <button></button>
 		</div> 
-		
-	</c:if>
-	<c:if test="${param.de=='Add More Food'}">
-	</c:if>
-</c:if>
 </body>
 </html>

@@ -25,7 +25,7 @@ public class Logout_admin extends HttpServlet {
 		if(session != null){
 			System.out.println("Logout process: Cleared all session...");
 		    session.invalidate();
-		request.getRequestDispatcher("/sec_ad/ad_sec.jsp").forward(request,response);}}
+		request.getRequestDispatcher("/ad_sec.jsp").forward(request,response);}}
 		catch(Exception e){
 			System.out.print(e);
 		}

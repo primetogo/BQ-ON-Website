@@ -136,7 +136,7 @@
 </head>
 <body id="bg">
 <div id="wrapper" align="center">
-        <form action="admin_sec" method="post">
+        <form action="admin" method="post">
             <fieldset>
                 <legend>ระบบการจัดการ</legend>
                 <div>
