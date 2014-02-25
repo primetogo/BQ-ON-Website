@@ -1,3 +1,7 @@
+<%@page import="sun.security.provider.certpath.OCSP.RevocationStatus"%>
+<%@page import="model.Food_reserve"%>
+<%@page import="model.Food_Cart"%>
+<%@page import="java.util.Enumeration"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
@@ -343,32 +347,77 @@
 </ul>
 </div>
 <div id="map-panel" align="center">
-<form action="commit" method="post">
+<jsp:useBean id="cart" class="model.Food_Cart" scope="session"/>
+<form method="post" action="viewfood.jsp">
 <h2>รายการโต๊ะที่จอง</h2>
 <c:forEach var="Table" items="${sessionScope.tc.table_reserve}">
 <h3>หมายเลขโต๊ะ : ${Table.table_id}</h3>
 <h3>โซนที่นั่ง : ${Table.zone}</h3> 
 <h3>จำนวนที่นั่ง : ${Table.seat_amount}</h3> 
 </c:forEach>
-<h2>รายการอาหารที่สั่ง</h2>
-<div class="CSSTableGenerator" >
-<table> <tr><td>Food name</td>
-<td >Food Type</td>
-<td>Food price</td>
-<td>Food amount</td></tr>
-<c:forEach var="Food" items="${sessionScope.fc.food_reserve}">
-<tr><td>${Food.food_name}</td>
-<td>${Food.food_type}</td>
-<td>${Food.food_price}</td> 
-<td><input type="text" name="${Food.food_id}"  value="1"></td>
- </tr>                            
-</c:forEach>
-   </table>
- </div>   
-<input type="submit" value="ตกลง" name="Go">     
-</form>
-<form action="menu.jsp">
-    <input type="submit" value="สั่งอาหารเพิ่ม">
+<%String[] temp;
+if(request.getParameter("cal")!=null){
+	Enumeration e=cart.getItem();
+	while(e.hasMoreElements()){
+		temp=(String[]) e.nextElement();
+		cart.setQuantity(temp[0], request.getParameter(temp[0]));
+	}
+}
+if(request.getParameter("pay")!=null)
+{
+	response.sendRedirect("pay.jsp");
+	}
+if(request.getParameter("buy")!=null)
+{
+	response.sendRedirect("menu.jsp");
+	}
+if(request.getParameter("del")!=null)
+{
+	String[] food_id=request.getParameterValues("food_id");
+	if(food_id !=null){
+		for(int i=0;i<food_id.length;i++){
+			cart.removeFood(food_id[i]);
+		}
+	}
+	}
+if(cart.getItem().hasMoreElements()){
+%>
+<h2>รายการอาหาร</h2>
+<div id=".CSSTableGenerator"></div>
+ <table>
+ <tr><td>Choose</td><td>Food name</td><td>Quantity</td><td>Food price</td><td>Sum</td></tr>
+ <%Enumeration enu =cart.getItem();
+ int sum=0;
+ int amount=0;
+ while(enu.hasMoreElements()){
+	temp=(String[]) enu.nextElement();
+	sum=Integer.parseInt(temp[2])*Integer.parseInt(temp[3]);
+	amount+=sum;%>
+<tr><td><input name="food_id" type="checkbox" value="<%=temp[0] %>"/></td>
+<td><%=new String(temp[1].getBytes("ISO8859_1"),"windows-874")%></td>     
+<td><input name="<%=temp[0]%>" type="text" value="<%=temp[2]%>" size="3" maxlength="3"></td>   
+<td><%=temp[3] %></td>  
+<td><%=sum %></td>
+</tr>   
+<%}%>
+<tr>
+<td colspan="2"><input name="del" type="submit" value="Cancel"></td>
+<td colspan="3">Total</td>   
+<td><%=amount%></td>  
+</tr> 
+<%}else{
+	out.println("<center>ยังไม่มีอาหารในออเดอร์</center>");
+}
+	%>
+<tr>
+<td colspan="6"><div align="center">
+<input name="cal" type="submit" value="cal">
+<input name="buy" type="submit" value="Buy">
+<input name="pay" type="submit" value="pay">
+</div>
+</td>
+</tr>   
+</table>
 </form>
 </div>
 </body>

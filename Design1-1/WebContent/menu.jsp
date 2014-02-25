@@ -350,7 +350,7 @@
 <c:if test="${param.gogo != null}">
 <c:choose>
 <c:when test="${param.ft=='Appetizer'}">
-<form action="food_re" method="post">
+<form action="addtocart.jsp" method="post">
 <div class="CSSTableGenerator" >
 <sql:query var="ap" dataSource="${ds}">select  * from resnew.food where food_type='Appetizer'</sql:query>
 <table border="2">
@@ -360,13 +360,15 @@
 <th></th>
 <th>Food name</th>
 <th>Food price</th>
+<th>Food amount</th>
 </tr>
 <c:forEach var="app" items="${ap.rows}">
 <tr>
 <td><img src="Menu/Appetizer/${app.Food_id}.jpg" width="100" height="100"></td>
-<td><input type="checkbox" name="food" value="${app.Food_id}"></td>
+<td><input type="checkbox" name="food_id" value="${app.Food_id}"></td>
 <td>${app.Food_name}</td>
-<td>${app.Food_price}</td>
+<td>${app.Food_price}</td> 
+<td><input type="text" name="${app.Food_id}_quantity"></td>
 </tr>
 </c:forEach>
 </tbody></table>	
@@ -376,7 +378,7 @@
 </c:when>
 <c:when test="${param.ft=='Set menu'}">
 <sql:query var="ap" dataSource="${ds}">select  * from resnew.food where food_type='Set menu'</sql:query>
-<form action="food_re" method="post">	
+<form action="addtocart.jsp" method="post">	
 <div class="CSSTableGenerator" >
 <table border="2">
 <tbody>
@@ -385,13 +387,15 @@
 <th></th>
 <th>Food name</th>
 <th>Food price</th>
+<th>Food amount</th>
 </tr>
 <c:forEach var="app" items="${ap.rows}">
 <tr>
 <td><img src="Menu/Set menu/${app.Food_id}.jpg" width="100" height="100"></td>
-<td><input type="checkbox" name="food" value="${app.Food_id}"></td>
+<td><input type="checkbox" name="food_id" value="${app.Food_id}"></td>
 <td>${app.Food_name}</td>
-<td>${app.Food_price}</td>
+<td>${app.Food_price}</td> 
+<td><input type="text" name="${app.Food_id}_quantity"></td>
 </tr>
 </c:forEach>
 </tbody></table>	
@@ -401,7 +405,7 @@
 </c:when>
 <c:when test="${param.ft=='Donburi'}">
 <sql:query var="ap" dataSource="${ds}">select  * from resnew.food where food_type='Donburi'</sql:query>	
-<form action="food_re" method="post">
+<form action="addtocart.jsp" method="post">
 <div class="CSSTableGenerator" >
 <table border="2">
 <tbody>
@@ -410,13 +414,15 @@
 <th></th>
 <th>Food name</th>
 <th>Food price</th>
+<th>Food amount</th>
 </tr>
 <c:forEach var="app" items="${ap.rows}">
 <tr>
 <td><img src="Menu/donburi/${app.Food_id}.png" width="100" height="100"></td>
-<td><input type="checkbox" name="food" value="${app.Food_id}"></td>
+<td><input type="checkbox" name="food_id" value="${app.Food_id}"></td>
 <td>${app.Food_name}</td>
-<td>${app.Food_price}</td>
+<td>${app.Food_price}</td> 
+<td><input type="text" name="${app.Food_id}_quantity"></td>
 </tr>
 </c:forEach>
 </tbody></table>	
@@ -426,7 +432,7 @@
 </c:when>
 <c:when test="${param.ft=='noodle'}">
 <sql:query var="ap" dataSource="${ds}">select  * from resnew.food where food_type='noodle'</sql:query>	
-<form action="food_re" method="post">
+<form action="addtocart.jsp" method="post">
 <div class="CSSTableGenerator" >
 <table border="2">
 <tbody>
@@ -435,13 +441,15 @@
 <th></th>
 <th>Food name</th>
 <th>Food price</th>
+<th>Food amount</th>
 </tr>
 <c:forEach var="app" items="${ap.rows}">
 <tr>
 <td><img src="Menu/noodle/${app.Food_id}.png" width="100" height="100"></td>
-<td><input type="checkbox" name="food" value="${app.Food_id}"></td>
+<td><input type="checkbox" name="food_id" value="${app.Food_id}"></td>
 <td>${app.Food_name}</td>
-<td>${app.Food_price}</td>
+<td>${app.Food_price}</td> 
+<td><input type="text" name="${app.Food_id}_quantity"></td>
 </tr>
 </c:forEach>
 </tbody></table>	
@@ -451,7 +459,7 @@
 </c:when>
 <c:when test="${param.ft=='sushi'}">
 <sql:query var="ap" dataSource="${ds}">select  * from resnew.food where food_type='sushi'</sql:query>
-<form action="food_re" method="post">
+<form action="addtocart.jsp" method="post">
 <div class="CSSTableGenerator" >
 <table border="2">
 <tbody>
@@ -460,13 +468,15 @@
 <th></th>
 <th>Food name</th>
 <th>Food price</th>
+<th>Food amount</th>
 </tr>
 <c:forEach var="app" items="${ap.rows}">
 <tr>
 <td><img src="Menu/sushi/${app.Food_id}.jpg" width="100" height="100"></td>
-<td><input type="checkbox" name="food" value="${app.Food_id}"></td>
+<td><input type="checkbox" name="food_id" value="${app.Food_id}"></td>
 <td>${app.Food_name}</td>
-<td>${app.Food_price}</td>
+<td>${app.Food_price}</td> 
+<td><input type="text" name="${app.Food_id}_quantity"></td>
 </tr>
 </c:forEach>
 </tbody></table>	
@@ -476,7 +486,7 @@
 </c:when>
 <c:when test="${param.ft=='dessert'}">
 <sql:query var="ap" dataSource="${ds}">select  * from resnew.food where food_type='dessert'</sql:query>	
-<form action="food_re" method="post">
+<form action="addtocart.jsp" method="post">
 <div class="CSSTableGenerator" >
 <table border="2">
 <tbody>
@@ -485,13 +495,15 @@
 <th></th>
 <th>Food name</th>
 <th>Food price</th>
+<th>Food amount</th>
 </tr>
 <c:forEach var="app" items="${ap.rows}">
 <tr>
 <td><img src="Menu/dessert/${app.Food_id}.jpg" width="100" height="100"></td>
-<td><input type="checkbox" name="food" value="${app.Food_id}"></td>
+<td><input type="checkbox" name="food_id" value="${app.Food_id}"></td>
 <td>${app.Food_name}</td>
-<td>${app.Food_price}</td>
+<td>${app.Food_price}</td> 
+<td><input type="text" name="${app.Food_id}_quantity"></td>
 </tr>
 </c:forEach>
 </tbody></table>
@@ -501,7 +513,7 @@
 </c:when>
 <c:when test="${param.ft=='drink'}">
 <sql:query var="ap" dataSource="${ds}">select  * from resnew.food where food_type='drink'</sql:query>	
-<form action="food_re" method="post">
+<form action="addtocart.jsp" method="post">
 <div class="CSSTableGenerator" >
 <table border="2">
 <tbody>
@@ -510,13 +522,15 @@
 <th></th>
 <th>Food name</th>
 <th>Food price</th>
+<th>Food amount</th>
 </tr>
 <c:forEach var="app" items="${ap.rows}">
 <tr>
-<td><img src="Menu/drink/${app.Food_id}.jpg" width="100" height="130"></td>
-<td><input type="checkbox" name="food" value="${app.Food_id}"></td>
+<td><img src="Menu/drink/${app.Food_id}.jpg" width="100" height="100"></td>
+<td><input type="checkbox" name="food_id" value="${app.Food_id}"></td>
 <td>${app.Food_name}</td>
-<td>${app.Food_price}</td>
+<td>${app.Food_price}</td> 
+<td><input type="text" name="${app.Food_id}_quantity"></td>
 </tr>
 </c:forEach>
 </tbody></table>
