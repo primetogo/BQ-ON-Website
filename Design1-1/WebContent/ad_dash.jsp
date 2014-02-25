@@ -189,6 +189,48 @@ table, th, td
 	box-shadow: 0px 0px 20px #000000;
 	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
 }
+#morefood{
+    text-align: center;
+	margin-top: -100px;
+	margin-left: auto;
+	margin-right: auto;
+	height: 570px;
+	width: 450px;
+	font-family: RaiNgan;
+	font-size: 30px;
+ 	background-color: #bdffb0;
+	border: 2px solid #999999;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
+	-moz-box-shadow: 0px 0px 20px #000000;
+	-webkit-box-shadow: 0px 0px 20px #000000;
+	box-shadow: 0px 0px 20px #000000;
+	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
+}
+#typeselect{
+    margin-left: 50px;
+	text-align: left;
+	height: 270px;
+	width: 380px;
+	font-family: RaiNgan;
+	font-size: 30px;
+}
+.loginInputBox{
+       height: 30px;
+       width: 200px; 
+       -moz-border-radius-bottomright: 5px;
+       border-bottom-right-radius: 5px;
+       -moz-border-radius-bottomleft: 5px;
+       border-bottom-left-radius: 5px;
+       -moz-border-radius-topleft: 5px;
+       border-top-left-radius: 5px;
+       -moz-border-radius-topright: 5px;
+       border-top-right-radius: 5px;
+       font-family:RaiNgan;
+       font-size: 25px;
+}
 </style>
 <title>ส่วนการจัดการ</title>
 </head>
@@ -237,14 +279,48 @@ Admin: <%= session.getAttribute("admin_first") %> <%= session.getAttribute("admi
 		
 	</c:if>
 	<c:if test="${param.de=='Add More Food'}">
-		
+		<sql:query dataSource="${ds}" var="shi">
+			select distinct food_type from resnew.food;
+		</sql:query>
+		<div id="morefood" ><br>
+		<div align="center"><b>Add new food</b></div><br>
+			<form action="addfood" method="post">
+				<b>Food name: </b><input type="text" name="food_name" placeholder="name" class="loginInputBox" /><br><br>
+				    <b>Price: </b><input type="text" name="food_price" placeholder="price" class="loginInputBox" /><br><br>
+				<div id="typeselect">
+				    <b>Please, select type of food</b><br>
+				<c:forEach var = "xx" items="${shi.rows}" >
+					<input type="radio" value="${xx.Food_type}" name="blah" /><c:out value="${xx.Food_type}"/><br>
+				</c:forEach>
+				</div>
+				<input type="submit" value="Add" class="myButton"/>
+			</form>
+		</div>
 	</c:if>
 	<c:if test="${param.de=='Order Management'}">
+		<sql:query dataSource="${ds}" var="meh">
+			select order_id, Cus_Fname, Cus_Lname, Order_status from customer join order on (Customer_Cus_id=Cus_id);
+		</sql:query>
 		<div id="order_panel" align="center"><br>
 			<form action="ordermanage" method="post">
-				<br><input type="submit" value="View all order" name="comm" class="firstButton" /><br>
-				<br><input type="submit" value="Remove order" name="comm" class="firstButton"/><br>
-				<br><input type="submit" value="Checkout order" name="comm" class="firstButton" /><br>
+				<table border="1" width="80%">
+					<tr>
+						<td>Order ID</td>
+						<td>Customer first name</td>
+						<td>Customer last name</td>
+						<td>Status</td>
+						<td>Checkout</td>
+						<td>Remove</td>
+					</tr>
+					<c:forEach var="me" items="${meh}">
+						<tr>
+							<td><c:out value="${me.order_id}" /></td>
+							<td><c:out value="${me.Cus_Fname}" /></td>
+							<td><c:out value="${me.Cus_Lname}" /></td>
+							<td><c:out value="${me.Order_status}" /></td>
+						</tr>
+					</c:forEach>
+				</table>
 			</form>
 		</div>
 	</c:if>

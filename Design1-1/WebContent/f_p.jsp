@@ -206,6 +206,8 @@ table, th, td
 		</sql:query>
     <%}%>
 		<div id="type_panel" align="center">
+		<br>
+		<b>Type: <%= session.getAttribute("typo") %></b>
 			<form action="remove_food" method="post"><br>
 				<table border="1" width="80%" >
 					<tr>
