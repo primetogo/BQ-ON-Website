@@ -20,7 +20,7 @@ public class Food extends HttpServlet {
 		String intern = request.getParameter("kindy");
 		System.out.println(intern);
 		request.getSession().setAttribute("typo", intern);
-		RequestDispatcher re = request.getRequestDispatcher("app.jsp");
+		RequestDispatcher re = request.getRequestDispatcher("f_p.jsp");
 		re.forward(request, response);
 	}
 

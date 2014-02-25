@@ -33,19 +33,15 @@ public class LoginRes_admin extends HttpServlet {
 			admin_login = conn.prepareStatement(sql_admin);
 			ResultSet res = admin_login.executeQuery();
 			while(res.next()){
+				loginflag = true;
 				request.getSession().setAttribute("admin_first", res.getString("Emp_Fname"));
 				request.getSession().setAttribute("admin_last", res.getString("Emp_Lname"));
-			}
-			loginflag = true;
-			
-			
+			}	
 		}catch(Exception e){
 			System.out.println(e);
 		}
 		request.getSession().setAttribute("admin", loginflag);
-// 		response.sendRedirect("ad_dash.jsp");
-		RequestDispatcher rg = request.getRequestDispatcher("ad_dash.jsp");
-		rg.forward(request, response);
+        response.sendRedirect("ad_dash.jsp");
 	}
 
 }

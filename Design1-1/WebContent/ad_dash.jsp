@@ -170,11 +170,11 @@ table, th, td
 	box-shadow: 0px 0px 20px #000000;
 	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
 }
-#food_panel{
+#order_panel{
 	margin-top: -100px;
 	margin-left: auto;
 	margin-right: auto;
-	height: 400px;
+	height: 350px;
 	width: 300px;
 	font-family: RaiNgan;
 	font-size: 30px;
@@ -197,10 +197,11 @@ table, th, td
 <input type="submit" value="Main Page" class="firstButton" name="de" /><br>
 <input type="submit" value="Removing Food" name="de" class="firstButton" /><br>
 <input type="submit" value="Add More Food" name="de" class="firstButton" /><br>
+<input type="submit" value="Order Management" name="de" class="firstButton" /><br>
 </form><br>
 
 <sql:setDataSource var="ds" driver="com.mysql.jdbc.Driver"
-url="jdbc:mysql:///res" user="root" password="123456" ></sql:setDataSource>
+url="jdbc:mysql:///resnew" user="root" password="123456" ></sql:setDataSource>
 
 
 <div id="inf_panel" align="center">
@@ -209,7 +210,6 @@ Admin: <%= session.getAttribute("admin_first") %> <%= session.getAttribute("admi
 <form action="admingo" method="post">
   <input type="submit" value="logout" class="myButton" />
 </form>
-
 <c:if test="${param.de!=null}">     
 	<c:if test="${param.de=='Main page'}"></c:if>	
 	<c:if test="${param.de=='Removing Food'}">
@@ -237,6 +237,16 @@ Admin: <%= session.getAttribute("admin_first") %> <%= session.getAttribute("admi
 		
 	</c:if>
 	<c:if test="${param.de=='Add More Food'}">
+		
+	</c:if>
+	<c:if test="${param.de=='Order Management'}">
+		<div id="order_panel" align="center"><br>
+			<form action="ordermanage" method="post">
+				<br><input type="submit" value="View all order" name="comm" class="firstButton" /><br>
+				<br><input type="submit" value="Remove order" name="comm" class="firstButton"/><br>
+				<br><input type="submit" value="Checkout order" name="comm" class="firstButton" /><br>
+			</form>
+		</div>
 	</c:if>
 </c:if>
 </body>
