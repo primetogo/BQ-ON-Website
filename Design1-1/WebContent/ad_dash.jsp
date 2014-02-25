@@ -152,7 +152,7 @@ table, th, td
 	background-color: #6BE08C;
 }
 #type_panel{
-    margin-top: -100px;
+    margin-top: -200px;
 	margin-left: auto;
 	margin-right: auto;
 	height: 470px;
@@ -171,11 +171,11 @@ table, th, td
 	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
 }
 #order_panel{
-	margin-top: -100px;
+	margin-top: -200px;
 	margin-left: auto;
 	margin-right: auto;
-	height: 350px;
-	width: 300px;
+	height: 300px;
+	width: 800px;
 	font-family: RaiNgan;
 	font-size: 30px;
  	background-color: #bdffb0;
@@ -191,7 +191,7 @@ table, th, td
 }
 #morefood{
     text-align: center;
-	margin-top: -100px;
+	margin-top: -200px;
 	margin-left: auto;
 	margin-right: auto;
 	height: 570px;
@@ -217,6 +217,26 @@ table, th, td
 	font-family: RaiNgan;
 	font-size: 30px;
 }
+#moreorder{
+	text-align: center;
+	margin-top: -100px;
+	margin-left: auto;
+	margin-right: auto;
+	height: 570px;
+	width: 450px;
+	font-family: RaiNgan;
+	font-size: 30px;
+ 	background-color: #bdffb0;
+	border: 2px solid #999999;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
+	-moz-box-shadow: 0px 0px 20px #000000;
+	-webkit-box-shadow: 0px 0px 20px #000000;
+	box-shadow: 0px 0px 20px #000000;
+	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
+}
 .loginInputBox{
        height: 30px;
        width: 200px; 
@@ -239,7 +259,9 @@ table, th, td
 <input type="submit" value="Main Page" class="firstButton" name="de" /><br>
 <input type="submit" value="Removing Food" name="de" class="firstButton" /><br>
 <input type="submit" value="Add More Food" name="de" class="firstButton" /><br>
-<input type="submit" value="Order Management" name="de" class="firstButton" /><br>
+<input type="submit" value="Order Terminate" name="de" class="firstButton" /><br>
+<input type="submit" value="Order Checkout" name="de" class="firstButton" /><br>
+<input type="submit" value="New Order" name="de" class="firstButton" /><br>
 </form><br>
 
 <sql:setDataSource var="ds" driver="com.mysql.jdbc.Driver"
@@ -262,8 +284,8 @@ Admin: <%= session.getAttribute("admin_first") %> <%= session.getAttribute("admi
 			<form action="get_food" method="post"><br>
 				<table border="1" width="80%" >
 					<tr>
-						<td>Food Type</td>
-						<td>check</td>
+						<td><b>Food Type</b></td>
+						<td><b>check</b></td>
 					</tr>
 					<c:forEach var="gg" items="${res.rows}">
 						<tr>
@@ -297,31 +319,65 @@ Admin: <%= session.getAttribute("admin_first") %> <%= session.getAttribute("admi
 			</form>
 		</div>
 	</c:if>
-	<c:if test="${param.de=='Order Management'}">
+	<c:if test="${param.de=='Order Terminate'}">
 		<sql:query dataSource="${ds}" var="meh">
-			select order_id, Cus_Fname, Cus_Lname, Order_status from customer join order on (Customer_Cus_id=Cus_id);
+			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id`
 		</sql:query>
 		<div id="order_panel" align="center"><br>
-			<form action="ordermanage" method="post">
+			<form action="orderter" method="post">
 				<table border="1" width="80%">
 					<tr>
-						<td>Order ID</td>
-						<td>Customer first name</td>
-						<td>Customer last name</td>
-						<td>Status</td>
-						<td>Checkout</td>
-						<td>Remove</td>
+						<td><b>Order ID</b></td>
+						<td><b>Customer first name</b></td>
+						<td><b>Customer last name</b></td>
+						<td><b>Status</b></td>
+						<td><b>Remove</b></td>
 					</tr>
-					<c:forEach var="me" items="${meh}">
+					<c:forEach var="me" items="${meh.rows}">
 						<tr>
 							<td><c:out value="${me.order_id}" /></td>
 							<td><c:out value="${me.Cus_Fname}" /></td>
 							<td><c:out value="${me.Cus_Lname}" /></td>
 							<td><c:out value="${me.Order_status}" /></td>
+							<td><input type="checkbox" value="${me.order_id}" name="cheese"/></td>
 						</tr>
 					</c:forEach>
-				</table>
+				</table><br>
+				<input type="submit" value="Process!" class="myButton" />
 			</form>
+		</div>
+	</c:if>
+	<c:if test="${param.de=='Order Checkout'}">
+		<sql:query dataSource="${ds}" var="meh">
+			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id`
+		</sql:query>
+		<div id="order_panel" align="center"><br>
+			<form action="order_check" method="post">
+				<table border="1" width="80%">
+					<tr>
+						<td><b>Order ID</b></td>
+						<td><b>Customer first name</b></td>
+						<td><b>Customer last name</b></td>
+						<td><b>Status</b></td>
+						<td><b>Checkout</b></td>
+					</tr>
+					<c:forEach var="me" items="${meh.rows}">
+						<tr>
+							<td><c:out value="${me.order_id}" /></td>
+							<td><c:out value="${me.Cus_Fname}" /></td>
+							<td><c:out value="${me.Cus_Lname}" /></td>
+							<td><c:out value="${me.Order_status}" /></td>
+							<td><input type="checkbox" value="${me.order_id}" name="butter"/></td>
+						</tr>
+					</c:forEach>
+				</table><br>
+				<input type="submit" value="Process!" class="myButton" />
+			</form>
+		</div>
+	</c:if>
+	<c:if test="${param.de=='New Order'}">
+		<div id="moreorder">
+			
 		</div>
 	</c:if>
 </c:if>

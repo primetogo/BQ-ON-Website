@@ -208,12 +208,12 @@ table, th, td
 		<div id="type_panel" align="center">
 		<br>
 		<b>Type: <%= session.getAttribute("typo") %></b>
-			<form action="remove_food" method="post"><br>
+			<form action="removefood" method="post"><br>
 				<table border="1" width="80%" >
 					<tr>
-						<td>Food name</td>
-						<td>Food price</td>
-						<td>Remove</td>
+						<td><b>Food name</b></td>
+						<td><b>Food price</b></td>
+						<td><b>Remove</b></td>
 					</tr>
 					<c:forEach var="gg" items="${res.rows}">
 						<tr>

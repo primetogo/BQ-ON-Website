@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @WebServlet("/get_food")
-public class Food extends HttpServlet {
+public class Type_redirect extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
-    public Food() {super();}
+    public Type_redirect() {super();}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String intern = request.getParameter("kindy");
