@@ -1,9 +1,20 @@
 package model;
 
 public class Food_reserve {
+	String[] Food_reserve;
+
 	String food_id,food_name,food_type;
-	int food_price;
+	int food_price,Quantity;
 	
+	
+	public int getQuantity() {
+		return Quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		Quantity = quantity;
+	}
+
 	public String getFood_id() {
 		return food_id;
 	}

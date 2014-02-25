@@ -4,43 +4,57 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Enumeration;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
+
+
 
 public class Food_Cart {
-List <Food_reserve> Food_reserve;
-Connection conn;
-public void addFood(String Food_id){
+protected Hashtable items=new Hashtable();
+public Food_Cart(){
+	items=new Hashtable();
+}
+public Enumeration getItem(){
+	return items.elements();
+}
+public void setQuantity(String food_id,String quantity){
 	try{
-	Statement food_add=conn.createStatement();
-	String sql="SELECT * from resnew.food where Food_id='" + Food_id + "'";
-	ResultSet rs = food_add.executeQuery(sql);
-	while (rs.next()) {
-		Food_reserve fr = new Food_reserve();
-		fr.setFood_id(Food_id);
-		fr.setFood_name(rs.getString("Food_name"));
-		fr.setFood_price(rs.getInt("Food_price"));
-		fr.setFood_type(rs.getString("Food_type"));
-		Food_reserve.add(fr);
+		if(Integer.parseInt(quantity)<=0){
+			quantity="1";
 		}
-		} catch (SQLException ex) {
-		ex.printStackTrace();
-		}
-	
-}
-public List<Food_reserve> getFood_reserve() {
-return Food_reserve;
-}
-public Food_Cart(Connection conn) {
-this.conn = conn;
-Food_reserve = new LinkedList<Food_reserve>();
-}
-public void removeFood(String Food_id) {
-	Food_reserve.remove(Food_id);
-}
-	public Food_Cart() {
-		// TODO Auto-generated constructor stub
 	}
-
+	catch(NumberFormatException e){quantity="1";}
+	if(items.containsKey(food_id)){
+		String[] tmpfr=(String[]) items.get(food_id);
+		tmpfr[2]=quantity;
+	}
 }
+public void addFood(String food_id,String food_name,int quantity,int food_price){
+	String[] item={food_id,food_name,Integer.toString(quantity),Integer.toString(food_price)};
+	if(items.containsKey(food_id)){
+		String[] tmpfr=(String[]) items.get(food_id);
+		int tmpNum=Integer.parseInt(tmpfr[2]);
+		quantity+=tmpNum;
+		tmpfr[2]=Integer.toString(quantity);
+	}
+	else
+	{
+		items.put(food_id, item);
+	}
+		
+	} 
+public void close(){
+	items=new Hashtable();
+}
+public void removeFood(String food_id){
+	for(int i=0;i<items.size();i++){
+		if(items.containsKey(food_id)){
+			items.remove(food_id);
+		}
+	}
+}
+}
+
