@@ -6,7 +6,6 @@
     pageEncoding="UTF-8"%>
     <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-     <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -209,6 +208,7 @@
 }
 #map-panel{
     margin-top: 100px;
+    font-family: RaiNgan;
     margin-left: auto;
     margin-right: auto;
     height: 1100px;
@@ -230,23 +230,23 @@
 	margin:0px;padding:0px;
 	width:100%;
 	box-shadow: 10px 10px 5px #888888;
-	border:1px solid #ffffff;
+	border:1px solid #000000;
 	
-	-moz-border-radius-bottomleft:0px;
-	-webkit-border-bottom-left-radius:0px;
-	border-bottom-left-radius:0px;
+	-moz-border-radius-bottomleft:20px;
+	-webkit-border-bottom-left-radius:20px;
+	border-bottom-left-radius:20px;
 	
-	-moz-border-radius-bottomright:0px;
-	-webkit-border-bottom-right-radius:0px;
-	border-bottom-right-radius:0px;
+	-moz-border-radius-bottomright:20px;
+	-webkit-border-bottom-right-radius:20px;
+	border-bottom-right-radius:20px;
 	
-	-moz-border-radius-topright:0px;
-	-webkit-border-top-right-radius:0px;
-	border-top-right-radius:0px;
+	-moz-border-radius-topright:20px;
+	-webkit-border-top-right-radius:20px;
+	border-top-right-radius:20px;
 	
-	-moz-border-radius-topleft:0px;
-	-webkit-border-top-left-radius:0px;
-	border-top-left-radius:0px;
+	-moz-border-radius-topleft:20px;
+	-webkit-border-top-left-radius:20px;
+	border-top-left-radius:20px;
 }.CSSTableGenerator table{
     border-collapse: collapse;
         border-spacing: 0;
@@ -254,41 +254,41 @@
 	height:100%;
 	margin:0px;padding:0px;
 }.CSSTableGenerator tr:last-child td:last-child {
-	-moz-border-radius-bottomright:0px;
-	-webkit-border-bottom-right-radius:0px;
-	border-bottom-right-radius:0px;
+	-moz-border-radius-bottomright:20px;
+	-webkit-border-bottom-right-radius:20px;
+	border-bottom-right-radius:20px;
 }
 .CSSTableGenerator table tr:first-child td:first-child {
-	-moz-border-radius-topleft:0px;
-	-webkit-border-top-left-radius:0px;
-	border-top-left-radius:0px;
+	-moz-border-radius-topleft:20px;
+	-webkit-border-top-left-radius:20px;
+	border-top-left-radius:20px;
 }
 .CSSTableGenerator table tr:first-child td:last-child {
-	-moz-border-radius-topright:0px;
-	-webkit-border-top-right-radius:0px;
-	border-top-right-radius:0px;
+	-moz-border-radius-topright:20px;
+	-webkit-border-top-right-radius:20px;
+	border-top-right-radius:20px;
 }.CSSTableGenerator tr:last-child td:first-child{
-	-moz-border-radius-bottomleft:0px;
-	-webkit-border-bottom-left-radius:0px;
-	border-bottom-left-radius:0px;
+	-moz-border-radius-bottomleft:20px;
+	-webkit-border-bottom-left-radius:20px;
+	border-bottom-left-radius:20px;
 }.CSSTableGenerator tr:hover td{
-	background-color:#cccccc;
+	background-color:#ffffff;
 		
 
 }
 .CSSTableGenerator td{
 	vertical-align:middle;
 	
-	background-color:#6699cc;
+	background-color:#211103;
 
-	border:1px solid #ffffff;
+	border:1px solid #000000;
 	border-width:0px 1px 1px 0px;
 	text-align:left;
-	padding:11px;
-	font-size:10px;
-	font-family:Helvetica;
+	padding:8px;
+	font-size:15px;
+	font-family: RaiNgan;
 	font-weight:normal;
-	color:#000000;
+	color:#ffffff;
 }.CSSTableGenerator tr:last-child td{
 	border-width:0px 1px 0px 0px;
 }.CSSTableGenerator tr td:last-child{
@@ -297,25 +297,25 @@
 	border-width:0px 0px 0px 0px;
 }
 .CSSTableGenerator tr:first-child td{
-		background:-o-linear-gradient(bottom, #003366 5%, #003f7f 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #003366), color-stop(1, #003f7f) );
-	background:-moz-linear-gradient( center top, #003366 5%, #003f7f 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#003366", endColorstr="#003f7f");	background: -o-linear-gradient(top,#003366,003f7f);
+		background:-o-linear-gradient(bottom, #472200 5%, #7f3f00 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #472200), color-stop(1, #7f3f00) );
+	background:-moz-linear-gradient( center top, #472200 5%, #7f3f00 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#472200", endColorstr="#7f3f00");	background: -o-linear-gradient(top,#472200,7f3f00);
 
-	background-color:#003366;
-	border:0px solid #ffffff;
+	background-color:#472200;
+	border:0px solid #000000;
 	text-align:center;
 	border-width:0px 0px 1px 1px;
-	font-size:18px;
-	font-family:Helvetica;
+	font-size:14px;
+	font-family: RaiNgan;
 	font-weight:bold;
 	color:#ffffff;
 }
 .CSSTableGenerator tr:first-child:hover td{
-	background:-o-linear-gradient(bottom, #003366 5%, #003f7f 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #003366), color-stop(1, #003f7f) );
-	background:-moz-linear-gradient( center top, #003366 5%, #003f7f 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#003366", endColorstr="#003f7f");	background: -o-linear-gradient(top,#003366,003f7f);
+	background:-o-linear-gradient(bottom, #472200 5%, #7f3f00 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #472200), color-stop(1, #7f3f00) );
+	background:-moz-linear-gradient( center top, #472200 5%, #7f3f00 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#472200", endColorstr="#7f3f00");	background: -o-linear-gradient(top,#472200,7f3f00);
 
-	background-color:#003366;
+	background-color:#472200;
 }
 .CSSTableGenerator tr:first-child td:first-child{
 	border-width:0px 0px 1px 0px;
@@ -345,16 +345,9 @@
       </ul>
    </li>
 </ul>
-</div>
+</div><jsp:useBean id="cart" class="model.Food_Cart" scope="session"/>
 <div id="map-panel" align="center">
-<jsp:useBean id="cart" class="model.Food_Cart" scope="session"/>
 <form method="post" action="viewfood.jsp">
-<h2>รายการโต๊ะที่จอง</h2>
-<c:forEach var="Table" items="${sessionScope.tc.table_reserve}">
-<h3>หมายเลขโต๊ะ : ${Table.table_id}</h3>
-<h3>โซนที่นั่ง : ${Table.zone}</h3> 
-<h3>จำนวนที่นั่ง : ${Table.seat_amount}</h3> 
-</c:forEach>
 <%String[] temp;
 if(request.getParameter("cal")!=null){
 	Enumeration e=cart.getItem();
@@ -383,12 +376,12 @@ if(request.getParameter("del")!=null)
 if(cart.getItem().hasMoreElements()){
 %>
 <h2>รายการอาหาร</h2>
-<div id=".CSSTableGenerator"></div>
+<div class="CSSTableGenerator">
  <table>
  <tr><td>Choose</td><td>Food name</td><td>Quantity</td><td>Food price</td><td>Sum</td></tr>
  <%Enumeration enu =cart.getItem();
  int sum=0;
- int amount=0;
+ int amount =0;
  while(enu.hasMoreElements()){
 	temp=(String[]) enu.nextElement();
 	sum=Integer.parseInt(temp[2])*Integer.parseInt(temp[3]);
@@ -402,7 +395,7 @@ if(cart.getItem().hasMoreElements()){
 <%}%>
 <tr>
 <td colspan="2"><input name="del" type="submit" value="Cancel"></td>
-<td colspan="3">Total</td>   
+<td colspan="2">Total</td>   
 <td><%=amount%></td>  
 </tr> 
 <%}else{

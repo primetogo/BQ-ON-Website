@@ -249,7 +249,7 @@
 <form  method="post">
 <sql:setDataSource var="ds" driver="com.mysql.jdbc.Driver" url="jdbc:mysql:///resnew" user="root" password="root"/>
 	
-<h2>กรุณาใส่จำนวนที่นั่งและโซนที่ท่านต้องการจอง  <input type="text" name="seat">
+<h2>กรุณาเลือกโซนที่ท่านต้องการจอง 
 <sql:query var="rs1" dataSource="${ds}">select distinct Zone from resnew.table</sql:query>
 <select name="zone"><c:forEach var="zones" items="${rs1.rows}"><option value="${zones.Zone}">${zones.Zone}</option></c:forEach></select>
 <input type="submit" value="Go!!" name="go"></h2></form>
@@ -258,25 +258,22 @@
 <c:when test="${param.zone=='outdoor'}">
 <img  src="Res/outdoor.png"/>
 <sql:query var="rs" dataSource="${ds}">select * from resnew.table where table_status="no" and Zone="outdoor"</sql:query>
-<form action="table_re" method="post">
 <table border="1">
 <thead><tr><th></th>
 <th>table_id</th>
 <th>Seat_amount</th>
 <th>Status</th></tr></thead><tbody>
 <c:forEach var="table1" items="${rs.rows}">
-<tr><td><input type="checkbox" name="table_id" value="${table1.Table_id}"></td>
+<tr><td><form action="addtable.jsp" method="post"><input type="submit" name="table_id" value="${table1.Table_id}"></form></td>
 <td>${table1.Table_id}</td>
 <td>${table1.Seat_amount}</td>
 <td>ว่าง</td></tr>
 </c:forEach>
 </tbody></table>
-<input type="submit"  value="จอง!!!"></form>
 </c:when>
 <c:when test="${ param.zone=='cassic'}">
 <img  src="Res/cassic.png"/>
 <sql:query var="rs" dataSource="${ds}">select * from resnew.table where table_status="no" and Zone="cassic"</sql:query>
-<form action="table_re" method="post">
 <table border="1">
 <thead><tr>
 <th></th>
@@ -288,18 +285,17 @@
 <tbody>
 <c:forEach var="table1" items="${rs.rows}">
 <tr>
-<td><input type="checkbox" name="table_id" value="${table1.Table_id}"></td>
+<td><form action="addtable.jsp" method="post"><input type="submit" name="table_id" value="${table1.Table_id}"></form></td>
 <td>${table1.Table_id}</td>
 <td>${table1.Seat_amount}</td>
 <td>ว่าง</td>
 </tr>
 </c:forEach>
-</tbody></table><input type="submit"  value="จอง!!!"></form>
+</tbody></table>
 </c:when>
 <c:when test="${param.zone=='modern'}">
 <img  src="Res/modern.png"/>
 <sql:query var="rs" dataSource="${ds}">select * from resnew.table where   table_status="no" and Zone="modern"</sql:query>
-<form action="table_re" method="post">
 <table border="1">
 <thead><tr>
 <th></th>
@@ -311,15 +307,14 @@
 <tbody>
 <c:forEach var="table1" items="${rs.rows}">
 <tr>
-<td><input type="checkbox" name="table_id" value="${table1.Table_id}"></td>
+<td><form action="addtable.jsp" method="post"><input type="submit" name="table_id" value="${table1.Table_id}"></form></td>
 <td>${table1.Table_id}</td>
 <td>${table1.Seat_amount}</td>
 <td>ว่าง</td>
 </tr>
 </c:forEach>
-</tbody></table><input type="submit"  value="จอง!!!"></form>
+</tbody></table>
 </c:when>
-<c:otherwise>Error!!!!  try again!!!</c:otherwise>
 </c:choose>
 </c:if>
 </div>
