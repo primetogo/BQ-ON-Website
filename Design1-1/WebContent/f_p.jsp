@@ -155,7 +155,7 @@ table, th, td
     margin-top: 10px;
 	margin-left: auto;
 	margin-right: auto;
-	height: 980px;
+	height: 1200px;
 	width: 800px;
 	font-family: RaiNgan;
 	font-size: 30px;

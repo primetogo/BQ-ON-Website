@@ -219,10 +219,10 @@ table, th, td
 }
 #moreorder{
 	text-align: center;
-	margin-top: -100px;
+	margin-top: -200px;
 	margin-left: auto;
 	margin-right: auto;
-	height: 570px;
+	height: 400px;
 	width: 450px;
 	font-family: RaiNgan;
 	font-size: 30px;
@@ -236,6 +236,13 @@ table, th, td
 	-webkit-box-shadow: 0px 0px 20px #000000;
 	box-shadow: 0px 0px 20px #000000;
 	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
+}
+#inorder1{
+	margin-top: 20px;
+ 	margin-left: 40px;
+	height: 200px;
+	width: 400px;
+	text-align: left;
 }
 .loginInputBox{
        height: 30px;
@@ -262,6 +269,7 @@ table, th, td
 <input type="submit" value="Order Terminate" name="de" class="firstButton" /><br>
 <input type="submit" value="Order Checkout" name="de" class="firstButton" /><br>
 <input type="submit" value="New Order" name="de" class="firstButton" /><br>
+<input type="submit" value="Add New Admin" name="de" class="firstButton" /><br>
 </form><br>
 
 <sql:setDataSource var="ds" driver="com.mysql.jdbc.Driver"
@@ -321,7 +329,7 @@ Admin: <%= session.getAttribute("admin_first") %> <%= session.getAttribute("admi
 	</c:if>
 	<c:if test="${param.de=='Order Terminate'}">
 		<sql:query dataSource="${ds}" var="meh">
-			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id`
+			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id` AND 'Order_status'='IQ'
 		</sql:query>
 		<div id="order_panel" align="center"><br>
 			<form action="orderter" method="post">
@@ -349,7 +357,7 @@ Admin: <%= session.getAttribute("admin_first") %> <%= session.getAttribute("admi
 	</c:if>
 	<c:if test="${param.de=='Order Checkout'}">
 		<sql:query dataSource="${ds}" var="meh">
-			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id`
+			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id` AND 'Order_status'='IQ'
 		</sql:query>
 		<div id="order_panel" align="center"><br>
 			<form action="order_check" method="post">
@@ -376,8 +384,32 @@ Admin: <%= session.getAttribute("admin_first") %> <%= session.getAttribute("admi
 		</div>
 	</c:if>
 	<c:if test="${param.de=='New Order'}">
+		<sql:query dataSource="${ds}" var="person">
+			SELECT DISTINCT Seat_amount FROM `table` WHERE Table_Status='no' ORDER BY Seat_amount ASC
+		</sql:query>
+		<sql:query dataSource="${ds}" var="zone">
+			SELECT DISTINCT Zone FROM `table` WHERE Table_Status='no' ORDER BY Zone ASC
+		</sql:query>
 		<div id="moreorder">
-			
+		<br><font size="10"><b>New order insert</b></font>
+		<form action="neworder" method="post">
+			<div id="inorder1">
+			<b>Customer name:</b><br>
+				<b>First name</b> <input type="text" name="outer_first" class="loginInputBox" /><br>
+				<b>Last name</b> <input type="text" name="outer_last" class="loginInputBox" /><br>
+				<b>Amount of person</b> <select name="seat_check">
+				<c:forEach var="tab1" items="${person.rows}">
+				<option value="${tab1.Seat_amount}">${tab1.Seat_amount} person</option>
+				</c:forEach>
+				</select><br><font color="red" size="5">*highest number that's max person per table</font><br>
+				<b>Table zone </b><select name="zone_check">
+				<c:forEach var="tab2" items="${zone.rows}">
+				<option value="${tab2.Zone}">${tab2.Zone} zone</option>
+				</c:forEach>
+				</select>
+			</div><br>
+			<input type="submit" value="Next!" class="myButton" />
+		</form>
 		</div>
 	</c:if>
 </c:if>
