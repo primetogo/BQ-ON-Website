@@ -26,8 +26,8 @@ public void setQuantity(String food_id,String quantity){
 		tmpfr[2]=quantity;
 	}
 }
-public void addFood(String food_id,String food_name,int quantity,int food_price){
-	String[] item={food_id,food_name,Integer.toString(quantity),Integer.toString(food_price)};
+public void addFood(String food_id,String food_name,int quantity,String food_price){
+	String[] item={food_id,food_name,Integer.toString(quantity),food_price};
 	if(items.containsKey(food_id)){
 		String[] tmpfr=(String[]) items.get(food_id);
 		int tmpNum=Integer.parseInt(tmpfr[2]);
