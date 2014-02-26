@@ -1,5 +1,4 @@
 <%@page import="sun.security.provider.certpath.OCSP.RevocationStatus"%>
-<%@page import="model.Food_reserve"%>
 <%@page import="model.Food_Cart"%>
 <%@page import="java.util.Enumeration"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -11,6 +10,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">
+h1 {color: white;}
 @font-face {
 	font-family: 'RaiNgan';
 	src: url('Res/RaiNgan.ttf'); /* IE9 Compat Modes */
@@ -208,7 +208,9 @@
 }
 #map-panel{
     margin-top: 100px;
-    font-family: RaiNgan;
+ 
+     font-family: RaiNgan ;
+   	background-image: url("Res/pic1.jpg"); 
     margin-left: auto;
     margin-right: auto;
     height: 1100px;
@@ -337,7 +339,12 @@
 </div>
 <div id='cssmenu'>
 <ul>
-   <li class='active'><a href='customer.jsp'><span>จองโต๊ะ-สั่งอาหาร</span></a></li>
+    <li class='active'><a href='customer.jsp'><span>จองโต๊ะ</span></a></li>
+   <li class='has-sub'><a href='#'><span>สั่งอาหาร</span></a>
+    <ul>
+         <li><a href='viewfood.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ตรวจสอบรายการอาหาร</span></a></li>
+         <li class='last'><a href='menu.jsp'><span>สั่งอาหาร</span></a></li>
+      </ul></li>
    <li class='has-sub'><a href='#' style="cursor: url(Res/mouse.png), auto;" ><span>จัดการข้อมูลส่วนตัว</span></a>
       <ul>
          <li><a href='#' style="cursor: url(Res/mouse.png), auto;" ><span>แก้ไขข้อมูลส่วนตัว</span></a></li>
@@ -375,7 +382,7 @@ if(request.getParameter("del")!=null)
 	}
 if(cart.getItem().hasMoreElements()){
 %>
-<h2>รายการอาหาร</h2>
+<font size="7" color="white">รายการอาหาร</font>
 <div class="CSSTableGenerator">
  <table>
  <tr><td>Choose</td><td>Food name</td><td>Quantity</td><td>Food price</td><td>Sum</td></tr>
@@ -399,7 +406,7 @@ if(cart.getItem().hasMoreElements()){
 <td><%=amount%></td>  
 </tr> 
 <%}else{
-	out.println("<center>ยังไม่มีอาหารในออเดอร์</center>");
+	out.println("<center><h1>ยังไม่มีอาหารในออเดอร์</h1></center>");
 }
 	%>
 <tr>
@@ -411,6 +418,7 @@ if(cart.getItem().hasMoreElements()){
 </td>
 </tr>   
 </table>
+</div>
 </form>
 </div>
 </body>

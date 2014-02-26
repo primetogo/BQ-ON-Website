@@ -3,11 +3,13 @@
     <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
      <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+     <jsp:useBean id="pa" class="model.MENUBEAN"></jsp:useBean>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">
+h1 {color: white;}
 @font-face {
 	font-family: 'RaiNgan';
 	src: url('Res/RaiNgan.ttf'); /* IE9 Compat Modes */
@@ -204,7 +206,8 @@
 	top:1px;
 }
 #map-panel{
-	font-family: RaiNgan;
+	 font-family: RaiNgan;
+   	background-image: url("Res/pic1.jpg"); 
     margin-top: 100px;
     margin-left: auto;
     margin-right: auto;
@@ -227,7 +230,7 @@
 	margin:0px;padding:0px;
 	width:100%;
 	box-shadow: 10px 10px 5px #888888;
-	border:1px solid #3f7f00;
+	border:1px solid #000000;
 	
 	-moz-border-radius-bottomleft:0px;
 	-webkit-border-bottom-left-radius:0px;
@@ -271,19 +274,19 @@
 }.CSSTableGenerator tr:hover td{
 	
 }
-.CSSTableGenerator tr:nth-child(odd){ background-color:#c5f8f9; }
-.CSSTableGenerator tr:nth-child(even)    { background-color:#7dd8d8; }.CSSTableGenerator td{
+.CSSTableGenerator tr:nth-child(odd){ background-color:#4f2906; }
+.CSSTableGenerator tr:nth-child(even)    { background-color:#b77e28; }.CSSTableGenerator td{
 	vertical-align:middle;
 	
 	
-	border:1px solid #3f7f00;
+	border:1px solid #000000;
 	border-width:0px 1px 1px 0px;
 	text-align:left;
 	padding:7px;
-	font-size:20px;
-	font-family: RaiNgan;
+	font-size: 16px;
+	font-family: 'RaiNgan';
 	font-weight:normal;
-	color:#512a06;
+	color:#ffffff;
 }.CSSTableGenerator tr:last-child td{
 	border-width:0px 1px 0px 0px;
 }.CSSTableGenerator tr td:last-child{
@@ -292,25 +295,25 @@
 	border-width:0px 0px 0px 0px;
 }
 .CSSTableGenerator tr:first-child td{
-		background:-o-linear-gradient(bottom, #5fbf00 5%, #3f7f00 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #5fbf00), color-stop(1, #3f7f00) );
-	background:-moz-linear-gradient( center top, #5fbf00 5%, #3f7f00 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#5fbf00", endColorstr="#3f7f00");	background: -o-linear-gradient(top,#5fbf00,3f7f00);
+		background:-o-linear-gradient(bottom, #512904 5%, #a05f23 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #512904), color-stop(1, #a05f23) );
+	background:-moz-linear-gradient( center top, #512904 5%, #a05f23 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#512904", endColorstr="#a05f23");	background: -o-linear-gradient(top,#512904,a05f23);
 
-	background-color:#5fbf00;
-	border:0px solid #3f7f00;
+	background-color:#512904;
+	border:0px solid #000000;
 	text-align:center;
 	border-width:0px 0px 1px 1px;
-	font-size:18px;
-	font-family:Verdana;
+	font-size:24px;
+	font-family: 'RaiNgan';
 	font-weight:bold;
-	color:#def7f5;
+	color:#ffffff;
 }
 .CSSTableGenerator tr:first-child:hover td{
-	background:-o-linear-gradient(bottom, #5fbf00 5%, #3f7f00 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #5fbf00), color-stop(1, #3f7f00) );
-	background:-moz-linear-gradient( center top, #5fbf00 5%, #3f7f00 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#5fbf00", endColorstr="#3f7f00");	background: -o-linear-gradient(top,#5fbf00,3f7f00);
+	background:-o-linear-gradient(bottom, #512904 5%, #a05f23 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #512904), color-stop(1, #a05f23) );
+	background:-moz-linear-gradient( center top, #512904 5%, #a05f23 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#512904", endColorstr="#a05f23");	background: -o-linear-gradient(top,#512904,a05f23);
 
-	background-color:#5fbf00;
+	background-color:#512904;
 }
 .CSSTableGenerator tr:first-child td:first-child{
 	border-width:0px 0px 1px 0px;
@@ -319,7 +322,7 @@
 	border-width:0px 0px 1px 1px;
 }
 </style>
-<title>การรับออเดอร์และจองโต๊ะ</title>
+<title>สั่งอาหาร</title>
 </head>
 <body id="bg">
 <div id="user-detail-box" align="center">
@@ -332,213 +335,69 @@
 </div>
 <div id='cssmenu'>
 <ul>
-   <li class='active'><a href='file:///C|/Users/Sethong/workspace/Design1-1/WebContent/customer.jsp'><span>จองโต๊ะ-สั่งอาหาร</span></a></li>
-   <li class='has-sub'><a href='#' style="cursor: url(file:///C|/Users/Sethong/workspace/Design1-1/WebContent/Res/mouse.png) , auto;" ><span>จัดการข้อมูลส่วนตัว</span></a>
+    <li class='active'><a href='customer.jsp'><span>จองโต๊ะ</span></a></li>
+   <li class='has-sub'><a href='#'><span>สั่งอาหาร</span></a>
+    <ul>
+         <li><a href='viewfood.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ตรวจสอบรายการอาหาร</span></a></li>
+         <li class='last'><a href='menu.jsp'><span>สั่งอาหาร</span></a></li>
+      </ul></li>
+   <li class='has-sub'><a href='#' style="cursor: url(Res/mouse.png), auto;" ><span>จัดการข้อมูลส่วนตัว</span></a>
       <ul>
-         <li><a href='#' style="cursor: url(file:///C|/Users/Sethong/workspace/Design1-1/WebContent/Res/mouse.png) , auto;" ><span>แก้ไขข้อมูลส่วนตัว</span></a></li>
-         <li class='last'><a href='file:///C|/Users/Sethong/workspace/Design1-1/WebContent/rev_conf.jsp' style="cursor: url(file:///C|/Users/Sethong/workspace/Design1-1/WebContent/Res/mouse.png) , auto;" ><span>ยกเลิกสมาชิก</span></a></li>
+         <li><a href='#' style="cursor: url(Res/mouse.png), auto;" ><span>แก้ไขข้อมูลส่วนตัว</span></a></li>
+         <li class='last'><a href='rev_conf.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ยกเลิกสมาชิก</span></a></li>
       </ul>
    </li>
 </ul>
 </div>
+ <%@page import="java.sql.*" %>
+ <%@ page import ="javax.sql.*" %>
 <div id="map-panel" align="center">
-<h2>กรุณาเลือกรายการอาหาร</h2>
-<sql:setDataSource var="ds" driver="com.mysql.jdbc.Driver" url="jdbc:mysql:///resnew" user="root" password="root"/>
-<sql:query var="rs" dataSource="${ds}">select  distinct food_type from resnew.food</sql:query>	
-<form  method="post">
-<h3>ประเภทอาหาร   <select name="ft"><c:forEach var="food_type" items="${rs.rows}"><option value="${food_type.Food_type}">${food_type.Food_type}</option></c:forEach></select><input type="submit" name="gogo" value="OK" ></h3></form>
-<c:if test="${param.gogo != null}">
-<c:choose>
-<c:when test="${param.ft=='Appetizer'}">
-<form action="addtocart.jsp" method="post">
-<div class="CSSTableGenerator" >
-<sql:query var="ap" dataSource="${ds}">select  * from resnew.food where food_type='Appetizer'</sql:query>
-<table border="2">
-<tbody>
-<tr>
-<th></th>
-<th></th>
-<th>Food name</th>
-<th>Food price</th>
-<th>Food amount</th>
-</tr>
-<c:forEach var="app" items="${ap.rows}">
-<tr>
-<td><img src="Menu/Appetizer/${app.Food_id}.jpg" width="100" height="100"></td>
-<td><input type="checkbox" name="food_id" value="${app.Food_id}"></td>
-<td>${app.Food_name}</td>
-<td>${app.Food_price}</td> 
-<td><input type="text" name="${app.Food_id}_quantity"></td>
-</tr>
-</c:forEach>
-</tbody></table>	
-<input type="submit" value="สั่งอาหาร">
+<h1>กรุณาเลือกรายการอาหาร</h1>
+<%String action="";
+if(request.getParameter("bFirst")!=null){action="first";} 
+if(request.getParameter("bPrevious")!=null){action="previous";}
+if(request.getParameter("bNext")!=null){action="next";}
+if(request.getParameter("bLast")!=null){action="last";}
+if(request.getParameter("bPageno")!=null)
+{try{ pa.setPageno(Integer.parseInt(request.getParameter("Pageno")));   action="Pageno";}
+catch(NumberFormatException e){}}
+Class.forName("com.mysql.jdbc.Driver");
+java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/resnew", "root","root");
+Statement stmt=con.createStatement();
+String sql;ResultSet rs=null;
+int TRow=0;
+sql="select count(*) as TRow from resnew.food";
+rs=stmt.executeQuery(sql);
+while(rs.next()){ TRow=rs.getInt("TRow");}
+rs.close();
+pa.setTrow(TRow);
+pa.actionPage(action, 10);
+sql="select * from resnew.food";
+rs=stmt.executeQuery(sql);
+rs.absolute(pa.getFmenu());
+do{
+%>
+<div class="CSSTableGenerator">
+<table width="60%" align="center">
+<tr><td colspan="3">Foodname :<%=rs.getString("Food_name")%></td></tr>
+<tr><td width="30%" rowspan="3"><img src="Menu/<%=rs.getString("Food_id")%>.png" width="100" height="100"></td>
+<td>Food Type : <%=rs.getString("Food_Type")%></td></tr>
+<tr><td>Food price :<%=rs.getString("Food_price")%></td></tr>
+<tr><td><form action="addtocart.jsp" method="post"><input type="submit" name="food_id" value="<%=rs.getString("Food_id")%>"></form></td></tr>
+</table>
+<hr width="70%" size="1">
+<%}while(rs.next()&&rs.getRow()<=pa.getEmenu());%>
+<form action="menu.jsp" method="post"><table align="center"><tr><td><div align="center">
+<input type="submit" name="bFirst" value="First"<%if(pa.getPageno()==1){out.println("disabled");} %>>
+<input type="submit" name="bPrevious" value="Previous"<%if(pa.getPageno()==1){out.println("disabled");} %>>
+<input type="submit" name="bNext" value="Next"<%if(pa.getPageno()==pa.getTpage()){out.println("disabled");} %>>
+<input type="submit" name="bLast" value="Last"<%if(pa.getPageno()==pa.getTpage()){out.println("disabled");} %>>
+<input type="submit" name="bPageno" value="Page">
+<input name="Pageno" type="text" id="Pageno" value="<%=pa.getPageno()%>" size="2" maxlength="3">
+/<%=pa.getTpage() %>
+
+</div></td></tr></table></form>
 </div>
-</form>
-</c:when>
-<c:when test="${param.ft=='Set menu'}">
-<sql:query var="ap" dataSource="${ds}">select  * from resnew.food where food_type='Set menu'</sql:query>
-<form action="addtocart.jsp" method="post">	
-<div class="CSSTableGenerator" >
-<table border="2">
-<tbody>
-<tr>
-<th></th>
-<th></th>
-<th>Food name</th>
-<th>Food price</th>
-<th>Food amount</th>
-</tr>
-<c:forEach var="app" items="${ap.rows}">
-<tr>
-<td><img src="Menu/Set menu/${app.Food_id}.jpg" width="100" height="100"></td>
-<td><input type="checkbox" name="food_id" value="${app.Food_id}"></td>
-<td>${app.Food_name}</td>
-<td>${app.Food_price}</td> 
-<td><input type="text" name="${app.Food_id}_quantity"></td>
-</tr>
-</c:forEach>
-</tbody></table>	
-<input type="submit" value="สั่งอาหาร">
-</div>
-</form>
-</c:when>
-<c:when test="${param.ft=='Donburi'}">
-<sql:query var="ap" dataSource="${ds}">select  * from resnew.food where food_type='Donburi'</sql:query>	
-<form action="addtocart.jsp" method="post">
-<div class="CSSTableGenerator" >
-<table border="2">
-<tbody>
-<tr>
-<th></th>
-<th></th>
-<th>Food name</th>
-<th>Food price</th>
-<th>Food amount</th>
-</tr>
-<c:forEach var="app" items="${ap.rows}">
-<tr>
-<td><img src="Menu/donburi/${app.Food_id}.png" width="100" height="100"></td>
-<td><input type="checkbox" name="food_id" value="${app.Food_id}"></td>
-<td>${app.Food_name}</td>
-<td>${app.Food_price}</td> 
-<td><input type="text" name="${app.Food_id}_quantity"></td>
-</tr>
-</c:forEach>
-</tbody></table>	
-<input type="submit" value="สั่งอาหาร">
-</div>
-</form>
-</c:when>
-<c:when test="${param.ft=='noodle'}">
-<sql:query var="ap" dataSource="${ds}">select  * from resnew.food where food_type='noodle'</sql:query>	
-<form action="addtocart.jsp" method="post">
-<div class="CSSTableGenerator" >
-<table border="2">
-<tbody>
-<tr>
-<th></th>
-<th></th>
-<th>Food name</th>
-<th>Food price</th>
-<th>Food amount</th>
-</tr>
-<c:forEach var="app" items="${ap.rows}">
-<tr>
-<td><img src="Menu/noodle/${app.Food_id}.png" width="100" height="100"></td>
-<td><input type="checkbox" name="food_id" value="${app.Food_id}"></td>
-<td>${app.Food_name}</td>
-<td>${app.Food_price}</td> 
-<td><input type="text" name="${app.Food_id}_quantity"></td>
-</tr>
-</c:forEach>
-</tbody></table>	
-<input type="submit" value="สั่งอาหาร">
-</div>
-</form>
-</c:when>
-<c:when test="${param.ft=='sushi'}">
-<sql:query var="ap" dataSource="${ds}">select  * from resnew.food where food_type='sushi'</sql:query>
-<form action="addtocart.jsp" method="post">
-<div class="CSSTableGenerator" >
-<table border="2">
-<tbody>
-<tr>
-<th></th>
-<th></th>
-<th>Food name</th>
-<th>Food price</th>
-<th>Food amount</th>
-</tr>
-<c:forEach var="app" items="${ap.rows}">
-<tr>
-<td><img src="Menu/sushi/${app.Food_id}.jpg" width="100" height="100"></td>
-<td><input type="checkbox" name="food_id" value="${app.Food_id}"></td>
-<td>${app.Food_name}</td>
-<td>${app.Food_price}</td> 
-<td><input type="text" name="${app.Food_id}_quantity"></td>
-</tr>
-</c:forEach>
-</tbody></table>	
-<input type="submit" value="สั่งอาหาร">
-</div>	
-</form>
-</c:when>
-<c:when test="${param.ft=='dessert'}">
-<sql:query var="ap" dataSource="${ds}">select  * from resnew.food where food_type='dessert'</sql:query>	
-<form action="addtocart.jsp" method="post">
-<div class="CSSTableGenerator" >
-<table border="2">
-<tbody>
-<tr>
-<th></th>
-<th></th>
-<th>Food name</th>
-<th>Food price</th>
-<th>Food amount</th>
-</tr>
-<c:forEach var="app" items="${ap.rows}">
-<tr>
-<td><img src="Menu/dessert/${app.Food_id}.jpg" width="100" height="100"></td>
-<td><input type="checkbox" name="food_id" value="${app.Food_id}"></td>
-<td>${app.Food_name}</td>
-<td>${app.Food_price}</td> 
-<td><input type="text" name="${app.Food_id}_quantity"></td>
-</tr>
-</c:forEach>
-</tbody></table>
-<input type="submit" value="สั่งอาหาร">	
-</div>
-</form>
-</c:when>
-<c:when test="${param.ft=='drink'}">
-<sql:query var="ap" dataSource="${ds}">select  * from resnew.food where food_type='drink'</sql:query>	
-<form action="addtocart.jsp" method="post">
-<div class="CSSTableGenerator" >
-<table border="2">
-<tbody>
-<tr>
-<th></th>
-<th></th>
-<th>Food name</th>
-<th>Food price</th>
-<th>Food amount</th>
-</tr>
-<c:forEach var="app" items="${ap.rows}">
-<tr>
-<td><img src="Menu/drink/${app.Food_id}.jpg" width="100" height="100"></td>
-<td><input type="checkbox" name="food_id" value="${app.Food_id}"></td>
-<td>${app.Food_name}</td>
-<td>${app.Food_price}</td> 
-<td><input type="text" name="${app.Food_id}_quantity"></td>
-</tr>
-</c:forEach>
-</tbody></table>
-<input type="submit" value="สั่งอาหาร">	
-</div></form></c:when>
-</c:choose>
-</c:if>
-<p></p>
 </div>
 </body>
 </html>

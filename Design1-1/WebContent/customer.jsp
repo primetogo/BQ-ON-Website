@@ -8,6 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">
+h1 {color: white;}
 @font-face {
 	font-family: 'RaiNgan';
 	src: url('Res/RaiNgan.ttf'); /* IE9 Compat Modes */
@@ -205,11 +206,14 @@
 }
 #map-panel{
     margin-top: 100px;
+    font-family: RaiNgan;
     margin-left: auto;
     margin-right: auto;
-    height: 1100px;
-    width: 850px;
-   	background-color: #d5ffcf;
+    height: auto;
+    width: 700px;
+      font-family: RaiNgan;
+   	background-image: url("Res/pic1.jpg"); 
+   	
 	border: 2px solid #999999;
 	-moz-border-radius: 7px;
 	-webkit-border-radius: 7px;
@@ -220,7 +224,103 @@
 	box-shadow: 0px 0px 11px #000000;
 	cursor: url(Res/mouse.png), auto;
 	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
-   
+}
+.CSSTableGenerator {
+	margin:0px;padding:0px;
+	width:100%;
+	box-shadow: 10px 10px 5px #888888;
+	border:1px solid #000000;
+	
+	-moz-border-radius-bottomleft:20px;
+	-webkit-border-bottom-left-radius:20px;
+	border-bottom-left-radius:20px;
+	
+	-moz-border-radius-bottomright:20px;
+	-webkit-border-bottom-right-radius:20px;
+	border-bottom-right-radius:20px;
+	
+	-moz-border-radius-topright:20px;
+	-webkit-border-top-right-radius:20px;
+	border-top-right-radius:20px;
+	
+	-moz-border-radius-topleft:20px;
+	-webkit-border-top-left-radius:20px;
+	border-top-left-radius:20px;
+}.CSSTableGenerator table{
+    border-collapse: collapse;
+        border-spacing: 0;
+	width:100%;
+	height:100%;
+	margin:0px;padding:0px;
+}.CSSTableGenerator tr:last-child td:last-child {
+	-moz-border-radius-bottomright:20px;
+	-webkit-border-bottom-right-radius:20px;
+	border-bottom-right-radius:20px;
+}
+.CSSTableGenerator table tr:first-child td:first-child {
+	-moz-border-radius-topleft:20px;
+	-webkit-border-top-left-radius:20px;
+	border-top-left-radius:20px;
+}
+.CSSTableGenerator table tr:first-child td:last-child {
+	-moz-border-radius-topright:20px;
+	-webkit-border-top-right-radius:20px;
+	border-top-right-radius:20px;
+}.CSSTableGenerator tr:last-child td:first-child{
+	-moz-border-radius-bottomleft:20px;
+	-webkit-border-bottom-left-radius:20px;
+	border-bottom-left-radius:20px;
+}.CSSTableGenerator tr:hover td{
+	background-color:#ffffff;
+		
+
+}
+.CSSTableGenerator td{
+	vertical-align:middle;
+	
+	background-color:#211103;
+
+	border:1px solid #000000;
+	border-width:0px 1px 1px 0px;
+	text-align:left;
+	padding:8px;
+	font-size:15px;
+	font-family: RaiNgan;
+	font-weight:normal;
+	color:#ffffff;
+}.CSSTableGenerator tr:last-child td{
+	border-width:0px 1px 0px 0px;
+}.CSSTableGenerator tr td:last-child{
+	border-width:0px 0px 1px 0px;
+}.CSSTableGenerator tr:last-child td:last-child{
+	border-width:0px 0px 0px 0px;
+}
+.CSSTableGenerator tr:first-child td{
+		background:-o-linear-gradient(bottom, #472200 5%, #7f3f00 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #472200), color-stop(1, #7f3f00) );
+	background:-moz-linear-gradient( center top, #472200 5%, #7f3f00 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#472200", endColorstr="#7f3f00");	background: -o-linear-gradient(top,#472200,7f3f00);
+
+	background-color:#472200;
+	border:0px solid #000000;
+	text-align:center;
+	border-width:0px 0px 1px 1px;
+	font-size:14px;
+	font-family: RaiNgan;
+	font-weight:bold;
+	color:#ffffff;
+}
+.CSSTableGenerator tr:first-child:hover td{
+	background:-o-linear-gradient(bottom, #472200 5%, #7f3f00 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #472200), color-stop(1, #7f3f00) );
+	background:-moz-linear-gradient( center top, #472200 5%, #7f3f00 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#472200", endColorstr="#7f3f00");	background: -o-linear-gradient(top,#472200,7f3f00);
+
+	background-color:#472200;
+}
+.CSSTableGenerator tr:first-child td:first-child{
+	border-width:0px 0px 1px 0px;
+}
+.CSSTableGenerator tr:first-child td:last-child{
+	border-width:0px 0px 1px 1px;
 }
 </style>
 <title>การรับออเดอร์และจองโต๊ะ</title>
@@ -236,7 +336,12 @@
 </div>
 <div id='cssmenu'>
 <ul>
-   <li class='active'><a href='customer.jsp'><span>จองโต๊ะ-สั่งอาหาร</span></a></li>
+    <li class='active'><a href='customer.jsp'><span>จองโต๊ะ</span></a></li>
+   <li class='has-sub'><a href='#'><span>สั่งอาหาร</span></a>
+    <ul>
+         <li><a href='viewfood.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ตรวจสอบรายการอาหาร</span></a></li>
+         <li class='last'><a href='menu.jsp'><span>สั่งอาหาร</span></a></li>
+      </ul></li>
    <li class='has-sub'><a href='#' style="cursor: url(Res/mouse.png), auto;" ><span>จัดการข้อมูลส่วนตัว</span></a>
       <ul>
          <li><a href='#' style="cursor: url(Res/mouse.png), auto;" ><span>แก้ไขข้อมูลส่วนตัว</span></a></li>
@@ -249,40 +354,42 @@
 <form  method="post">
 <sql:setDataSource var="ds" driver="com.mysql.jdbc.Driver" url="jdbc:mysql:///resnew" user="root" password="root"/>
 	
-<h2>กรุณาเลือกโซนที่ท่านต้องการจอง 
+<h1>กรุณาเลือกโซนที่ท่านต้องการจอง 
 <sql:query var="rs1" dataSource="${ds}">select distinct Zone from resnew.table</sql:query>
 <select name="zone"><c:forEach var="zones" items="${rs1.rows}"><option value="${zones.Zone}">${zones.Zone}</option></c:forEach></select>
-<input type="submit" value="Go!!" name="go"></h2></form>
+<input type="submit" value="Go!!" name="go"></h1></form>
 <c:if test="${param.go !=null}">
 <c:choose>
 <c:when test="${param.zone=='outdoor'}">
 <img  src="Res/outdoor.png"/>
 <sql:query var="rs" dataSource="${ds}">select * from resnew.table where table_status="no" and Zone="outdoor"</sql:query>
+<div class="CSSTableGenerator">
 <table border="1">
-<thead><tr><th></th>
-<th>table_id</th>
-<th>Seat_amount</th>
-<th>Status</th></tr></thead><tbody>
+<tr>
+<td></td>
+<td>table_id</td>
+<td>Seat amonut</td>
+<td>Status</td>
+</tr>
 <c:forEach var="table1" items="${rs.rows}">
 <tr><td><form action="addtable.jsp" method="post"><input type="submit" name="table_id" value="${table1.Table_id}"></form></td>
 <td>${table1.Table_id}</td>
 <td>${table1.Seat_amount}</td>
 <td>ว่าง</td></tr>
 </c:forEach>
-</tbody></table>
+</table></div>
 </c:when>
 <c:when test="${ param.zone=='cassic'}">
 <img  src="Res/cassic.png"/>
 <sql:query var="rs" dataSource="${ds}">select * from resnew.table where table_status="no" and Zone="cassic"</sql:query>
+<div class="CSSTableGenerator">
 <table border="1">
-<thead><tr>
-<th></th>
-<th>table_id</th>
-<th>Seat_amount</th>
-<th>Status</th>
+<tr>
+<td></td>
+<td>table_id</td>
+<td>Seat amonut</td>
+<td>Status</td>
 </tr>
-</thead>
-<tbody>
 <c:forEach var="table1" items="${rs.rows}">
 <tr>
 <td><form action="addtable.jsp" method="post"><input type="submit" name="table_id" value="${table1.Table_id}"></form></td>
@@ -291,20 +398,19 @@
 <td>ว่าง</td>
 </tr>
 </c:forEach>
-</tbody></table>
+</table></div>
 </c:when>
 <c:when test="${param.zone=='modern'}">
 <img  src="Res/modern.png"/>
 <sql:query var="rs" dataSource="${ds}">select * from resnew.table where   table_status="no" and Zone="modern"</sql:query>
+<div class="CSSTableGenerator">
 <table border="1">
-<thead><tr>
-<th></th>
-<th>table_id</th>
-<th>Seat amonut</th>
-<th>Status</th>
+<tr>
+<td></td>
+<td>table_id</td>
+<td>Seat amonut</td>
+<td>Status</td>
 </tr>
-</thead>
-<tbody>
 <c:forEach var="table1" items="${rs.rows}">
 <tr>
 <td><form action="addtable.jsp" method="post"><input type="submit" name="table_id" value="${table1.Table_id}"></form></td>
@@ -313,7 +419,7 @@
 <td>ว่าง</td>
 </tr>
 </c:forEach>
-</tbody></table>
+</table></div>
 </c:when>
 </c:choose>
 </c:if>
