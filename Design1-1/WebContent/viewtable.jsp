@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
-    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-     <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@page import="java.util.Enumeration"%>
+<%@page import="model.Table_cart"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">
+h1 {color: white;}
 @font-face {
 	font-family: 'RaiNgan';
 	src: url('Res/RaiNgan.ttf'); /* IE9 Compat Modes */
@@ -207,6 +207,8 @@
     margin-top: 100px;
     margin-left: auto;
     margin-right: auto;
+     font-family: RaiNgan;
+   	background-image: url("Res/pic1.jpg"); 
     height: 1100px;
     width: 850px;
    	background-color: #d5ffcf;
@@ -222,6 +224,103 @@
 	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
    
 }
+.CSSTableGenerator {
+	margin:0px;padding:0px;
+	width:100%;
+	box-shadow: 10px 10px 5px #888888;
+	border:1px solid #000000;
+	
+	-moz-border-radius-bottomleft:20px;
+	-webkit-border-bottom-left-radius:20px;
+	border-bottom-left-radius:20px;
+	
+	-moz-border-radius-bottomright:20px;
+	-webkit-border-bottom-right-radius:20px;
+	border-bottom-right-radius:20px;
+	
+	-moz-border-radius-topright:20px;
+	-webkit-border-top-right-radius:20px;
+	border-top-right-radius:20px;
+	
+	-moz-border-radius-topleft:20px;
+	-webkit-border-top-left-radius:20px;
+	border-top-left-radius:20px;
+}.CSSTableGenerator table{
+    border-collapse: collapse;
+        border-spacing: 0;
+	width:100%;
+	height:100%;
+	margin:0px;padding:0px;
+}.CSSTableGenerator tr:last-child td:last-child {
+	-moz-border-radius-bottomright:20px;
+	-webkit-border-bottom-right-radius:20px;
+	border-bottom-right-radius:20px;
+}
+.CSSTableGenerator table tr:first-child td:first-child {
+	-moz-border-radius-topleft:20px;
+	-webkit-border-top-left-radius:20px;
+	border-top-left-radius:20px;
+}
+.CSSTableGenerator table tr:first-child td:last-child {
+	-moz-border-radius-topright:20px;
+	-webkit-border-top-right-radius:20px;
+	border-top-right-radius:20px;
+}.CSSTableGenerator tr:last-child td:first-child{
+	-moz-border-radius-bottomleft:20px;
+	-webkit-border-bottom-left-radius:20px;
+	border-bottom-left-radius:20px;
+}.CSSTableGenerator tr:hover td{
+	background-color:#ffffff;
+		
+
+}
+.CSSTableGenerator td{
+	vertical-align:middle;
+	
+	background-color:#211103;
+
+	border:1px solid #000000;
+	border-width:0px 1px 1px 0px;
+	text-align:left;
+	padding:8px;
+	font-size:15px;
+	font-family: RaiNgan;
+	font-weight:normal;
+	color:#ffffff;
+}.CSSTableGenerator tr:last-child td{
+	border-width:0px 1px 0px 0px;
+}.CSSTableGenerator tr td:last-child{
+	border-width:0px 0px 1px 0px;
+}.CSSTableGenerator tr:last-child td:last-child{
+	border-width:0px 0px 0px 0px;
+}
+.CSSTableGenerator tr:first-child td{
+		background:-o-linear-gradient(bottom, #472200 5%, #7f3f00 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #472200), color-stop(1, #7f3f00) );
+	background:-moz-linear-gradient( center top, #472200 5%, #7f3f00 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#472200", endColorstr="#7f3f00");	background: -o-linear-gradient(top,#472200,7f3f00);
+
+	background-color:#472200;
+	border:0px solid #000000;
+	text-align:center;
+	border-width:0px 0px 1px 1px;
+	font-size:14px;
+	font-family: RaiNgan;
+	font-weight:bold;
+	color:#ffffff;
+}
+.CSSTableGenerator tr:first-child:hover td{
+	background:-o-linear-gradient(bottom, #472200 5%, #7f3f00 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #472200), color-stop(1, #7f3f00) );
+	background:-moz-linear-gradient( center top, #472200 5%, #7f3f00 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#472200", endColorstr="#7f3f00");	background: -o-linear-gradient(top,#472200,7f3f00);
+
+	background-color:#472200;
+}
+.CSSTableGenerator tr:first-child td:first-child{
+	border-width:0px 0px 1px 0px;
+}
+.CSSTableGenerator tr:first-child td:last-child{
+	border-width:0px 0px 1px 1px;
+}
 </style>
 <title>การรับออเดอร์และจองโต๊ะ</title>
 </head>
@@ -236,7 +335,12 @@
 </div>
 <div id='cssmenu'>
 <ul>
-   <li class='active'><a href='customer.jsp'><span>จองโต๊ะ-สั่งอาหาร</span></a></li>
+    <li class='active'><a href='customer.jsp'><span>จองโต๊ะ</span></a></li>
+   <li class='has-sub'><a href='#'><span>สั่งอาหาร</span></a>
+    <ul>
+         <li><a href='viewfood.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ตรวจสอบรายการอาหาร</span></a></li>
+         <li class='last'><a href='menu.jsp'><span>สั่งอาหาร</span></a></li>
+      </ul></li>
    <li class='has-sub'><a href='#' style="cursor: url(Res/mouse.png), auto;" ><span>จัดการข้อมูลส่วนตัว</span></a>
       <ul>
          <li><a href='#' style="cursor: url(Res/mouse.png), auto;" ><span>แก้ไขข้อมูลส่วนตัว</span></a></li>
@@ -246,12 +350,60 @@
 </ul>
 </div>
 <div id="map-panel" align="center">
-<h2>รายการโต๊ะที่จอง</h2>
-<c:forEach var="Table" items="${sessionScope.tc.table_reserve}">
-<h3>หมายเลขโต๊ะ : ${Table.table_id}</h3>
-<h3>โซนที่นั่ง : ${Table.zone}</h3> 
-<h3>จำนวนที่นั่ง : ${Table.seat_amount}</h3> 
-</c:forEach>
+<h1>รายการโต๊ะที่จอง</h1>
+<form method="post" action="viewtable.jsp">
+<jsp:useBean id="cart" class="model.Table_cart" scope="session"/>
+<%String[] temp;
+if(request.getParameter("pay")!=null)
+{
+	response.sendRedirect("table_con.jsp");
+	}
+if(request.getParameter("buy")!=null)
+{
+	response.sendRedirect("customer.jsp");
+	}
+if(request.getParameter("del")!=null)
+{
+	String[] table_id=request.getParameterValues("table_id");
+	if(table_id !=null){
+		for(int i=0;i<table_id.length;i++){
+			cart.removeTable(table_id[i]);
+		}
+	}
+	}
+if(cart.getTable().hasMoreElements()){
+%>
+<div class="CSSTableGenerator">
+ <table>
+ <tr><td>Choose</td><td>Table id</td><td>Zone</td><td>Status</td></tr>
+ <%Enumeration e=cart.getTable();
+ while(e.hasMoreElements()){
+	temp=(String[]) e.nextElement();
+	%>
+<tr><td><input name="table_id" type="checkbox" value="<%=temp[0] %>"/></td>
+<td><%=new String(temp[0].getBytes("ISO8859_1"),"windows-874")%></td>     
+<td><%=temp[1] %></td>  
+<td><%=temp[2] %></td>
+</tr>   
+<%
+if(temp[2].equals("yes")){
+	out.println("<center>กรุณาเลือกโต๊ะใหม่ อีกครั้ง</center>");
+}
+}%>
+
+<%}else{
+	out.println("<center><h1>คุณยังไม่ได้จองโต๊ะ</h1></center>");
+}%>
+<tr>
+<td colspan="6"><div align="center">
+<input name="del" type="submit" value="ยกเลิกการจองโต๊ะ">
+<input name="buy" type="submit" value="จองโต๊ะเพิ่มเติม">
+<input name="pay" type="submit" value="ยืนยันการจองโต๊ะ"></div>
+</td>
+</tr>   
+</table>
+</div>
+</form>
 </div>
 </body>
 </html>
