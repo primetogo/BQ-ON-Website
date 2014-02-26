@@ -45,7 +45,7 @@
     margin-top: -50px;
 	margin-left: auto;
 	margin-right: auto;
-	height: 470px;
+	height: 700px;
 	width: 600px;
 	text-align:center;
 	font-family: RaiNgan;
@@ -59,6 +59,7 @@
 	-moz-box-shadow: 0px 0px 20px #000000;
 	-webkit-box-shadow: 0px 0px 20px #000000;
 	box-shadow: 0px 0px 20px #000000;
+	overflow: auto;
 	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
 }
 
@@ -107,11 +108,54 @@
 }
 table, tr, td
 {
+	magin-left:auto;
 	text-align: center;
     font-family: RaiNgan;
     font-size: 25px;
 	border: 3px solid #E1BC24;	
 	background-color: #6BE08C;
+}
+
+.firstButton {
+	-moz-box-shadow:inset 0px 1px 0px 0px #54a3f7;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #54a3f7;
+	box-shadow:inset 0px 1px 0px 0px #54a3f7;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #007dc1), color-stop(1, #0061a7));
+	background:-moz-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+	background:-webkit-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+	background:-o-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+	background:-ms-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+	background:linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#007dc1', endColorstr='#0061a7',GradientType=0);
+	background-color:#007dc1;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	border:1px solid #124d77;
+	display:inline-block;
+	cursor:pointer;
+	height: 30px;
+	width: 145px;
+	color:#ffffff;
+	font-family:RaiNgan;
+	font-size:20px;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #154682;
+}
+.firstButton:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0061a7), color-stop(1, #007dc1));
+	background:-moz-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+	background:-webkit-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+	background:-o-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+	background:-ms-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+	background:linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0061a7', endColorstr='#007dc1',GradientType=0);
+	background-color:#0061a7;
+}
+.firstButton:active {
+	position:relative;
+	top:1px;
 }
 </style>
 </head>
@@ -140,8 +184,8 @@ url="jdbc:mysql:///resnew" user="root" password="123456" ></sql:setDataSource>
 			SELECT Food_id, Food_name, Food_price FROM resnew.food WHERE Food_type='Appetizer' ORDER BY Food_name ASC;
 		</sql:query>
 		<br><b>Appertizer</b>
-		<form action="final">
-		<table border="2">
+		<form action="final" method="post">
+		<table border="2" align="center">
 			<tr>
 				<td><b>Food name</b></td>
 				<td><b>Price</b></td>
@@ -154,7 +198,7 @@ url="jdbc:mysql:///resnew" user="root" password="123456" ></sql:setDataSource>
 					<td><input type="checkbox" value="${step.Food_id}" /></td>
 				</tr>
 			</c:forEach>
-		</table>
+		</table><br>
 			<input type="submit" value="Send order" class="myButton"/>
 		</form>
 	</c:if>
@@ -163,37 +207,140 @@ url="jdbc:mysql:///resnew" user="root" password="123456" ></sql:setDataSource>
 			SELECT Food_name, Food_price FROM resnew.food WHERE Food_type='dessert' ORDER BY Food_name ASC;
 		</sql:query>	
 		<br><b>Dessert</b>
+		<form action="final" method="post">
+		<table border="2" align="center">
+			<tr>
+				<td><b>Food name</b></td>
+				<td><b>Price</b></td>
+				<td></td>
+			</tr>
+			<c:forEach var="step" items="${shit.rows}">
+				<tr>
+					<td>${step.Food_name}</td>
+					<td>${step.Food_price}</td>
+					<td><input type="checkbox" value="${step.Food_id}" /></td>
+				</tr>
+			</c:forEach>
+		</table><br>
+			<input type="submit" value="Send order" class="myButton"/>
+		</form>
 	</c:if>
 	<c:if test="${param.rou=='Set menu'}">
 		<sql:query dataSource="${ds}" var="shit">
 			SELECT Food_name, Food_price FROM resnew.food WHERE Food_type='Set menu' ORDER BY Food_name ASC;
 		</sql:query>
 		<br><b>Set menu</b>
+		<form action="final" method="post">
+		<table border="2" align="center">
+			<tr>
+				<td><b>Food name</b></td>
+				<td><b>Price</b></td>
+				<td></td>
+			</tr>
+			<c:forEach var="step" items="${shit.rows}">
+				<tr>
+					<td>${step.Food_name}</td>
+					<td>${step.Food_price}</td>
+					<td><input type="checkbox" value="${step.Food_id}" /></td>
+				</tr>
+			</c:forEach>
+		</table><br>
+			<input type="submit" value="Send order" class="myButton"/>
+		</form>
 	</c:if>
 	<c:if test="${param.rou=='Donburi'}">
 		<sql:query dataSource="${ds}" var="shit">
 			SELECT Food_name, Food_price FROM resnew.food WHERE Food_type='Donburi' ORDER BY Food_name ASC;
 		</sql:query>
 		<br><b>Donburi</b>
+		<form action="final" method="post">
+		<table border="2" align="center">
+			<tr>
+				<td><b>Food name</b></td>
+				<td><b>Price</b></td>
+				<td></td>
+			</tr>
+			<c:forEach var="step" items="${shit.rows}">
+				<tr>
+					<td>${step.Food_name}</td>
+					<td>${step.Food_price}</td>
+					<td><input type="checkbox" value="${step.Food_id}" /></td>
+				</tr>
+			</c:forEach>
+		</table><br>
+			<input type="submit" value="Send order" class="myButton"/>
+		</form>
 	</c:if>
 	<c:if test="${param.rou=='noodle'}">
 		<sql:query dataSource="${ds}" var="shit">
 			SELECT Food_name, Food_price FROM resnew.food WHERE Food_type='noodle' ORDER BY Food_name ASC;
 		</sql:query>
 		<br><b>Noodle</b>
+		<form action="final" method="post">
+		<table border="2" align="center">
+			<tr>
+				<td><b>Food name</b></td>
+				<td><b>Price</b></td>
+				<td></td>
+			</tr>
+			<c:forEach var="step" items="${shit.rows}">
+				<tr>
+					<td>${step.Food_name}</td>
+					<td>${step.Food_price}</td>
+					<td><input type="checkbox" value="${step.Food_id}" /></td>
+				</tr>
+			</c:forEach>
+		</table><br>
+			<input type="submit" value="Send order" class="myButton"/>
+		</form>
 	</c:if>
 	<c:if test="${param.rou=='sushi'}">
 		<sql:query dataSource="${ds}" var="shit">
 			SELECT Food_name, Food_price FROM resnew.food WHERE Food_type='sushi' ORDER BY Food_name ASC;
 		</sql:query>
 		<br><b>Sushi</b>
+		<form action="final" method="post">
+		<table border="2" align="center">
+			<tr>
+				<td><b>Food name</b></td>
+				<td><b>Price</b></td>
+				<td></td>
+			</tr>
+			<c:forEach var="step" items="${shit.rows}">
+				<tr>
+					<td>${step.Food_name}</td>
+					<td>${step.Food_price}</td>
+					<td><input type="checkbox" value="${step.Food_id}" /></td>
+				</tr>
+			</c:forEach>
+		</table><br>
+			<input type="submit" value="Send order" class="myButton"/>
+		</form>
 	</c:if>
 	<c:if test="${param.rou=='drink'}">
 		<sql:query dataSource="${ds}" var="shit">
 			SELECT Food_name, Food_price FROM resnew.food WHERE Food_type='drink' ORDER BY Food_name ASC;
 		</sql:query>
 		<br><b>Drink</b>
-	</c:if>
+		<form action="final" method="post">
+		<table border="2" align="center">
+			<tr>
+				<td><b>Food name</b></td>
+				<td><b>Price</b></td>
+				<td></td>
+			</tr>
+			<c:forEach var="step" items="${shit.rows}">
+				<tr>
+					<td>${step.Food_name}</td>
+					<td>${step.Food_price}</td>
+					<td><input type="checkbox" value="${step.Food_id}" /></td>
+				</tr>
+			</c:forEach>
+		</table><br>
+			<input type="submit" value="Send order" class="myButton"/>
+		</form>
+	</c:if><br>
+	<a href="ad_dash.jsp" class="firstButton">Back to main page</a>
 </div>
 </body>
 </html>
