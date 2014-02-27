@@ -365,6 +365,7 @@ Status:
 			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id`
 		</sql:query>
 		<div id="order_panel" align="center"><br>
+		<b>Order Terminate</b><br>
 			<form action="orderter" method="post">
 				<table border="1" width="80%">
 					<tr>
@@ -385,7 +386,8 @@ Status:
 					</c:forEach>
 				</table><br>
 				<input type="submit" value="Process!" class="myButton" />
-			</form>
+			</form><br><br>
+			<font color="red" size="5">W = Waiting, C = Confirmed, CK = Cooking, F = Finished and CL = Cancel</font>
 		</div>
 	</c:if>
 	<c:if test="${param.de=='Order Checkout'}">
@@ -393,6 +395,7 @@ Status:
 			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id` AND Order_status='C'
 		</sql:query>
 		<div id="order_panel" align="center"><br>
+		<b>Order Checkout</b><br>
 			<form action="order_check" method="post">
 				<table border="1" width="80%">
 					<tr>
@@ -413,7 +416,8 @@ Status:
 					</c:forEach>
 				</table><br>
 				<input type="submit" value="Process!" class="myButton" />
-			</form>
+			</form><br><br>
+			<font color="red" size="5">W = Waiting, C = Confirmed, CK = Cooking, F = Finished and CL = Cancel</font>
 		</div>
 	</c:if>
 	<!-- Here it is where it's redirect to order management (Order_create servlet) -->
@@ -451,6 +455,7 @@ Status:
 			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id` AND Order_status='W'
 		</sql:query>
 		<div id="order_panel" align="center"><br>
+		<b>Order Recieved</b><br>
 			<form action="confirm" method="post">
 				<table border="1" width="80%">
 					<tr>
@@ -471,7 +476,8 @@ Status:
 					</c:forEach>
 				</table><br>
 				<input type="submit" value="Process!" class="myButton" />
-			</form>
+			</form><br><br>
+			<font color="red" size="5">W = Waiting, C = Confirmed, CK = Cooking, F = Finished and CL = Cancel</font>
 		</div>
 	</c:if>
 	<c:if test="${param.de=='Order Ready'}">
@@ -479,6 +485,7 @@ Status:
 			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id` AND Order_status='CK'
 		</sql:query>
 		<div id="order_panel" align="center"><br>
+		<b>Order Ready</b><br>
 			<form action="rea" method="post">
 				<table border="1" width="80%">
 					<tr>
@@ -499,7 +506,8 @@ Status:
 					</c:forEach>
 				</table><br>
 				<input type="submit" value="Process!" class="myButton" />
-			</form>
+			</form><br><br>
+			<font color="red" size="5">W = Waiting, C = Confirmed, CK = Cooking, F = Finished and CL = Cancel</font>
 		</div>
 	</c:if>
 	<c:if test="${param.de=='Order Overview'}">
@@ -507,6 +515,7 @@ Status:
 			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id`
 		</sql:query>
 		<div id="order_panel" align="center"><br>
+		<b>Order Overview</b><br>
 				<table border="1" width="80%">
 					<tr>
 						<td><b>Order ID</b></td>
@@ -524,7 +533,8 @@ Status:
 							<td><c:out value="${me.Order_status}" /></td>
 						</tr>
 					</c:forEach>
-				</table><br>
+				</table><br><br>
+			<font color="red" size="5">W = Waiting, C = Confirmed, CK = Cooking, F = Finished and CL = Cancel</font>
 		</div>
 	</c:if>
 	<c:if test="${param.de=='Add New Admin'}">
