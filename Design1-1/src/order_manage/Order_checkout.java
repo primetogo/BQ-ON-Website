@@ -22,17 +22,26 @@ public class Order_checkout extends HttpServlet {
     public Order_checkout() {super();}
     
     public void init() {conn = (Connection) getServletContext().getAttribute("connection");}
+    
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.sendRedirect("ad_dash.jsp");
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String quest = request.getParameter("butter");
-		String sql_check ="UPDATE `resnew`.`order` SET `Order_status`='F' WHERE `order_id`="+"'"+quest+"'";
+		String[] quest = request.getParameterValues("butter");
+		if(quest!=null){
 		try {
-			check=conn.prepareStatement(sql_check);
-			check.execute();
-			check.close();
+			for(int i = 0; i<quest.length; i++){
+				String sql_check ="UPDATE `resnew`.`order` SET `Order_status`='CK' WHERE `order_id`="+"'"+quest[i]+"'";
+				check=conn.prepareStatement(sql_check);
+				check.execute();
+			}
+			request.getSession().setAttribute("incoming", "Order cooking!");
 			response.sendRedirect("ad_dash.jsp");
 		} catch (SQLException e) {
 			System.out.println(e);
+		}}else{
+			response.sendRedirect("ad_dash.jsp");
 		}
 	}
 

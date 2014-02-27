@@ -68,7 +68,7 @@
 }
 
 #inf_panel{
-    height: 35px;
+    height: 70px;
 	width: 300px;
 	font-family: RaiNgan;
 	font-size: 30px;
@@ -152,7 +152,7 @@ table, th, td
 	background-color: #6BE08C;
 }
 #type_panel{
-    margin-top: -200px;
+    margin-top: -400px;
 	margin-left: auto;
 	margin-right: auto;
 	height: 470px;
@@ -171,10 +171,10 @@ table, th, td
 	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
 }
 #order_panel{
-	margin-top: -200px;
+	margin-top: -400px;
 	margin-left: auto;
 	margin-right: auto;
-	height: 300px;
+	height: 600px;
 	width: 800px;
 	font-family: RaiNgan;
 	font-size: 30px;
@@ -191,7 +191,7 @@ table, th, td
 }
 #morefood{
     text-align: center;
-	margin-top: -200px;
+	margin-top: -400px;
 	margin-left: auto;
 	margin-right: auto;
 	height: 570px;
@@ -219,7 +219,7 @@ table, th, td
 }
 #moreorder{
 	text-align: center;
-	margin-top: -200px;
+	margin-top: -300px;
 	margin-left: auto;
 	margin-right: auto;
 	height: 400px;
@@ -258,6 +258,31 @@ table, th, td
        font-family:RaiNgan;
        font-size: 25px;
 }
+
+#admin{
+	text-align: center;
+	margin-top: -400px;
+	margin-left: auto;
+	margin-right: auto;
+	height: 1100px;
+	width: 530px;
+	font-family: RaiNgan;
+	font-size: 30px;
+ 	background-color: #bdffb0;
+	border: 2px solid #999999;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
+	-moz-box-shadow: 0px 0px 20px #000000;
+	-webkit-box-shadow: 0px 0px 20px #000000;
+	box-shadow: 0px 0px 20px #000000;
+	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
+}
+#shift1{
+	text-align:left;
+	margin-left:50px;
+}
 </style>
 <title>ส่วนการจัดการ</title>
 </head>
@@ -266,8 +291,11 @@ table, th, td
 <input type="submit" value="Main Page" class="firstButton" name="de" /><br>
 <input type="submit" value="Removing Food" name="de" class="firstButton" /><br>
 <input type="submit" value="Add More Food" name="de" class="firstButton" /><br>
+<input type="submit" value="Order Recieved" name="de" class="firstButton" /><br>
 <input type="submit" value="Order Terminate" name="de" class="firstButton" /><br>
 <input type="submit" value="Order Checkout" name="de" class="firstButton" /><br>
+<input type="submit" value="Order Ready" name="de" class="firstButton" /><br>
+<input type="submit" value="Order Overview" name="de" class="firstButton" /><br>
 <input type="submit" value="New Order" name="de" class="firstButton" /><br>
 <input type="submit" value="Add New Admin" name="de" class="firstButton" /><br>
 </form><br>
@@ -277,7 +305,12 @@ url="jdbc:mysql:///resnew" user="root" password="123456" ></sql:setDataSource>
 
 
 <div id="inf_panel" align="center">
-Admin: <%= session.getAttribute("admin_first") %> <%= session.getAttribute("admin_last") %>
+Admin: <%= session.getAttribute("admin_first") %> <%= session.getAttribute("admin_last") %><br>
+Status: 
+<%if(session.getAttribute("incoming")!=null){%>
+<font color="green"><b><%= session.getAttribute("incoming") %></b></font>
+<%session.setAttribute("incoming", "Ready!"); %>
+<%}else{%><font color="green"><b>Ready!</b></font><%} %>
 </div><br>
 <form action="admingo" method="post">
   <input type="submit" value="logout" class="myButton" />
@@ -329,7 +362,7 @@ Admin: <%= session.getAttribute("admin_first") %> <%= session.getAttribute("admi
 	</c:if>
 	<c:if test="${param.de=='Order Terminate'}">
 		<sql:query dataSource="${ds}" var="meh">
-			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id` AND 'Order_status'='IQ'
+			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id`
 		</sql:query>
 		<div id="order_panel" align="center"><br>
 			<form action="orderter" method="post">
@@ -357,7 +390,7 @@ Admin: <%= session.getAttribute("admin_first") %> <%= session.getAttribute("admi
 	</c:if>
 	<c:if test="${param.de=='Order Checkout'}">
 		<sql:query dataSource="${ds}" var="meh">
-			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id` AND 'Order_status'='IQ'
+			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id` AND Order_status='C'
 		</sql:query>
 		<div id="order_panel" align="center"><br>
 			<form action="order_check" method="post">
@@ -383,6 +416,7 @@ Admin: <%= session.getAttribute("admin_first") %> <%= session.getAttribute("admi
 			</form>
 		</div>
 	</c:if>
+	<!-- Here it is where it's redirect to order management (Order_create servlet) -->
 	<c:if test="${param.de=='New Order'}">
 		<sql:query dataSource="${ds}" var="person">
 			SELECT DISTINCT Seat_amount FROM `table` WHERE Table_Status='no' ORDER BY Seat_amount ASC
@@ -409,6 +443,114 @@ Admin: <%= session.getAttribute("admin_first") %> <%= session.getAttribute("admi
 				</select>
 			</div><br>
 			<input type="submit" value="Next!" class="myButton" />
+		</form>
+		</div>
+	</c:if>
+	<c:if test="${param.de=='Order Recieved'}">
+		<sql:query dataSource="${ds}" var="meh">
+			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id` AND Order_status='W'
+		</sql:query>
+		<div id="order_panel" align="center"><br>
+			<form action="confirm" method="post">
+				<table border="1" width="80%">
+					<tr>
+						<td><b>Order ID</b></td>
+						<td><b>Customer first name</b></td>
+						<td><b>Customer last name</b></td>
+						<td><b>Status</b></td>
+						<td><b>Confirm</b></td>
+					</tr>
+					<c:forEach var="me" items="${meh.rows}">
+						<tr>
+							<td><c:out value="${me.order_id}" /></td>
+							<td><c:out value="${me.Cus_Fname}" /></td>
+							<td><c:out value="${me.Cus_Lname}" /></td>
+							<td><c:out value="${me.Order_status}" /></td>
+							<td><input type="checkbox" value="${me.order_id}" name="peanut"/></td>
+						</tr>
+					</c:forEach>
+				</table><br>
+				<input type="submit" value="Process!" class="myButton" />
+			</form>
+		</div>
+	</c:if>
+	<c:if test="${param.de=='Order Ready'}">
+		<sql:query dataSource="${ds}" var="meh">
+			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id` AND Order_status='CK'
+		</sql:query>
+		<div id="order_panel" align="center"><br>
+			<form action="rea" method="post">
+				<table border="1" width="80%">
+					<tr>
+						<td><b>Order ID</b></td>
+						<td><b>Customer first name</b></td>
+						<td><b>Customer last name</b></td>
+						<td><b>Status</b></td>
+						<td><b>Ready</b></td>
+					</tr>
+					<c:forEach var="me" items="${meh.rows}">
+						<tr>
+							<td><c:out value="${me.order_id}" /></td>
+							<td><c:out value="${me.Cus_Fname}" /></td>
+							<td><c:out value="${me.Cus_Lname}" /></td>
+							<td><c:out value="${me.Order_status}" /></td>
+							<td><input type="checkbox" value="${me.order_id}" name="yelly"/></td>
+						</tr>
+					</c:forEach>
+				</table><br>
+				<input type="submit" value="Process!" class="myButton" />
+			</form>
+		</div>
+	</c:if>
+	<c:if test="${param.de=='Order Overview'}">
+		<sql:query dataSource="${ds}" var="meh">
+			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id`
+		</sql:query>
+		<div id="order_panel" align="center"><br>
+				<table border="1" width="80%">
+					<tr>
+						<td><b>Order ID</b></td>
+						<td><b>Customer first name</b></td>
+						<td><b>Customer last name</b></td>
+						<td><b>Date/Time</b></td>
+						<td><b>Status</b></td>
+					</tr>
+					<c:forEach var="me" items="${meh.rows}">
+						<tr>
+							<td><c:out value="${me.order_id}" /></td>
+							<td><c:out value="${me.Cus_Fname}" /></td>
+							<td><c:out value="${me.Cus_Lname}" /></td>
+							<td><c:out value="${me.Food_Time}" /></td>
+							<td><c:out value="${me.Order_status}" /></td>
+						</tr>
+					</c:forEach>
+				</table><br>
+		</div>
+	</c:if>
+	<c:if test="${param.de=='Add New Admin'}">
+		<div id="admin"><br>
+		<font color="Green" size="10">Register new admin</font><br><br>
+		<form action="newbie" method="post">
+		<div id="shift1">
+		    <b>Basic Information:</b><br><br>
+			Employee ID: <input type="text" name="ad_id" class="loginInputBox" required /><br><br>
+			First name: <input type="text" name="ad_fname" class="loginInputBox" required /><br><br>
+			Last Name: <input type="text" name="ad_lname" class="loginInputBox" required /><br><br>
+		
+			<b>Select your sex:</b><br><br>
+			<select name="sex">
+ 				 <option value="F">Female</option>
+				  <option value="M">Male</option>
+			</select><br><br>	
+			<b>Contact Information:</b><br><br>	
+			Address: <input type="text" name="ad_adr" class="loginInputBox" required /><br><br>
+			Telephone Number: <input type="text" name="ad_tel" class="loginInputBox" required /><br><br>
+			E-mail: <input type="text" name="ad_mail" class="loginInputBox" required /><br><br>
+			<b>Admin ID:</b><br><br>
+			Username: <input type="text" name="ad_user" class="loginInputBox" required /><br><br>
+			Password: <input type="password" name="ad_pass" class="loginInputBox" required /><br><br>
+		</div>
+		<input type="submit" value="Finish" class="myButton" />
 		</form>
 		</div>
 	</c:if>

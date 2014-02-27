@@ -27,11 +27,13 @@ public class Record_food extends HttpServlet {
 		String name =  request.getParameter("food_name");
 		String price = request.getParameter("food_price");
 		String type = request.getParameter("blah");
-		String sql_insert= "INSERT INTO `resnew`.`food` (`Food_id`, `Food_name`, `Food_price`, `Food_type`) VALUES ('"+111+"','"+name+"','"+price+"','"+type+"')";
+		String sql_insert= "INSERT INTO `resnew`.`food` (`Food_id`, `Food_name`, `Food_price`, `Food_type`) VALUES ('"+0+"','"+name+"','"+price+"','"+type+"')";
 		try {
 			more = conn.prepareStatement(sql_insert);
 			more.execute();
 			more.close();
+			request.getSession().setAttribute("incoming", "Food Added!");
+			response.sendRedirect("ad_dash.jsp");
 		} catch (SQLException e) {
 			System.out.println(e);
 		}

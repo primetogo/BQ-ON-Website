@@ -168,6 +168,7 @@ table, th, td
 	-moz-box-shadow: 0px 0px 20px #000000;
 	-webkit-box-shadow: 0px 0px 20px #000000;
 	box-shadow: 0px 0px 20px #000000;
+	overflow: auto;
 	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
 }
 
@@ -178,48 +179,48 @@ table, th, td
 	url="jdbc:mysql:///resnew" user="root" password="123456" ></sql:setDataSource>
 	<%if(request.getSession().getAttribute("typo").equals("Appetizer")){ %>
 		<sql:query dataSource="${ds}" var="res">
-			select Food_name, Food_price from resnew.food where Food_type='Appetizer';
+			select Food_name, Food_price, Food_id from resnew.food where Food_type='Appetizer';
 		</sql:query>
     <%}else if(request.getSession().getAttribute("typo").equals("dessert")){%>
     	<sql:query dataSource="${ds}" var="res">
-			select Food_name, Food_price from resnew.food where Food_type='dessert';
+			select Food_name, Food_price, Food_id from resnew.food where Food_type='dessert';
 		</sql:query>
     <%}else if(request.getSession().getAttribute("typo").equals("Donburi")){%>
     	<sql:query dataSource="${ds}" var="res">
-			select Food_name, Food_price from resnew.food where Food_type='Donburi';
+			select Food_name, Food_price, Food_id from resnew.food where Food_type='Donburi';
 		</sql:query>
     <%}else if(request.getSession().getAttribute("typo").equals("drink")){%>
     	<sql:query dataSource="${ds}" var="res">
-			select Food_name, Food_price from resnew.food where Food_type='drink';
+			select Food_name, Food_price, Food_id from resnew.food where Food_type='drink';
 		</sql:query>
     <%}else if(request.getSession().getAttribute("typo").equals("noodle")){%>
     	<sql:query dataSource="${ds}" var="res">
-			select Food_name, Food_price from resnew.food where Food_type='noodle';
+			select Food_name, Food_price, Food_id from resnew.food where Food_type='noodle';
 		</sql:query>
     <%}else if(request.getSession().getAttribute("typo").equals("Set menu")){%>
     	<sql:query dataSource="${ds}" var="res">
-			select Food_name, Food_price from resnew.food where Food_type='Set menu';
+			select Food_name, Food_price, Food_id from resnew.food where Food_type='Set menu';
 		</sql:query>
     <%}else if(request.getSession().getAttribute("typo").equals("sushi")){%>
     	<sql:query dataSource="${ds}" var="res">
-			select Food_name, Food_price from resnew.food where Food_type='sushi';
+			select Food_name, Food_price, Food_id from resnew.food where Food_type='sushi';
 		</sql:query>
     <%}%>
 		<div id="type_panel" align="center">
 		<br>
 		<b>Type: <%= session.getAttribute("typo") %></b>
 			<form action="removefood" method="post"><br>
-				<table border="1" width="80%" >
+				<table border="1" width="80%" align="center">
 					<tr>
 						<td><b>Food name</b></td>
 						<td><b>Food price</b></td>
 						<td><b>Remove</b></td>
 					</tr>
-					<c:forEach var="gg" items="${res.rows}">
+					<c:forEach var="ggx" items="${res.rows}">
 						<tr>
-							<td><c:out value="${gg.Food_name}" /></td>
-							<td><c:out value="${gg.Food_price}" /></td>
-							<td><input type="checkbox" name="kindy" value="${gg.Food_id}" /></td>
+							<td><c:out value="${ggx.Food_name}" /></td>
+							<td><c:out value="${ggx.Food_price}" /></td>
+							<td><input type="checkbox" name="im" value="${ggx.Food_id}" /></td>
 						</tr>
 					</c:forEach>
 				</table>
