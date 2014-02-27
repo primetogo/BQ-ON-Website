@@ -171,7 +171,7 @@ url="jdbc:mysql:///resnew" user="root" password="123456" ></sql:setDataSource>
 	SELECT DISTINCT Food_type FROM resnew.food ORDER BY Food_type ASC;
 </sql:query>
 <div id="type_panel"><br>
-	<form method="post">
+	<form method="post" >
 	<select name="rou">
 		<c:forEach var="type" items="${res.rows}">
 			<option value="${type.Food_type}">${type.Food_type}</option>

@@ -25,6 +25,10 @@ public class Order_create extends HttpServlet {
     
     public void init() {conn = (Connection) getServletContext().getAttribute("connection");}
     
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("se_food.jsp").forward(request, response);
+	}
+    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String outer_first = request.getParameter("outer_first");
 		String outer_last = request.getParameter("outer_last");
@@ -38,10 +42,10 @@ public class Order_create extends HttpServlet {
 		} catch (SQLException e) {
 			System.out.println(e);
 		}
-		
+		System.out.println("Seat amount:"+seat);
 		request.getSession().setAttribute("firstt", outer_first);
 		request.getSession().setAttribute("lastt", outer_last);
-		request.getSession().setAttribute("se", seat);
+		request.getSession().setAttribute("seeat", seat);
 		request.getSession().setAttribute("zo", zone);
 		RequestDispatcher re = request.getRequestDispatcher("se_food.jsp");
 		re.forward(request, response);

@@ -28,7 +28,7 @@ public class Record_new_order extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String seat = (String)request.getSession().getAttribute("se");
+		String seat = (String)request.getSession().getAttribute("seeat");
 		String zone = (String)request.getSession().getAttribute("zo");
 		String empid = (String)request.getSession().getAttribute("admin_id");
 		
@@ -44,10 +44,9 @@ public class Record_new_order extends HttpServlet {
 				ID = ress.getString("Cus_id");
 			}
 			ress.close();
-			getid.close();
 			
-			System.out.println("Cus ID:"+ID);
-			String sql_checkin = "INSERT INTO order (Customer_Cus_id, employee_emp_id, table_Table_id, Order_status) VALUES('"+ID+"','"+empid+"','"+zone+"'+'IQ')";
+			System.out.println("Cus ID: "+ID+" Table ID: "+seat);
+			String sql_checkin = "INSERT INTO `resnew`.`order` (`Customer_Cus_id`, `employee_emp_id`, `table_Table_id`, `Order_status`) VALUES ('"+ID+"','"+empid+"','"+seat+"','IQ')";
 			record=conn.prepareStatement(sql_checkin);
 			record.execute();
 			record.close();
