@@ -17,7 +17,7 @@ PreparedStatement pstmt1,pstmt2,pstmt3;
 int cus_id=0;
 String b=(String) session.getAttribute("first");
 Class.forName("com.mysql.jdbc.Driver");
-java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/resnew", "root","root");
+java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/resnew", "root","123456");
 String sql="SELECT Cus_id from resnew.customer where Cus_Fname='"+b+"'";
 pstmt1=con.prepareStatement(sql);
 ResultSet rs=pstmt1.executeQuery();

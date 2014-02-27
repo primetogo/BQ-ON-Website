@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 public class User_remover extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Connection conn;
-	PreparedStatement remove;
+	PreparedStatement remove, shit;
        
     
     public User_remover() {super();}
@@ -28,12 +28,17 @@ public class User_remover extends HttpServlet {
 		try {			
 			String userF = (String) session.getAttribute("first");
 		    String userL = (String) session.getAttribute("last");
+		    String id = (String) session.getAttribute("haha");
 		    
 		    //starting query data to check with user data attribute
-		    String remove_sql = "delete from from username join customer on (Customer_Cus_id = Cus_id) where Cus_Fname="+"'"+userF+"'"+"and Cus_Lname="+"'"+userL+"'";
+		    String another = "DELETE * FROM resnew.customer WHERE Cus_id="+"'"+id+"'";
+		    String remove_sql = "DELETE * FROM resnew.username WHERE Customer_Cus_id="+"'"+id+"'";
+		    shit=conn.prepareStatement(another);
 		    remove = conn.prepareStatement(remove_sql);
+		    shit.execute();
+		    shit.close();  
 		    remove.execute();
-		    remove.close();
+		    remove.close(); 
 		    session.invalidate();
 			response.sendRedirect("index.jsp");
 		} catch (SQLException e) {

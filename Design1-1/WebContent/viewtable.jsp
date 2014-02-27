@@ -143,7 +143,7 @@ h1 {color: white;}
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  cursor: url(Res/mouse.png), auto;
+/*   cursor: url(Res/mouse.png), auto; */
 }
 #user-detail-box{
     margin-top: 20px;

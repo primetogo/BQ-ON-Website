@@ -368,7 +368,7 @@
 </c:forEach>
 
 <%String[] temp;
-java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/resnew","root","root");
+java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/resnew","root","123456");
 PreparedStatement pstmt,pstmt1,pq,pb;
 String b=(String) session.getAttribute("first");
 Class.forName("com.mysql.jdbc.Driver");

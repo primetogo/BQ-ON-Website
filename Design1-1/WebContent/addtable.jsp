@@ -5,7 +5,7 @@
 <jsp:useBean id="cart2" class="model.Table_cart" scope="session"/>
 <%String table_id=request.getParameter("table_id");
 	Class.forName("com.mysql.jdbc.Driver");
-	java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/resnew", "root","root");
+	java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/resnew", "root","123456");
 	Statement stmt=con.createStatement();
 		String sql="SELECT * from resnew.table where Table_id=" + table_id;
 		ResultSet rs = stmt.executeQuery(sql);

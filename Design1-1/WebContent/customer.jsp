@@ -355,7 +355,7 @@ h1 {color: white;}
 </div>
 <div id="map-panel" align="center">
 <form  method="post">
-<sql:setDataSource var="ds" driver="com.mysql.jdbc.Driver" url="jdbc:mysql:///resnew" user="root" password="root"/>
+<sql:setDataSource var="ds" driver="com.mysql.jdbc.Driver" url="jdbc:mysql:///resnew" user="root" password="123456"/>
 	
 <h1>กรุณาเลือกโซนที่ท่านต้องการจอง 
 <sql:query var="rs1" dataSource="${ds}">select distinct Zone from resnew.table</sql:query>
