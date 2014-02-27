@@ -333,16 +333,18 @@ h1 {color: white;}
 <input type="submit" value="ออกจากระบบ" class="logoutButton" />
 <a href="index.jsp" class="logoutButton" style="cursor: url(Res/mouse.png) , auto;" >หน้าหลัก</a><br>
 </form>
+</div>
 <div id='cssmenu'>
 <ul>
     <li class='has-sub'><a href='customer.jsp'><span>จองโต๊ะ</span></a>
     <ul>
      <li class='last'><a href='Checktableorder.jsp'><span>ตรวจสอบรายการจองโต๊ะ</span></a>
       </ul></li>
-   <li class='has-sub'><a href='menu.jsp'><span>สั่งอาหาร</span></a>
+   <li class='has-sub'><a href='#'><span>สั่งอาหาร</span></a>
     <ul>
          <li><a href='viewfood.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ตรวจสอบรายการอาหาร</span></a></li>
-         <li class='last'><a href='CheckFoodOrder.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ตรวจสอบสถานะ Order</span></a></li>
+         <li><a href='viewfood.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ตรวจสอบสถานะ Order</span></a></li>
+         <li class='last'><a href='menu.jsp'><span>สั่งอาหาร</span></a></li>
       </ul></li>
    <li class='has-sub'><a href='#' style="cursor: url(Res/mouse.png), auto;" ><span>จัดการข้อมูลส่วนตัว</span></a>
       <ul>
@@ -353,7 +355,15 @@ h1 {color: white;}
 </ul>
 </div>
 <div id="map-panel" align="center">
-<h1>คุณได้ทำการจองโต๊ะ เรียบร้อยแล้ว สามารถตรวจสอบการจองโต๊ะ ได้ที่ ตรวจสอบการจองโต๊ะ</h1>
+<h1>ตรวจสอบการจองโต๊ะ</h1>
+<sql:query var="rs" dataSource="jdbc/resnew">select order_id,table_Table_id,Food_Time from resnew.order where Order_status="w"</sql:query>
+<div class="CSSTableGenerator">
+<table>
+<tr><td>Order Id</td><td>Table Id</td><td>เวลาที่จองโต๊ะ</td></tr>
+<c:forEach var="t" items="${rs.rows}">
+<tr><td>${t.order_id}</td><td>${t.table_Table_id}</td><td>${t.Food_Time}</td></tr>
+</c:forEach></table>
+</div>
 </div>
 </body>
 </html>

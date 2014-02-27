@@ -333,6 +333,7 @@ h1 {color: white;}
 <input type="submit" value="ออกจากระบบ" class="logoutButton" />
 <a href="index.jsp" class="logoutButton" style="cursor: url(Res/mouse.png) , auto;" >หน้าหลัก</a><br>
 </form>
+</div>
 <div id='cssmenu'>
 <ul>
     <li class='has-sub'><a href='customer.jsp'><span>จองโต๊ะ</span></a>
@@ -353,7 +354,7 @@ h1 {color: white;}
 </ul>
 </div>
 <div id="map-panel" align="center">
-<h1>คุณได้ทำการจองโต๊ะ เรียบร้อยแล้ว สามารถตรวจสอบการจองโต๊ะ ได้ที่ ตรวจสอบการจองโต๊ะ</h1>
+<h1>คุณได้ทำการสั่งอาหารเรียบร้อยแล้ว สามารถตรวจสอบการสั่งอาหารได้ที่ ตรวจสอบสถานะ Order</h1>
 </div>
 </body>
 </html>

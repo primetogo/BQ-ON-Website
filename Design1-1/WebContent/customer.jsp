@@ -139,7 +139,7 @@ h1 {color: white;}
 }
 
 #bg{
-  background: url(Res/fgff.jpg) no-repeat center center fixed; 
+  background: url(Res/login.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -336,11 +336,14 @@ h1 {color: white;}
 </div>
 <div id='cssmenu'>
 <ul>
-    <li class='active'><a href='customer.jsp'><span>จองโต๊ะ</span></a></li>
-   <li class='has-sub'><a href='#'><span>สั่งอาหาร</span></a>
+    <li class='has-sub'><a href='customer.jsp'><span>จองโต๊ะ</span></a>
+    <ul>
+     <li class='last'><a href='Checktableorder.jsp'><span>ตรวจสอบรายการจองโต๊ะ</span></a>
+      </ul></li>
+   <li class='has-sub'><a href='menu.jsp'><span>สั่งอาหาร</span></a>
     <ul>
          <li><a href='viewfood.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ตรวจสอบรายการอาหาร</span></a></li>
-         <li class='last'><a href='menu.jsp'><span>สั่งอาหาร</span></a></li>
+         <li class='last'><a href='CheckFoodOrder.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ตรวจสอบสถานะ Order</span></a></li>
       </ul></li>
    <li class='has-sub'><a href='#' style="cursor: url(Res/mouse.png), auto;" ><span>จัดการข้อมูลส่วนตัว</span></a>
       <ul>
@@ -359,10 +362,8 @@ h1 {color: white;}
 <select name="zone"><c:forEach var="zones" items="${rs1.rows}"><option value="${zones.Zone}">${zones.Zone}</option></c:forEach></select>
 <input type="submit" value="Go!!" name="go"></h1></form>
 <c:if test="${param.go !=null}">
-<c:choose>
-<c:when test="${param.zone=='outdoor'}">
-<img  src="Res/outdoor.png"/>
-<sql:query var="rs" dataSource="${ds}">select * from resnew.table where table_status="no" and Zone="outdoor"</sql:query>
+<img  src="Res/${param.zone}.png"/>
+<sql:query var="rs" dataSource="${ds}">select * from resnew.table where table_status="no" and Zone='${param.zone}'</sql:query>
 <div class="CSSTableGenerator">
 <table border="1">
 <tr>
@@ -378,50 +379,6 @@ h1 {color: white;}
 <td>ว่าง</td></tr>
 </c:forEach>
 </table></div>
-</c:when>
-<c:when test="${ param.zone=='cassic'}">
-<img  src="Res/cassic.png"/>
-<sql:query var="rs" dataSource="${ds}">select * from resnew.table where table_status="no" and Zone="cassic"</sql:query>
-<div class="CSSTableGenerator">
-<table border="1">
-<tr>
-<td></td>
-<td>table_id</td>
-<td>Seat amonut</td>
-<td>Status</td>
-</tr>
-<c:forEach var="table1" items="${rs.rows}">
-<tr>
-<td><form action="addtable.jsp" method="post"><input type="submit" name="table_id" value="${table1.Table_id}"></form></td>
-<td>${table1.Table_id}</td>
-<td>${table1.Seat_amount}</td>
-<td>ว่าง</td>
-</tr>
-</c:forEach>
-</table></div>
-</c:when>
-<c:when test="${param.zone=='modern'}">
-<img  src="Res/modern.png"/>
-<sql:query var="rs" dataSource="${ds}">select * from resnew.table where   table_status="no" and Zone="modern"</sql:query>
-<div class="CSSTableGenerator">
-<table border="1">
-<tr>
-<td></td>
-<td>table_id</td>
-<td>Seat amonut</td>
-<td>Status</td>
-</tr>
-<c:forEach var="table1" items="${rs.rows}">
-<tr>
-<td><form action="addtable.jsp" method="post"><input type="submit" name="table_id" value="${table1.Table_id}"></form></td>
-<td>${table1.Table_id}</td>
-<td>${table1.Seat_amount}</td>
-<td>ว่าง</td>
-</tr>
-</c:forEach>
-</table></div>
-</c:when>
-</c:choose>
 </c:if>
 </div>
 </body>

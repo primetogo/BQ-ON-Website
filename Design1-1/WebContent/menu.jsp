@@ -140,7 +140,7 @@ h1 {color: white;}
 }
 
 #bg{
-  background: url(Res/fgff.jpg) no-repeat center center fixed; 
+ background: url(Res/login.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -335,11 +335,14 @@ h1 {color: white;}
 </div>
 <div id='cssmenu'>
 <ul>
-    <li class='active'><a href='customer.jsp'><span>จองโต๊ะ</span></a></li>
-   <li class='has-sub'><a href='#'><span>สั่งอาหาร</span></a>
+    <li class='has-sub'><a href='customer.jsp'><span>จองโต๊ะ</span></a>
+    <ul>
+     <li class='last'><a href='Checktableorder.jsp'><span>ตรวจสอบรายการจองโต๊ะ</span></a>
+      </ul></li>
+   <li class='has-sub'><a href='menu.jsp'><span>สั่งอาหาร</span></a>
     <ul>
          <li><a href='viewfood.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ตรวจสอบรายการอาหาร</span></a></li>
-         <li class='last'><a href='menu.jsp'><span>สั่งอาหาร</span></a></li>
+         <li class='last'><a href='CheckFoodOrder.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ตรวจสอบสถานะ Order</span></a></li>
       </ul></li>
    <li class='has-sub'><a href='#' style="cursor: url(Res/mouse.png), auto;" ><span>จัดการข้อมูลส่วนตัว</span></a>
       <ul>

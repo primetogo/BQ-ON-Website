@@ -333,6 +333,7 @@ h1 {color: white;}
 <input type="submit" value="ออกจากระบบ" class="logoutButton" />
 <a href="index.jsp" class="logoutButton" style="cursor: url(Res/mouse.png) , auto;" >หน้าหลัก</a><br>
 </form>
+</div>
 <div id='cssmenu'>
 <ul>
     <li class='has-sub'><a href='customer.jsp'><span>จองโต๊ะ</span></a>
@@ -353,7 +354,15 @@ h1 {color: white;}
 </ul>
 </div>
 <div id="map-panel" align="center">
-<h1>คุณได้ทำการจองโต๊ะ เรียบร้อยแล้ว สามารถตรวจสอบการจองโต๊ะ ได้ที่ ตรวจสอบการจองโต๊ะ</h1>
+<h1>ตรวจสอบการจองโต๊ะ</h1>
+<sql:query var="rs" dataSource="jdbc/resnew">select Food_Food_id,Food_amount,order_order_id from order_detail JOIN resnew.order ON(order_order_id=order_id) where Order_status="w"</sql:query>
+<div class="CSSTableGenerator">
+<table>
+<tr><td>Food Id</td><td>Food amount</td><td>order_order_id</td></tr>
+<c:forEach var="t" items="${rs.rows}">
+<tr><td>${t.Food_Food_id}</td><td>${t.Food_amount}</td><td>${t.order_order_id}</td></tr>
+</c:forEach></table>
+</div>
 </div>
 </body>
 </html>

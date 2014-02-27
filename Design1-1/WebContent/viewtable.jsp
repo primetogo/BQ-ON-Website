@@ -138,7 +138,7 @@ h1 {color: white;}
 }
 
 #bg{
-  background: url(Res/fgff.jpg) no-repeat center center fixed; 
+  background: url(Res/login.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -335,11 +335,14 @@ h1 {color: white;}
 </div>
 <div id='cssmenu'>
 <ul>
-    <li class='active'><a href='customer.jsp'><span>จองโต๊ะ</span></a></li>
-   <li class='has-sub'><a href='#'><span>สั่งอาหาร</span></a>
+    <li class='has-sub'><a href='customer.jsp'><span>จองโต๊ะ</span></a>
+    <ul>
+     <li class='last'><a href='Checktableorder.jsp'><span>ตรวจสอบรายการจองโต๊ะ</span></a>
+      </ul></li>
+   <li class='has-sub'><a href='menu.jsp'><span>สั่งอาหาร</span></a>
     <ul>
          <li><a href='viewfood.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ตรวจสอบรายการอาหาร</span></a></li>
-         <li class='last'><a href='menu.jsp'><span>สั่งอาหาร</span></a></li>
+         <li class='last'><a href='CheckFoodOrder.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ตรวจสอบสถานะ Order</span></a></li>
       </ul></li>
    <li class='has-sub'><a href='#' style="cursor: url(Res/mouse.png), auto;" ><span>จัดการข้อมูลส่วนตัว</span></a>
       <ul>
@@ -352,7 +355,7 @@ h1 {color: white;}
 <div id="map-panel" align="center">
 <h1>รายการโต๊ะที่จอง</h1>
 <form method="post" action="viewtable.jsp">
-<jsp:useBean id="cart" class="model.Table_cart" scope="session"/>
+<jsp:useBean id="cart2" class="model.Table_cart" scope="session"/>
 <%String[] temp;
 if(request.getParameter("pay")!=null)
 {
@@ -367,16 +370,16 @@ if(request.getParameter("del")!=null)
 	String[] table_id=request.getParameterValues("table_id");
 	if(table_id !=null){
 		for(int i=0;i<table_id.length;i++){
-			cart.removeTable(table_id[i]);
+			cart2.removeTable(table_id[i]);
 		}
 	}
 	}
-if(cart.getTable().hasMoreElements()){
+if(cart2.getTable().hasMoreElements()){
 %>
 <div class="CSSTableGenerator">
  <table>
  <tr><td>Choose</td><td>Table id</td><td>Zone</td><td>Status</td></tr>
- <%Enumeration e=cart.getTable();
+ <%Enumeration e=cart2.getTable();
  while(e.hasMoreElements()){
 	temp=(String[]) e.nextElement();
 	%>
@@ -385,13 +388,7 @@ if(cart.getTable().hasMoreElements()){
 <td><%=temp[1] %></td>  
 <td><%=temp[2] %></td>
 </tr>   
-<%
-if(temp[2].equals("yes")){
-	out.println("<center>กรุณาเลือกโต๊ะใหม่ อีกครั้ง</center>");
-}
-}%>
-
-<%}else{
+<%}}else{
 	out.println("<center><h1>คุณยังไม่ได้จองโต๊ะ</h1></center>");
 }%>
 <tr>

@@ -142,7 +142,7 @@
 }
 
 #bg{
-  background: url(Res/fgff.jpg) no-repeat center center fixed; 
+  background: url(Res/login.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -338,17 +338,25 @@
 </div>
 <div id='cssmenu'>
 <ul>
-   <li class='active'><a href='customer.jsp'><span>จองโต๊ะ-สั่งอาหาร</span></a></li>
-   <li class='has-sub'><a href='#' style="cursor: url(Res/mouse.png) , auto;" ><span>จัดการข้อมูลส่วนตัว</span></a>
+    <li class='has-sub'><a href='customer.jsp'><span>จองโต๊ะ</span></a>
+    <ul>
+     <li class='last'><a href='Checktableorder.jsp'><span>ตรวจสอบรายการจองโต๊ะ</span></a>
+      </ul></li>
+   <li class='has-sub'><a href='menu.jsp'><span>สั่งอาหาร</span></a>
+    <ul>
+         <li><a href='viewfood.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ตรวจสอบรายการอาหาร</span></a></li>
+         <li class='last'><a href='CheckFoodOrder.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ตรวจสอบสถานะ Order</span></a></li>
+      </ul></li>
+   <li class='has-sub'><a href='#' style="cursor: url(Res/mouse.png), auto;" ><span>จัดการข้อมูลส่วนตัว</span></a>
       <ul>
-         <li><a href='#' style="cursor: url(Res/mouse.png) , auto;" ><span>แก้ไขข้อมูลส่วนตัว</span></a></li>
-         <li class='last'><a href='rev_conf.jsp' style="cursor: url(/Res/mouse.png) , auto;" ><span>ยกเลิกสมาชิก</span></a></li>
+         <li><a href='#' style="cursor: url(Res/mouse.png), auto;" ><span>แก้ไขข้อมูลส่วนตัว</span></a></li>
+         <li class='last'><a href='rev_conf.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ยกเลิกสมาชิก</span></a></li>
       </ul>
    </li>
 </ul>
 </div>
 <div id="map-panel" align="center">
-<h1>กรุณายืนยันรายการพร้อมเลือกการชำระ</h1>
+<h1>กรุณายืนยันรายการ</h1>
 <jsp:useBean id="pa" class="model.MENUBEAN" scope="session"/>
 <form method="post" action="pay.jsp">
 <sql:setDataSource var="ds" driver="com.mysql.jdbc.Driver" url="jdbc:mysql:///resnew" user="root" password="root"/>
@@ -360,14 +368,26 @@
 </c:forEach>
 
 <%String[] temp;
-PreparedStatement pstmt;
+java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/resnew","root","root");
+PreparedStatement pstmt,pstmt1,pq,pb;
+String b=(String) session.getAttribute("first");
 Class.forName("com.mysql.jdbc.Driver");
+int cus_id=0;
 String order_id="";
 int sum=0;
 int amount =0;
-java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/resnew","root","root");
-		Statement stmt=con.createStatement();
-		String sql;ResultSet rs;
+String sql="SELECT Cus_id from resnew.customer where Cus_Fname='"+b+"'";
+pq=con.prepareStatement(sql);
+ResultSet rs=pq.executeQuery();
+while(rs.next()){
+	cus_id = rs.getInt("Cus_id");
+}
+String lol="SELECT MAX(Order_id)  as ab  From resnew.order where Customer_Cus_id ='"+cus_id+"'";
+pb=con.prepareStatement(lol);
+ResultSet rs2=pb.executeQuery();
+while(rs2.next()){
+	order_id=rs2.getString(1);
+}
 if(cart.getItem().hasMoreElements()){
 	Enumeration enu =cart.getItem();
 	 while(enu.hasMoreElements()){
@@ -376,24 +396,16 @@ if(cart.getItem().hasMoreElements()){
 		amount+=sum;}
 	 
 }
-pstmt = con.prepareStatement("Insert Into payment(Payment_amount,Payment_type,payment_status) values(?,?,?)");
-pstmt.setFloat(1, Float.parseFloat(Integer.toString(amount)));
-pstmt.setString(2, "ATM");
-pstmt.setString(3, "waiting");
-pstmt.execute();
-pstmt.close();
+pstmt1 = con.prepareStatement("Insert Into payment(Payment_amount,Payment_type,payment_status) values('"+Integer.toString(amount) +"','ATM','w')");
+pstmt1.execute();
+pstmt1.close();
 Enumeration enu =cart.getItem();
 while(enu.hasMoreElements()){
 	temp=(String[]) enu.nextElement();
-	pstmt = con.prepareStatement("Insert Into order_detail(Food_amount,Food_id) values(?,?)");
-	pstmt.setString(1, temp[2]);
-	pstmt.setInt(2, Integer.parseInt(temp[0]));
+	pstmt = con.prepareStatement("Insert Into order_detail(order_order_id,Food_amount,Food_Food_id) values('"+order_id+"','"+temp[2]+"','"+Integer.parseInt(temp[0])+"')");
 	pstmt.execute();
 	pstmt.close();}
-pstmt = con.prepareStatement("Insert Into order(Order_status) values(?)");
-pstmt.setString(1, "w");
-pstmt.execute();
-pstmt.close();
+
 cart.close();
 response.sendRedirect("Thankyou.jsp");
 %>
