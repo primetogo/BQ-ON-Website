@@ -47,7 +47,7 @@ public class Order_create extends HttpServlet {
 		request.getSession().setAttribute("lastt", outer_last);
 		request.getSession().setAttribute("seeat", seat);
 		request.getSession().setAttribute("zo", zone);
-		RequestDispatcher re = request.getRequestDispatcher("se_food.jsp");
+		RequestDispatcher re = request.getRequestDispatcher("menu.jsp");
 		re.forward(request, response);
 		
 	}
