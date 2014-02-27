@@ -29,13 +29,14 @@ public class LoginRes_admin extends HttpServlet {
 		String name = request.getParameter("name");
 		String password = request.getParameter("pass");
 		try{
-			String sql_admin = "select Emp_Fname, Emp_Lname from employee where username='"+name+"'and password= '"+password+"'";
+			String sql_admin = "select Emp_Fname, Emp_Lname, emp_id from employee where username='"+name+"'and password= '"+password+"'";
 			admin_login = conn.prepareStatement(sql_admin);
 			ResultSet res = admin_login.executeQuery();
 			while(res.next()){
 				loginflag = true;
 				request.getSession().setAttribute("admin_first", res.getString("Emp_Fname"));
 				request.getSession().setAttribute("admin_last", res.getString("Emp_Lname"));
+				request.getSession().setAttribute("admin_id", res.getString("emp_id"));
 			}	
 		}catch(Exception e){
 			System.out.println(e);
