@@ -354,7 +354,7 @@ h1 {color: white;}
 </ul>
 </div>
 <div id="map-panel" align="center">
-<h1>ตรวจสอบการจองโต๊ะ</h1>
+<h1>ตรวจสอบสถานะการสั่งอาหาร</h1>
 <sql:query var="rs" dataSource="jdbc/resnew">select Food_Food_id,Food_amount,order_order_id from order_detail JOIN resnew.order ON(order_order_id=order_id) where Order_status="w"</sql:query>
 <div class="CSSTableGenerator">
 <table>
