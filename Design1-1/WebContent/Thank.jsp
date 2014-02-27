@@ -332,7 +332,7 @@ h1 {color: white;}
 <form action="logout" method="post" >
 <input type="submit" value="ออกจากระบบ" class="logoutButton" />
 <a href="index.jsp" class="logoutButton" style="cursor: url(Res/mouse.png) , auto;" >หน้าหลัก</a><br>
-</form>
+</form></div>
 <div id='cssmenu'>
 <ul>
     <li class='has-sub'><a href='customer.jsp'><span>จองโต๊ะ</span></a>

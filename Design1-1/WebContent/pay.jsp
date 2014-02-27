@@ -396,16 +396,15 @@ if(cart.getItem().hasMoreElements()){
 		amount+=sum;}
 	 
 }
-pstmt1 = con.prepareStatement("Insert Into payment(Payment_amount,Payment_type,payment_status) values('"+Integer.toString(amount) +"','ATM','w')");
-pstmt1.execute();
-pstmt1.close();
 Enumeration enu =cart.getItem();
 while(enu.hasMoreElements()){
 	temp=(String[]) enu.nextElement();
 	pstmt = con.prepareStatement("Insert Into order_detail(order_order_id,Food_amount,Food_Food_id) values('"+order_id+"','"+temp[2]+"','"+Integer.parseInt(temp[0])+"')");
 	pstmt.execute();
 	pstmt.close();}
-
+pstmt1 = con.prepareStatement("Insert Into payment(Payment_amount,Payment_type,payment_status) values('"+Integer.toString(amount) +"','ATM','w')");
+pstmt1.execute();
+pstmt1.close();
 cart.close();
 response.sendRedirect("Thankyou.jsp");
 %>
