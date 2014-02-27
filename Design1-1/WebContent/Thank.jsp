@@ -2,12 +2,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@page import="sun.security.provider.certpath.OCSP.RevocationStatus"%>
-<%@page import="model.Food_reserve"%>
-<%@page import="model.Food_Cart"%>
+<%@page import="model.Table_cart"%>
 <%@page import="java.util.Enumeration"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    <jsp:useBean id="cart" class="model.Food_Cart" scope="session"/>
+    <jsp:useBean id="cart2" class="model.Table_cart" scope="session"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -52,7 +51,7 @@
   float: left;
 }
 #cssmenu > ul > li.active a {
-  background: #646464 url(file:///C|/Users/Sethong/workspace/Design1-1/WebContent/Res/grad_dark.png) repeat-x left bottom;
+  background: #646464 url(Res/grad_dark.png) repeat-x left bottom;
   background: -moz-linear-gradient(top, #646464 0%, #4a4a4a 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #646464), color-stop(100%, #4a4a4a));
   background: -webkit-linear-gradient(top, #646464 0%, #4a4a4a 100%);
@@ -349,7 +348,7 @@
 </ul>
 </div>
 <div id="map-panel" align="center">
-<h1>Thank you for Your order</h1>
+<h1>คุณได้ทำการจองโต๊ะ เรียบร้อยแล้ว สามารถตรวจสอบการจองโต๊ะ ได้ที่ ตรวจสอบการจองโต๊ะ</h1>
 </div>
 </body>
 </html>

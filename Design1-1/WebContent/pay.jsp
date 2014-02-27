@@ -2,7 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@page import="sun.security.provider.certpath.OCSP.RevocationStatus"%>
-<%@page import="model.Food_reserve"%>
 <%@page import="model.Food_Cart"%>
 <%@page import="java.util.Enumeration"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
@@ -361,28 +360,42 @@
 </c:forEach>
 
 <%String[] temp;
+PreparedStatement pstmt;
 Class.forName("com.mysql.jdbc.Driver");
 String order_id="";
+int sum=0;
+int amount =0;
 java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/resnew","root","root");
 		Statement stmt=con.createStatement();
 		String sql;ResultSet rs;
 if(cart.getItem().hasMoreElements()){
 	Enumeration enu =cart.getItem();
-	 int sum=0;
-	 int amount =0;
 	 while(enu.hasMoreElements()){
 		temp=(String[]) enu.nextElement();
 		sum=Integer.parseInt(temp[2])*Integer.parseInt(temp[3]);
 		amount+=sum;}
 	 
 }
+pstmt = con.prepareStatement("Insert Into payment(Payment_amount,Payment_type,payment_status) values(?,?,?)");
+pstmt.setFloat(1, Float.parseFloat(Integer.toString(amount)));
+pstmt.setString(2, "ATM");
+pstmt.setString(3, "waiting");
+pstmt.execute();
+pstmt.close();
 Enumeration enu =cart.getItem();
 while(enu.hasMoreElements()){
 	temp=(String[]) enu.nextElement();
-	sql="Insert Into order_detail(Food_amount,Food_id) values('"+temp[2]+"','"+temp[0]+"'";
-	stmt.executeUpdate(sql);}
+	pstmt = con.prepareStatement("Insert Into order_detail(Food_amount,Food_id) values(?,?)");
+	pstmt.setString(1, temp[2]);
+	pstmt.setInt(2, Integer.parseInt(temp[0]));
+	pstmt.execute();
+	pstmt.close();}
+pstmt = con.prepareStatement("Insert Into order(Order_status) values(?)");
+pstmt.setString(1, "w");
+pstmt.execute();
+pstmt.close();
 cart.close();
-response.sendRedirect("Thank.jsp");
+response.sendRedirect("Thankyou.jsp");
 %>
 </form>
 </div>

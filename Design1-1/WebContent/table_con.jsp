@@ -13,28 +13,36 @@
 <body>
 <jsp:useBean id="cart2" class="model.Table_cart" scope="session"/>
 <%String[] temp;
-String cus_id=null;
-String sql2=null;
+PreparedStatement pstmt;
+int cus_id=0;
+String b=(String) session.getAttribute("first");
 Class.forName("com.mysql.jdbc.Driver");
 java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/resnew", "root","root");
-Statement stmt=con.createStatement();
-String sql="SELECT Cus_id from resnew.customer where Cus_Fname=" + session.getAttribute("first") ;
-ResultSet rs = stmt.executeQuery(sql);
-System.out.print(sql);
+String sql="SELECT Cus_id from resnew.customer where Cus_Fname= ?";
+pstmt=con.prepareStatement(sql);
+pstmt.setString(1,b);
+ResultSet rs=pstmt.executeQuery(sql);
 while(rs.next()){
-	cus_id=rs.getString("Cus_id");
+	cus_id = rs.getInt("Cus_id");
 }
-rs.close();
+pstmt.close();
 if(cart2.getTable().hasMoreElements()){
 Enumeration e=cart2.getTable();
  while(e.hasMoreElements()){
 	temp=(String[]) e.nextElement();
-	%>   
-<%sql="UPDATE resnew.table SET Table_status='YES' where Table_id="+temp[0]; 
-stmt.execute(sql);
-sql2="Insert INTO order (Table_id,Cus_id) values('"+temp[0]+","+cus_id+")";
-stmt.execute(sql2);}}%>
+	pstmt = con.prepareStatement("UPDATE table set Table_status=? WHERE Table_id= ?");
+	pstmt.setString(1, "YES");
+	pstmt.setInt(2, Integer.parseInt(temp[0]));
+	pstmt.execute();
+	pstmt.close();
+	pstmt = con.prepareStatement("INSERT INTO order_detail(table_table_id) values(?)");
+	pstmt.setInt(1, Integer.parseInt(temp[0]));
+	pstmt.execute();
+	pstmt.close();}}
 
-<%response.sendRedirect("menu.jsp"); %>
+%>   
+
+
+<%response.sendRedirect("Thank.jsp"); %>
 </body>
 </html>
