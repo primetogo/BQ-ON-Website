@@ -31,8 +31,8 @@ public class User_remover extends HttpServlet {
 		    String id = (String) session.getAttribute("haha");
 		    
 		    //starting query data to check with user data attribute
-		    String another = "DELETE * FROM resnew.customer WHERE Cus_id="+"'"+id+"'";
-		    String remove_sql = "DELETE * FROM resnew.username WHERE Customer_Cus_id="+"'"+id+"'";
+		    String another = "DELETE  FROM resnew.customer WHERE Cus_id="+"'"+id+"'";
+		    String remove_sql = "DELETE FROM resnew.username WHERE Customer_Cus_id="+"'"+id+"'";
 		    shit=conn.prepareStatement(another);
 		    remove = conn.prepareStatement(remove_sql);
 		    shit.execute();
