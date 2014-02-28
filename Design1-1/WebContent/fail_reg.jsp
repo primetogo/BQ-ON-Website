@@ -9,9 +9,7 @@
 </head>
 <body>
 
-<script language="JavaScript">
-alert("Error! ลูกได้ทำการสมัครสมาชิกแล้ว");
-</script> 
+<script language="JavaScript">alert("Error! คุณได้ทำการสมัครสมาชิกแล้ว");</script> 
 
 </body>
 </html>

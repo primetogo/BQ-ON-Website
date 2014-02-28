@@ -146,7 +146,6 @@ h1 {color: white;}
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  cursor: url(Res/mouse.png), auto;
 }
 #user-detail-box{
     margin-top: 20px;
@@ -158,11 +157,9 @@ h1 {color: white;}
 	-moz-border-radius: 7px;
 	-webkit-border-radius: 7px;
 	border-radius: 7px;
-	/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
 	-moz-box-shadow: 0px 0px 11px #000000;
 	-webkit-box-shadow: 0px 0px 11px #000000;
 	box-shadow: 0px 0px 11px #000000;
-	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
 	font-family: RaiNgan;
 	font-size: 35px;
 }
@@ -208,8 +205,7 @@ h1 {color: white;}
 }
 #map-panel{
     margin-top: 100px;
- 
-     font-family: RaiNgan ;
+    font-family: RaiNgan ;
    	background-image: url("Res/pic1.jpg"); 
     margin-left: auto;
     margin-right: auto;
@@ -220,13 +216,9 @@ h1 {color: white;}
 	-moz-border-radius: 7px;
 	-webkit-border-radius: 7px;
 	border-radius: 7px;
-	/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
 	-moz-box-shadow: 0px 0px 11px #000000;
 	-webkit-box-shadow: 0px 0px 11px #000000;
 	box-shadow: 0px 0px 11px #000000;
-	cursor: url(Res/mouse.png), auto;
-	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
-   
 }
 .CSSTableGenerator {
 	margin:0px;padding:0px;
@@ -334,7 +326,7 @@ h1 {color: white;}
 <br><br>
 <form action="logout" method="post" >
 <input type="submit" value="ออกจากระบบ" class="logoutButton" />
-<a href="index.jsp" class="logoutButton" style="cursor: url(Res/mouse.png), auto;" >หน้าหลัก</a><br>
+<a href="index.jsp" class="logoutButton">หน้าหลัก</a><br>
 </form>
 </div>
 <div id='cssmenu'>
@@ -345,13 +337,13 @@ h1 {color: white;}
       </ul></li>
    <li class='has-sub'><a href='menu.jsp'><span>สั่งอาหาร</span></a>
     <ul>
-         <li><a href='viewfood.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ตรวจสอบรายการอาหาร</span></a></li>
-         <li class='last'><a href='CheckFoodOrder.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ตรวจสอบสถานะ Order</span></a></li>
+         <li><a href='viewfood.jsp'><span>ตรวจสอบรายการอาหาร</span></a></li>
+         <li class='last'><a href='CheckFoodOrder.jsp'><span>ตรวจสอบสถานะ Order</span></a></li>
       </ul></li>
-   <li class='has-sub'><a href='#' style="cursor: url(Res/mouse.png), auto;" ><span>จัดการข้อมูลส่วนตัว</span></a>
+   <li class='has-sub'><a href='#'><span>จัดการข้อมูลส่วนตัว</span></a>
       <ul>
-         <li><a href='#' style="cursor: url(Res/mouse.png), auto;" ><span>แก้ไขข้อมูลส่วนตัว</span></a></li>
-         <li class='last'><a href='rev_conf.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ยกเลิกสมาชิก</span></a></li>
+         <li><a href='#'><span>แก้ไขข้อมูลส่วนตัว</span></a></li>
+         <li class='last'><a href='rev_conf.jsp'><span>ยกเลิกสมาชิก</span></a></li>
       </ul>
    </li>
 </ul>
@@ -388,7 +380,13 @@ if(cart.getItem().hasMoreElements()){
 <font size="7" color="white">รายการอาหาร</font>
 <div class="CSSTableGenerator">
  <table>
- <tr><td>Choose</td><td>Food name</td><td>Quantity</td><td>Food price</td><td>Sum</td></tr>
+ 	<tr>
+ 		<td>Choose</td>
+ 		<td>Food name</td>
+ 		<td>Quantity</td>
+ 		<td>Food price</td>
+ 		<td>Sum</td>
+ 	</tr>
  <%Enumeration enu =cart.getItem();
  int sum=0;
  int amount =0;
@@ -396,30 +394,29 @@ if(cart.getItem().hasMoreElements()){
 	temp=(String[]) enu.nextElement();
 	sum=Integer.parseInt(temp[2])*Integer.parseInt(temp[3]);
 	amount+=sum;%>
-<tr><td><input name="food_id" type="checkbox" value="<%=temp[0] %>"/></td>
-<td><%=new String(temp[1].getBytes("ISO8859_1"),"windows-874")%></td>     
-<td><input name="<%=temp[0]%>" type="text" value="<%=temp[2]%>" size="3" maxlength="3"></td>   
-<td><%=temp[3] %></td>  
-<td><%=sum %></td>
-</tr>   
+	<tr>
+		<td><input name="food_id" type="checkbox" value="<%=temp[0] %>"/></td>
+		<td><%=new String(temp[1].getBytes("ISO8859_1"),"windows-874")%></td>     
+		<td><input name="<%=temp[0]%>" type="text" value="<%=temp[2]%>" size="3" maxlength="3"></td>   
+		<td><%=temp[3] %></td>  
+		<td><%=sum %></td>
+	</tr>   
 <%}%>
-<tr>
-<td colspan="2"><input name="del" type="submit" value="Cancel"></td>
-<td colspan="2">Total</td>   
-<td><%=amount%></td>  
-</tr> 
+	<tr>
+		<td colspan="2"><input name="del" type="submit" value="Cancel"></td>
+		<td colspan="2">Total</td>   
+		<td><%=amount%></td>  
+	</tr> 
 <%}else{
 	out.println("<center><h1>ยังไม่มีอาหารในออเดอร์</h1></center>");
 }
-	%>
-<tr>
-<td colspan="6"><div align="center">
-<input name="cal" type="submit" value="cal">
-<input name="buy" type="submit" value="Buy">
-<input name="pay" type="submit" value="pay">
-</div>
-</td>
-</tr>   
+%>
+	<tr>
+		<td colspan="6"><div align="center">
+		<input name="cal" type="submit" value="cal">
+		<input name="buy" type="submit" value="Buy">
+		<input name="pay" type="submit" value="pay"></div></td>
+	</tr>   
 </table>
 </div>
 </form>

@@ -164,11 +164,9 @@ table, th, td
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
 	border-radius: 6px;
-	/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
 	-moz-box-shadow: 0px 0px 20px #000000;
 	-webkit-box-shadow: 0px 0px 20px #000000;
 	box-shadow: 0px 0px 20px #000000;
-	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
 }
 #order_panel{
 	margin-top: -400px;
@@ -183,11 +181,10 @@ table, th, td
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
 	border-radius: 6px;
-	/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
 	-moz-box-shadow: 0px 0px 20px #000000;
 	-webkit-box-shadow: 0px 0px 20px #000000;
 	box-shadow: 0px 0px 20px #000000;
-	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
+	overflow: auto;
 }
 #morefood{
     text-align: center;
@@ -203,11 +200,9 @@ table, th, td
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
 	border-radius: 6px;
-	/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
 	-moz-box-shadow: 0px 0px 20px #000000;
 	-webkit-box-shadow: 0px 0px 20px #000000;
 	box-shadow: 0px 0px 20px #000000;
-	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
 }
 #typeselect{
     margin-left: 50px;
@@ -231,11 +226,9 @@ table, th, td
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
 	border-radius: 6px;
-	/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
 	-moz-box-shadow: 0px 0px 20px #000000;
 	-webkit-box-shadow: 0px 0px 20px #000000;
 	box-shadow: 0px 0px 20px #000000;
-	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
 }
 #inorder1{
 	margin-top: 20px;
@@ -273,11 +266,9 @@ table, th, td
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
 	border-radius: 6px;
-	/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
 	-moz-box-shadow: 0px 0px 20px #000000;
 	-webkit-box-shadow: 0px 0px 20px #000000;
 	box-shadow: 0px 0px 20px #000000;
-	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
 }
 #shift1{
 	text-align:left;
@@ -300,26 +291,26 @@ table, th, td
 <input type="submit" value="Add New Admin" name="de" class="firstButton" /><br>
 </form><br>
 
-<sql:setDataSource var="ds" driver="com.mysql.jdbc.Driver"
-url="jdbc:mysql:///resnew" user="root" password="123456" ></sql:setDataSource>
+	<sql:setDataSource var="ds" driver="com.mysql.jdbc.Driver"
+	url="jdbc:mysql:///resnew" user="root" password="123456" ></sql:setDataSource>
 
 
 <div id="inf_panel" align="center">
-Admin: <%= session.getAttribute("admin_first") %> <%= session.getAttribute("admin_last") %><br>
-Status: 
-<%if(session.getAttribute("incoming")!=null){%>
-<font color="green"><b><%= session.getAttribute("incoming") %></b></font>
-<%session.setAttribute("incoming", "Ready!"); %>
-<%}else{%><font color="green"><b>Ready!</b></font><%} %>
+	Admin: <%= session.getAttribute("admin_first") %> <%= session.getAttribute("admin_last") %><br>
+	Status: 
+	<%if(session.getAttribute("incoming")!=null){%>
+		<font color="green"><b><%= session.getAttribute("incoming") %></b></font>
+		<%session.setAttribute("incoming", "Ready!"); %>
+	<%}else{%><font color="green"><b>Ready!</b></font><%} %>
 </div><br>
-<form action="admingo" method="post">
-  <input type="submit" value="logout" class="myButton" />
-</form>
+	<form action="admingo" method="post">
+ 		 <input type="submit" value="logout" class="myButton" />
+	</form>
 <c:if test="${param.de!=null}">     
 	<c:if test="${param.de=='Main page'}"></c:if>	
 	<c:if test="${param.de=='Removing Food'}">
 		<sql:query dataSource="${ds}" var="res">
-			select distinct food_type from resnew.food;
+			SELECT DISTINCT food_type FROM resnew.food;
 		</sql:query>
 		<div id="type_panel" align="center">
 			<form action="get_food" method="post"><br>
@@ -343,7 +334,7 @@ Status:
 	</c:if>
 	<c:if test="${param.de=='Add More Food'}">
 		<sql:query dataSource="${ds}" var="shi">
-			select distinct food_type from resnew.food;
+			SELECT DISTINCT food_type FROM resnew.food;
 		</sql:query>
 		<div id="morefood" ><br>
 		<div align="center"><b>Add new food</b></div><br>

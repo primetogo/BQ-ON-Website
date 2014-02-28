@@ -83,7 +83,6 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  cursor: url(Res/mouse.png), auto;
 }
 #image-logo{
    height: 150px;
@@ -108,7 +107,6 @@
         z-index: -1;
         width:450px;
         font-family:RaiNgan;
-        cursor: url(Res/mouse.png), auto;
     }
     legend {
         color:#0481b1;
@@ -217,11 +215,11 @@
 <body class="bg" >
 <div id='cssmenu'>
 <ul>
-   <li><a href='index.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>หน้าหลัก</span></a></li>
-   <li><a href='customer.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>จองโต๊ะ-รายการอาหาร</span></a></li>
-   <li><a href='reg_new.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>สมัครสมาชิก</span></a></li>
-   <li><a href='about_res.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>เกี่ยวกับภัตตาคาร</span></a></li>
-   <li class='active'><a href='cus_speak.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ความคิดเห็น-ติชม</span></a></li>
+   <li><a href='index.jsp' ><span>หน้าหลัก</span></a></li>
+   <li><a href='customer.jsp' ><span>จองโต๊ะ-รายการอาหาร</span></a></li>
+   <li><a href='reg_new.jsp' ><span>สมัครสมาชิก</span></a></li>
+   <li><a href='about_res.jsp' ><span>เกี่ยวกับภัตตาคาร</span></a></li>
+   <li class='active'><a href='cus_speak.jsp' ><span>ความคิดเห็น-ติชม</span></a></li>
 </ul>
 </div><br><br><br><br><br><br>
 <div id="wrapper">

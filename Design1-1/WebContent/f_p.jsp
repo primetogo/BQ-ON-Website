@@ -77,11 +77,9 @@
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
 	border-radius: 6px;
-	/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
 	-moz-box-shadow: 0px 0px 20px #000000;
 	-webkit-box-shadow: 0px 0px 20px #000000;
 	box-shadow: 0px 0px 20px #000000;
-	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
 }
 #text_table{
     height: auto;
@@ -96,7 +94,6 @@
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
 	border-radius: 6px;
-	/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
 	-moz-box-shadow: 0px 0px 20px #000000;
 	-webkit-box-shadow: 0px 0px 20px #000000;
 	box-shadow: 0px 0px 20px #000000;
@@ -164,12 +161,10 @@ table, th, td
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
 	border-radius: 6px;
-	/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
 	-moz-box-shadow: 0px 0px 20px #000000;
 	-webkit-box-shadow: 0px 0px 20px #000000;
 	box-shadow: 0px 0px 20px #000000;
 	overflow: auto;
-	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
 }
 
 </style>

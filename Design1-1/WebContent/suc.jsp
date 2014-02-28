@@ -19,7 +19,6 @@
      -webkit-background-size: cover;
  	 -moz-background-size: cover;
  	 -o-background-size: cover;
- 	  cursor: url(Res/mouse.png), auto;
 }
 #pusheen{
  	content: url(Res/cookis.gif) no-repeat;
@@ -39,13 +38,9 @@
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
 	border-radius: 6px;
-	/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
 	-moz-box-shadow: 0px 0px 10px #000000;
 	-webkit-box-shadow: 0px 0px 10px #000000;
-	box-shadow: 0px 0px 10px #000000;
-	cursor: url(Res/mouse.png), auto;
-	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
-   
+	box-shadow: 0px 0px 10px #000000;  
 }
 a {
     color: #28B731;
