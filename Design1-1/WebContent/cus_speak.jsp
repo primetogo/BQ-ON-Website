@@ -34,8 +34,7 @@
   clear: both;
 }
 #cssmenu {
-  position: fixed;
-  top: 230px;
+  margin-top: 300px;
   zoom: 1;
   height: 69px;
   background: url(Res/bottom-bg.png) repeat-x center bottom;
@@ -101,7 +100,7 @@
 }
 /* Start form style  */
 #wrapper {
-        margin-top: 200px;
+        margin-top: 10px;
         margin-left: auto;
         margin-right: auto;
         z-index: -1;

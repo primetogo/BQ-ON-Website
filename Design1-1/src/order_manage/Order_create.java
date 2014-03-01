@@ -18,7 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 public class Order_create extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Connection conn;
-	private PreparedStatement forid;
+	private PreparedStatement forid, getid;
+	private ResultSet ge;
+	private String cus_in;
        
     
     public Order_create() {super();}
@@ -35,19 +37,25 @@ public class Order_create extends HttpServlet {
 		String seat = request.getParameter("seat_check");
 		String zone = request.getParameter("zone_check");
 		String sql_forid = "INSERT INTO customer (Cus_Fname, Cus_Lname) VALUES('"+outer_first+"','"+outer_last+"')";
+		String sql_getid = "SELECT Cus_id FROM customer WHERE Cus_Fname="+"'"+outer_first+"AND Cus_Lname="+"'"+outer_last+"'";
 		try {
 			forid = conn.prepareStatement(sql_forid);
 			forid.execute();
+			getid = conn.prepareStatement(sql_getid);
+			ge = getid.executeQuery();
+			while(ge.next()){
+				cus_in = ge.getString("Cus_id");
+			}
 			forid.close();
+			getid.close();
 		} catch (SQLException e) {
 			System.out.println(e);
 		}
 		System.out.println("Seat amount:"+seat);
-		request.getSession().setAttribute("firstt", outer_first);
-		request.getSession().setAttribute("lastt", outer_last);
+		request.getSession().setAttribute("cus_in", cus_in);
 		request.getSession().setAttribute("seeat", seat);
 		request.getSession().setAttribute("zo", zone);
-		RequestDispatcher re = request.getRequestDispatcher("menu.jsp");
+		RequestDispatcher re = request.getRequestDispatcher("ad_typese.jsp");
 		re.forward(request, response);
 		
 	}

@@ -4,7 +4,9 @@
 	position: relative; 
 	top: 60px;
 	max-width:640px;
-	margin:0px auto 0px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: -270px;
 	z-index: -1;
 	border:none;
 	text-align:left; /* reset align=center */

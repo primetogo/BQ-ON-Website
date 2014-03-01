@@ -150,6 +150,9 @@ table, th, td
     font-size: 25px;
 	border: 3px solid #E1BC24;	
 	background-color: #6BE08C;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
 }
 #type_panel{
     margin-top: -400px;
