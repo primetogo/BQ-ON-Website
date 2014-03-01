@@ -40,8 +40,8 @@ public class Order_create extends HttpServlet {
 		String sql_getid = "SELECT Cus_id FROM customer WHERE Cus_Fname="+"'"+outer_first+"AND Cus_Lname="+"'"+outer_last+"'";
 		try {
 			forid = conn.prepareStatement(sql_forid);
-			forid.execute();
 			getid = conn.prepareStatement(sql_getid);
+			forid.execute();
 			ge = getid.executeQuery();
 			while(ge.next()){
 				cus_in = ge.getString("Cus_id");
@@ -53,8 +53,6 @@ public class Order_create extends HttpServlet {
 		}
 		System.out.println("Seat amount:"+seat);
 		request.getSession().setAttribute("cus_in", cus_in);
-		request.getSession().setAttribute("seeat", seat);
-		request.getSession().setAttribute("zo", zone);
 		RequestDispatcher re = request.getRequestDispatcher("ad_typese.jsp");
 		re.forward(request, response);
 		

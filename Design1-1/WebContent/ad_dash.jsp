@@ -85,9 +85,8 @@
 }
 #text_table{
     height: auto;
-	width: 700px;
-    margin-top: -200px;
-    margin-left: 430px;
+	width: 250px;
+    margin-top: 100px;
     font-family: RaiNgan;
     font-size: 40px;
     font-weight: bold;
@@ -96,7 +95,6 @@
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
 	border-radius: 6px;
-	/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
 	-moz-box-shadow: 0px 0px 20px #000000;
 	-webkit-box-shadow: 0px 0px 20px #000000;
 	box-shadow: 0px 0px 20px #000000;
@@ -147,6 +145,7 @@ table, th, td
 {
 	text-align: center;
     font-family: RaiNgan;
+    width: auto;
     font-size: 25px;
 	border: 3px solid #E1BC24;	
 	background-color: #6BE08C;
@@ -170,24 +169,6 @@ table, th, td
 	-moz-box-shadow: 0px 0px 20px #000000;
 	-webkit-box-shadow: 0px 0px 20px #000000;
 	box-shadow: 0px 0px 20px #000000;
-}
-#order_panel{
-	margin-top: -400px;
-	margin-left: auto;
-	margin-right: auto;
-	height: 600px;
-	width: 800px;
-	font-family: RaiNgan;
-	font-size: 30px;
- 	background-color: #bdffb0;
-	border: 2px solid #999999;
-	-moz-border-radius: 6px;
-	-webkit-border-radius: 6px;
-	border-radius: 6px;
-	-moz-box-shadow: 0px 0px 20px #000000;
-	-webkit-box-shadow: 0px 0px 20px #000000;
-	box-shadow: 0px 0px 20px #000000;
-	overflow: auto;
 }
 #morefood{
     text-align: center;
@@ -277,6 +258,11 @@ table, th, td
 	text-align:left;
 	margin-left:50px;
 }
+#all{
+	margin-top: -500px;
+	font-family: RaiNgan;
+	font-size: 30px;
+}
 </style>
 <title>ส่วนการจัดการ</title>
 </head>
@@ -358,9 +344,9 @@ table, th, td
 		<sql:query dataSource="${ds}" var="meh">
 			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id`
 		</sql:query>
-		<div id="order_panel" align="center"><br>
+		<div id="all" align="center"><br>
 		<b>Order Terminate</b><br>
-			<form action="orderter" method="post">
+			<form method="post">
 				<table border="1" width="80%">
 					<tr>
 						<td><b>Order ID</b></td>
@@ -381,14 +367,14 @@ table, th, td
 				</table><br>
 				<input type="submit" value="Process!" class="myButton" />
 			</form><br><br>
-			<font color="red" size="5">W = Waiting, C = Confirmed, CK = Cooking, F = Finished and CL = Cancel</font>
+			<font size="5">W = Waiting, C = Confirmed, CK = Cooking, F = Finished and CL = Cancel</font>
 		</div>
 	</c:if>
 	<c:if test="${param.de=='Order Checkout'}">
 		<sql:query dataSource="${ds}" var="meh">
 			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id` AND Order_status='C'
 		</sql:query>
-		<div id="order_panel" align="center"><br>
+		<div id="all" align="center"><br>
 		<b>Order Checkout</b><br>
 			<form action="order_check" method="post">
 				<table border="1" width="80%">
@@ -411,7 +397,7 @@ table, th, td
 				</table><br>
 				<input type="submit" value="Process!" class="myButton" />
 			</form><br><br>
-			<font color="red" size="5">W = Waiting, C = Confirmed, CK = Cooking, F = Finished and CL = Cancel</font>
+			<font size="5">W = Waiting, C = Confirmed, CK = Cooking, F = Finished and CL = Cancel</font>
 		</div>
 	</c:if>
 	<!-- Here it is where it's redirect to order management (Order_create servlet) -->
@@ -448,7 +434,7 @@ table, th, td
 		<sql:query dataSource="${ds}" var="meh">
 			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id` AND Order_status='W'
 		</sql:query>
-		<div id="order_panel" align="center"><br>
+		<div id="all" align="center"><br>
 		<b>Order Recieved</b><br>
 			<form action="confirm" method="post">
 				<table border="1" width="80%">
@@ -471,14 +457,14 @@ table, th, td
 				</table><br>
 				<input type="submit" value="Process!" class="myButton" />
 			</form><br><br>
-			<font color="red" size="5">W = Waiting, C = Confirmed, CK = Cooking, F = Finished and CL = Cancel</font>
+			<font size="5">W = Waiting, C = Confirmed, CK = Cooking, F = Finished and CL = Cancel</font>
 		</div>
 	</c:if>
 	<c:if test="${param.de=='Order Ready'}">
 		<sql:query dataSource="${ds}" var="meh">
 			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id` AND Order_status='CK'
 		</sql:query>
-		<div id="order_panel" align="center"><br>
+		<div id="all" align="center"><br>
 		<b>Order Ready</b><br>
 			<form action="rea" method="post">
 				<table border="1" width="80%">
@@ -501,14 +487,14 @@ table, th, td
 				</table><br>
 				<input type="submit" value="Process!" class="myButton" />
 			</form><br><br>
-			<font color="red" size="5">W = Waiting, C = Confirmed, CK = Cooking, F = Finished and CL = Cancel</font>
+			<font size="5">W = Waiting, C = Confirmed, CK = Cooking, F = Finished and CL = Cancel</font>
 		</div>
 	</c:if>
 	<c:if test="${param.de=='Order Overview'}">
 		<sql:query dataSource="${ds}" var="meh">
 			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id`
 		</sql:query>
-		<div id="order_panel" align="center"><br>
+		<div id="all" align="center"><br>
 		<b>Order Overview</b><br>
 				<table border="1" width="80%">
 					<tr>
@@ -528,7 +514,7 @@ table, th, td
 						</tr>
 					</c:forEach>
 				</table><br><br>
-			<font color="red" size="5">W = Waiting, C = Confirmed, CK = Cooking, F = Finished and CL = Cancel</font>
+			<font size="5">W = Waiting, C = Confirmed, CK = Cooking, F = Finished and CL = Cancel</font>
 		</div>
 	</c:if>
 	<c:if test="${param.de=='Add New Admin'}">

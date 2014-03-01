@@ -83,9 +83,8 @@
 }
 #text_table{
     height: auto;
-	width: 700px;
-    margin-top: -200px;
-    margin-left: 430px;
+	width: 250px;
+    margin-top: 100px;
     font-family: RaiNgan;
     font-size: 40px;
     font-weight: bold;
@@ -142,29 +141,12 @@
 
 table, th, td
 {
+	width: auto;
 	text-align: center;
     font-family: RaiNgan;
     font-size: 25px;
 	border: 3px solid #E1BC24;	
 	background-color: #6BE08C;
-}
-#type_panel{
-    margin-top: 10px;
-	margin-left: auto;
-	margin-right: auto;
-	height: 1200px;
-	width: 800px;
-	font-family: RaiNgan;
-	font-size: 30px;
- 	background-color: #bdffb0;
-	border: 2px solid #999999;
-	-moz-border-radius: 6px;
-	-webkit-border-radius: 6px;
-	border-radius: 6px;
-	-moz-box-shadow: 0px 0px 20px #000000;
-	-webkit-box-shadow: 0px 0px 20px #000000;
-	box-shadow: 0px 0px 20px #000000;
-	overflow: auto;
 }
 
 </style>
@@ -201,9 +183,9 @@ table, th, td
 			select Food_name, Food_price, Food_id from resnew.food where Food_type='sushi';
 		</sql:query>
     <%}%>
-		<div id="type_panel" align="center">
+    <div align="center">
 		<br>
-		<b>Type: <%= session.getAttribute("typo") %></b>
+		<div id="text_table">Type: <%= session.getAttribute("typo") %></div>
 			<form action="removefood" method="post"><br>
 				<table border="1" width="80%" align="center">
 					<tr>

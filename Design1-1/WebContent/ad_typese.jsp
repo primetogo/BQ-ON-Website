@@ -6,41 +6,14 @@
 <html>
 <head>
 <style type="text/css">
-#order_panel{
-	margin-top: -400px;
-	margin-left: auto;
-	margin-right: auto;
-	height: 600px;
-	width: 800px;
-	font-family: RaiNgan;
-	font-size: 30px;
- 	background-color: #bdffb0;
-	border: 2px solid #999999;
-	-moz-border-radius: 6px;
-	-webkit-border-radius: 6px;
-	border-radius: 6px;
-	-moz-box-shadow: 0px 0px 20px #000000;
-	-webkit-box-shadow: 0px 0px 20px #000000;
-	box-shadow: 0px 0px 20px #000000;
-	overflow: auto;
-}
-#type_panel{
-    margin-top: 70px;
-	margin-left: auto;
-	margin-right: auto;
-	height: 470px;
-	width: 300px;
-	font-family: RaiNgan;
-	font-size: 30px;
- 	background-color: #bdffb0;
-	border: 2px solid #999999;
-	-moz-border-radius: 6px;
-	-webkit-border-radius: 6px;
-	border-radius: 6px;
-	-moz-box-shadow: 0px 0px 20px #000000;
-	-webkit-box-shadow: 0px 0px 20px #000000;
-	box-shadow: 0px 0px 20px #000000;
-}
+@font-face {
+	font-family: 'RaiNgan';
+	src: url('Res/RaiNgan.ttf'); /* IE9 Compat Modes */
+	src: url('Res/RaiNgan.ttf') format('truetype'), /* IE6-IE8 */
+	     url('Res/RaiNgan.ttf') format('truetype'), /* Modern Browsers */
+	     url('Res/RaiNgan.ttf')  format('truetype'), /* Safari, Android, iOS */
+	     url('Res/RaiNgan.ttf') format('truetype'); /* Legacy iOS */
+	}
 table, th, td
 {
 	text-align: center;
@@ -79,7 +52,6 @@ table, th, td
 	height: 35px;
 	width: 150px;
 	margin-top: 10px;
-	margin-left: 70px;
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
@@ -123,7 +95,6 @@ table, th, td
 	display:inline-block;
 	cursor:pointer;
 	margin-top: 10px;
-	margin-left: 54px;
 	height: 27px;
 	width: 130px;
 	color:#ffffff;
@@ -148,6 +119,23 @@ table, th, td
 	position:relative;
 	top:1px;
 }
+select{
+	margin-top: 20px;
+	text-align:center;
+	font-family: RaiNgan;
+	font-size:25px;
+	font-weight: bold;
+	height: 30px;
+	width: 100px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+}
+option:HOVER{
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+	border-radius:8px;
+}
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Selecting food type for order</title>
@@ -158,22 +146,36 @@ table, th, td
     <sql:query dataSource="${dsf_t}" var="me1" >
     	SELECT DISTINCT Food_type FROM food
     </sql:query>	
-    <div id="type_panel">
-	<form action="throw_id" method="post">
-		<table border="1" align="center">
-			<tr>
-				<td>Food type</td>
-			</tr>
+    <div align="center">
+	<form method="post">
+		<select name="tp">
 			<c:forEach var="gft" items="${me1.rows}">
-			<tr>
-				<td><c:out value="${gft.Food_type}" /></td>
-				<td><input type="radio" value="${gft.Food_type}" name="fox" /></td>
-			</tr>
+			 	<option value="${gft.Food_type}" ><c:out value="${gft.Food_type}" /></option>
 			</c:forEach>
-		</table>
+		</select><br>
 		<input type="submit" value="Process!" class="myButton" />
 	</form>
-	<a href="ad_dash.jsp" class="firstButton" >Back to main page</a>
-	</div>	
+	<a href="ad_dash.jsp" class="firstButton" >Back to main page</a></div>	
+	<c:if test="${param.tp!=null}">
+	<sql:query dataSource="${dsf_t}" var="me2">
+		SELECT Food_name, Food_price, Food_id FROM food WHERE Food_type='<%= request.getParameter("tp") %>' 
+	</sql:query><div align="center">
+		<form action="food_passing" method="post">
+			<table align="center">
+				<tr>
+					<td><b>Name</b></td>
+					<td><b>Price</b></td>
+				</tr>
+				<c:forEach var="gg" items="${me2.rows}">
+					<tr>
+						<td><c:out value="${gg.Food_name}" /></td>
+						<td><c:out value="${gg.Food_price}" /></td>
+						<td><input type="checkbox" value="${gg.Food_id}" name="passing" /></td>
+					</tr>
+				</c:forEach>
+			</table>
+			<input type="submit" value="Send order!" class="myButton"/><br><br>
+		</form></div>
+	</c:if>
 </body>
 </html>
