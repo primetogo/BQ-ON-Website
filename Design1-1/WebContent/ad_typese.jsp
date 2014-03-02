@@ -126,7 +126,7 @@ select{
 	font-size:25px;
 	font-weight: bold;
 	height: 30px;
-	width: 100px;
+	width: 200px;
 	-moz-border-radius:4px;
 	-webkit-border-radius:4px;
 	border-radius:4px;
@@ -135,6 +135,10 @@ option:HOVER{
 	-moz-border-radius:8px;
 	-webkit-border-radius:8px;
 	border-radius:8px;
+}
+div{
+	font-family: RaiNgan;
+	font-size: 30px;
 }
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -159,8 +163,17 @@ option:HOVER{
 	<c:if test="${param.tp!=null}">
 	<sql:query dataSource="${dsf_t}" var="me2">
 		SELECT Food_name, Food_price, Food_id FROM food WHERE Food_type='<%= request.getParameter("tp") %>' 
-	</sql:query><div align="center">
-		<form action="food_passing" method="post">
+	</sql:query>
+	<sql:query dataSource="${dsf_t}" var="me3">
+		SELECT Table_id FROM resnew.table WHERE Seat_amount='<%= session.getAttribute("seat_in") %>' AND Zone='<%= session.getAttribute("zone_in") %>' AND Table_Status='no'
+	</sql:query>
+	<div align="center">
+		<form action="order_passing" method="post">
+			Table Number: <select name="table" required>
+				<c:forEach var="xx" items="${me3.rows}">
+					<option value="${xx.Table_id}">Number: ${xx.Table_id}</option>
+				</c:forEach>
+			</select>
 			<table align="center">
 				<tr>
 					<td><b>Name</b></td>

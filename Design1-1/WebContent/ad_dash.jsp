@@ -172,7 +172,7 @@ table, th, td
 }
 #morefood{
     text-align: center;
-	margin-top: -400px;
+	margin-top: -450px;
 	margin-left: auto;
 	margin-right: auto;
 	height: 570px;
@@ -198,7 +198,7 @@ table, th, td
 }
 #moreorder{
 	text-align: center;
-	margin-top: -300px;
+	margin-top: -450px;
 	margin-left: auto;
 	margin-right: auto;
 	height: 400px;
@@ -238,7 +238,7 @@ table, th, td
 
 #admin{
 	text-align: center;
-	margin-top: -400px;
+	margin-top: -450px;
 	margin-left: auto;
 	margin-right: auto;
 	height: 1100px;
