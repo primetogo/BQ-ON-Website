@@ -3,8 +3,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-UTF-8">
 <style type="text/css">
+#bg{
+  background: url(Res/emp1.jpg) no-repeat fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 @font-face {
 	font-family: 'RaiNgan';
 	src: url('Res/RaiNgan.ttf'); /* IE9 Compat Modes */
@@ -13,15 +20,6 @@
 	     url('Res/RaiNgan.ttf')  format('truetype'), /* Safari, Android, iOS */
 	     url('Res/RaiNgan.ttf') format('truetype'); /* Legacy iOS */
 	}
-
-#bg{
-  background: url(Res/cloud.jpg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-/* Start form style  */
 #wrapper {
         margin-top: 200px;
         margin-left: auto;
@@ -132,15 +130,15 @@
         margin-bottom:3px;
 }
 </style>
-<title>Welcome, BQ-ON Admin</title>
+<title>Welcome, BQ-ON Employee</title>
 </head>
 <body id="bg">
 <div id="wrapper" align="center">
-        <form action="admin" method="post">
+        <form action="empge" method="post">
             <fieldset>
-                <legend>ระบบผู้จัดการ</legend>
+                <legend>ระบบพนักงาน</legend>
                 <div>
-                    <input type="text" name="name" placeholder="ชื่อผู้จัดการ" required />
+                    <input type="text" name="name" placeholder="ชื่อพนักงาน" required />
                 </div>
                 <div>
                     <input type="password" name="pass" placeholder= "รหัสผ่าน" required />

@@ -264,7 +264,7 @@ table, th, td
 	font-size: 30px;
 }
 </style>
-<title>ส่วนการจัดการ</title>
+<title>ส่วนควบคุม:จัดการ</title>
 </head>
 <body id="bg">
 <form method="post">
