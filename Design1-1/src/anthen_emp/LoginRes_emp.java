@@ -30,7 +30,7 @@ public class LoginRes_emp extends HttpServlet {
 		boolean loginflag = false;
 		String name = request.getParameter("name");
 		String password = request.getParameter("pass");
-		
+		String sql_emp ="" ;
 	}
 
 }
