@@ -1,4 +1,4 @@
-package admin_regis;
+package register.admin;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/newbie")
-public class New_emp extends HttpServlet {
+public class Registration_admin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Connection conn;
 	private PreparedStatement newb;
        
    
-    public New_emp() {super();}
+    public Registration_admin() {super();}
     
     public void init() {conn = (Connection) getServletContext().getAttribute("connection");}
 

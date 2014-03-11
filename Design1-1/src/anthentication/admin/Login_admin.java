@@ -1,4 +1,4 @@
-package anthen_admin;
+package anthentication.admin;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -15,12 +15,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/admin")
-public class LoginRes_admin extends HttpServlet {
+public class Login_admin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Connection conn;
 	PreparedStatement admin_login;
        
-    public LoginRes_admin() {super();}
+    public Login_admin() {super();}
     
     public void init() {conn = (Connection) getServletContext().getAttribute("connection");}
 

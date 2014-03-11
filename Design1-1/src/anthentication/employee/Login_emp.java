@@ -1,4 +1,4 @@
-package anthen_emp;
+package anthentication.employee;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -12,19 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @WebServlet("/empge")
-public class LoginRes_emp extends HttpServlet {
+public class Login_emp extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Connection conn;
 	private PreparedStatement get;
        
     
-    public LoginRes_emp() {super();}
+    public Login_emp() {super();}
     
     public void init() {conn = (Connection) getServletContext().getAttribute("connection");}
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		boolean loginflag = false;

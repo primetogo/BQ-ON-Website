@@ -1,4 +1,4 @@
-package member_manage;
+package member.management;
 
 import java.io.IOException;
 import java.sql.Connection;

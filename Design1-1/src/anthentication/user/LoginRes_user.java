@@ -1,4 +1,4 @@
-package anthen_user;
+package anthentication.user;
 
 import java.io.IOException;
 import java.sql.Connection;
