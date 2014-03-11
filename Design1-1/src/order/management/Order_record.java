@@ -18,6 +18,7 @@ public class Order_record extends HttpServlet {
 	private Connection conn;
 	private PreparedStatement orderIn, getid, insertFood;
 	private ResultSet aa; 
+	private int orderxd;
 	
     public Order_record() {super();}
     
@@ -34,7 +35,15 @@ public class Order_record extends HttpServlet {
 			orderIn = conn.prepareStatement(recording);
 			getid=conn.prepareStatement(sql_id);
 			orderIn.execute();
+			aa = getid.executeQuery();
+			while(aa.next()){orderxd=aa.getInt("order_id");}
+			for(int i=0;i<all_food.length;i++){
+				String getfood = "INSERT INTO resnew.order_detail (order_order_id, Food_Food_id) VALUES('"+orderxd+"','"+all_food[i]+"')";
+				insertFood=conn.prepareStatement(getfood);
+				insertFood.execute();}
 			orderIn.close();
+			insertFood.close();
+			getid.close();
 		request.getSession().setAttribute("incoming", "Order inserted!");
 		response.sendRedirect("ad_dash.jsp");
 			
