@@ -531,7 +531,12 @@ table, th, td
 			<select name="sex">
  				 <option value="F">Female</option>
 				  <option value="M">Male</option>
-			</select><br><br>	
+			</select><br><br>
+			<b>Select your role:</b><br><br>
+			<select name="role">
+ 				 <option value="E">Employee</option>
+				  <option value="A">Admin</option>
+			</select><br><br>		
 			<b>Contact Information:</b><br><br>	
 			Address: <input type="text" name="ad_adr" class="loginInputBox" required /><br><br>
 			Telephone Number: <input type="text" name="ad_tel" class="loginInputBox" required /><br><br>

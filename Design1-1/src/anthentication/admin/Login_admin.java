@@ -29,7 +29,7 @@ public class Login_admin extends HttpServlet {
 		String name = request.getParameter("name");
 		String password = request.getParameter("pass");
 		try{
-			String sql_admin = "SELECT Emp_Fname, Emp_Lname, emp_id FROM employee WHERE username='"+name+"'and password= '"+password+"'";
+			String sql_admin = "SELECT Emp_Fname, Emp_Lname, emp_id FROM employee, username WHERE username='"+name+"'and password= '"+password+"' and emp_id=employee_emp_id and role='A'";
 			admin_login = conn.prepareStatement(sql_admin);
 			ResultSet res = admin_login.executeQuery();
 			while(res.next()){

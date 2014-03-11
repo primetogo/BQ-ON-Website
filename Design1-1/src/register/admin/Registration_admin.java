@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Registration_admin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Connection conn;
-	private PreparedStatement newb;
+	private PreparedStatement newb, newa;
        
    
     public Registration_admin() {super();}
@@ -37,7 +37,8 @@ public class Registration_admin extends HttpServlet {
 		String pass = request.getParameter("ad_pass");
 		String tel = request.getParameter("ad_tel");
 		
-		String sql_in = "INSERT INTO employee (emp_id, Emp_Fname, Emp_Lname, Emp_sex, Emp_Address, Emp_Tel, Emp_Email, emp_Mgr_id, username, password) VALUES('"+ID+"','"+emp_fname+"','"+emp_lname+"','"+sex+"','"+address+"','"+tel+"','"+mail+"','"+ID+"','"+user+"','"+pass+"')";
+		String sql_in = "INSERT INTO employee (emp_id, Emp_Fname, Emp_Lname, Emp_sex, Emp_Address, Emp_Tel, Emp_Email, emp_Mgr_id) VALUES('"+ID+"','"+emp_fname+"','"+emp_lname+"','"+sex+"','"+address+"','"+tel+"','"+mail+"','"+ID+"')";
+		String sql_in2 = "INSERT INTO username (username, password, role, employee_emp_id) VALUES('"+user+"','"+pass+"','"+ID+"')";
 		try {
 			newb=conn.prepareStatement(sql_in);
 			newb.execute();
