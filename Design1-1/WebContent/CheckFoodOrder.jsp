@@ -144,6 +144,7 @@ h1 {color: white;}
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  cursor: url(Res/mouse.png), auto;
 }
 #user-detail-box{
     margin-top: 20px;
@@ -155,9 +156,11 @@ h1 {color: white;}
 	-moz-border-radius: 7px;
 	-webkit-border-radius: 7px;
 	border-radius: 7px;
+	/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
 	-moz-box-shadow: 0px 0px 11px #000000;
 	-webkit-box-shadow: 0px 0px 11px #000000;
 	box-shadow: 0px 0px 11px #000000;
+	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
 	font-family: RaiNgan;
 	font-size: 35px;
 }
@@ -208,20 +211,23 @@ h1 {color: white;}
     margin-right: auto;
     height: auto;
     width: 700px;
-    font-family: RaiNgan;
+      font-family: RaiNgan;
    	background-image: url("Res/pic1.jpg"); 
+   	
 	border: 2px solid #999999;
 	-moz-border-radius: 7px;
 	-webkit-border-radius: 7px;
 	border-radius: 7px;
+	/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
 	-moz-box-shadow: 0px 0px 11px #000000;
 	-webkit-box-shadow: 0px 0px 11px #000000;
 	box-shadow: 0px 0px 11px #000000;
+	cursor: url(Res/mouse.png), auto;
+	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
 }
 .CSSTableGenerator {
 	margin:0px;padding:0px;
 	width:100%;
-	box-shadow: 10px 10px 5px #888888;
 	border:1px solid #000000;
 	
 	-moz-border-radius-bottomleft:20px;
@@ -241,7 +247,7 @@ h1 {color: white;}
 	border-top-left-radius:20px;
 }.CSSTableGenerator table{
     border-collapse: collapse;
-    border-spacing: 0;
+        border-spacing: 0;
 	width:100%;
 	height:100%;
 	margin:0px;padding:0px;
@@ -277,7 +283,7 @@ h1 {color: white;}
 	border-width:0px 1px 1px 0px;
 	text-align:left;
 	padding:8px;
-	font-size:15px;
+	font-size:20px;
 	font-family: RaiNgan;
 	font-weight:normal;
 	color:#ffffff;
@@ -297,7 +303,7 @@ h1 {color: white;}
 	border:0px solid #000000;
 	text-align:center;
 	border-width:0px 0px 1px 1px;
-	font-size:14px;
+	font-size:20px;
 	font-family: RaiNgan;
 	font-weight:bold;
 	color:#ffffff;
@@ -324,7 +330,7 @@ h1 {color: white;}
 <br><br>
 <form action="logout" method="post" >
 <input type="submit" value="ออกจากระบบ" class="logoutButton" />
-<a href="index.jsp" class="logoutButton"  >หน้าหลัก</a><br>
+<a href="index.jsp" class="logoutButton" style="cursor: url(Res/mouse.png) , auto;" >หน้าหลัก</a><br>
 </form>
 </div>
 <div id='cssmenu'>
@@ -335,25 +341,25 @@ h1 {color: white;}
       </ul></li>
    <li class='has-sub'><a href='menu.jsp'><span>สั่งอาหาร</span></a>
     <ul>
-         <li><a href='viewfood.jsp'  ><span>ตรวจสอบรายการอาหาร</span></a></li>
-         <li class='last'><a href='CheckFoodOrder.jsp' ><span>ตรวจสอบสถานะ Order</span></a></li>
+         <li><a href='viewfood.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ตรวจสอบรายการอาหาร</span></a></li>
+         <li class='last'><a href='CheckFoodOrder.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ตรวจสอบสถานะ Order</span></a></li>
       </ul></li>
-   <li class='has-sub'><a href='#' ><span>จัดการข้อมูลส่วนตัว</span></a>
+   <li class='has-sub'><a href='#' style="cursor: url(Res/mouse.png), auto;" ><span>จัดการข้อมูลส่วนตัว</span></a>
       <ul>
-         <li><a href='#' ><span>แก้ไขข้อมูลส่วนตัว</span></a></li>
-         <li class='last'><a href='rev_conf.jsp'><span>ยกเลิกสมาชิก</span></a></li>
+         <li><a href='#' style="cursor: url(Res/mouse.png), auto;" ><span>แก้ไขข้อมูลส่วนตัว</span></a></li>
+         <li class='last'><a href='rev_conf.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ยกเลิกสมาชิก</span></a></li>
       </ul>
    </li>
 </ul>
 </div>
 <div id="map-panel" align="center">
 <h1>ตรวจสอบสถานะการสั่งอาหาร</h1>
-	<sql:query var="rs" dataSource="jdbc/resnew">select Food_Food_id,Food_amount,order_order_id from order_detail JOIN resnew.order ON(order_order_id=order_id) where Order_status="w"</sql:query>
+<sql:query var="rs" dataSource="jdbc/resnew">select Food_Food_id,Food_name,Food_amount,order_order_id from order_detail JOIN resnew.order ON(order_order_id=order_id)  JOIN resnew.Food ON(Food_Food_id=Food_id)where Order_status="w"</sql:query>
 <div class="CSSTableGenerator">
 <table>
-<tr><td>Food Id</td><td>Food amount</td><td>order_order_id</td></tr>
+<tr><td>รหัสอาหาร</td><td>ชื่ออาหาร</td><td>จำนวน</td><td>เลขที่ใบจอง</td><td>สถานะของใบจอง</td></tr>
 <c:forEach var="t" items="${rs.rows}">
-<tr><td>${t.Food_Food_id}</td><td>${t.Food_amount}</td><td>${t.order_order_id}</td></tr>
+<tr><td>${t.Food_Food_id}</td><td>${t.Food_name}</td><td>${t.Food_amount}</td><td>${t.order_order_id}</td><td>Waiting</td></tr>
 </c:forEach></table>
 </div>
 </div>
