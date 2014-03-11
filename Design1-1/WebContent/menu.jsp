@@ -145,6 +145,7 @@ h1 {color: white;}
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  cursor: url(/Res/mouse.png) , auto;
 }
 #user-detail-box{
     margin-top: 20px;
@@ -156,9 +157,11 @@ h1 {color: white;}
 	-moz-border-radius: 7px;
 	-webkit-border-radius: 7px;
 	border-radius: 7px;
+	/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
 	-moz-box-shadow: 0px 0px 11px #000000;
 	-webkit-box-shadow: 0px 0px 11px #000000;
 	box-shadow: 0px 0px 11px #000000;
+	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
 	font-family: RaiNgan;
 	font-size: 35px;
 }
@@ -215,14 +218,17 @@ h1 {color: white;}
 	-moz-border-radius: 7px;
 	-webkit-border-radius: 7px;
 	border-radius: 7px;
+	/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
 	-moz-box-shadow: 0px 0px 11px #000000;
 	-webkit-box-shadow: 0px 0px 11px #000000;
-	box-shadow: 0px 0px 11px #000000;  
+	box-shadow: 0px 0px 11px #000000;
+	
+	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
+   
 }
 .CSSTableGenerator {
 	margin:0px;padding:0px;
 	width:100%;
-	box-shadow: 10px 10px 5px #888888;
 	border:1px solid #000000;
 	
 	-moz-border-radius-bottomleft:0px;
@@ -270,15 +276,13 @@ h1 {color: white;}
 .CSSTableGenerator tr:nth-child(odd){ background-color:#4f2906; }
 .CSSTableGenerator tr:nth-child(even)    { background-color:#b77e28; }.CSSTableGenerator td{
 	vertical-align:middle;
-	
-	
 	border:1px solid #000000;
 	border-width:0px 1px 1px 0px;
 	text-align:left;
 	padding:7px;
-	font-size: 16px;
+	font-size: 25px;
 	font-family: 'RaiNgan';
-	font-weight:normal;
+	font-weight:bold;
 	color:#ffffff;
 }.CSSTableGenerator tr:last-child td{
 	border-width:0px 1px 0px 0px;
@@ -291,12 +295,11 @@ h1 {color: white;}
 		background:-o-linear-gradient(bottom, #512904 5%, #a05f23 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #512904), color-stop(1, #a05f23) );
 	background:-moz-linear-gradient( center top, #512904 5%, #a05f23 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#512904", endColorstr="#a05f23");	background: -o-linear-gradient(top,#512904,a05f23);
-
 	background-color:#512904;
 	border:0px solid #000000;
-	text-align:center;
+	text-align:left;
 	border-width:0px 0px 1px 1px;
-	font-size:24px;
+	font-size:25px;
 	font-family: 'RaiNgan';
 	font-weight:bold;
 	color:#ffffff;
@@ -323,7 +326,7 @@ h1 {color: white;}
 <br><br>
 <form action="logout" method="post" >
 <input type="submit" value="ออกจากระบบ" class="logoutButton" />
-<a href="index.jsp" class="logoutButton" >หน้าหลัก</a><br>
+<a href="index.jsp" class="logoutButton" style="cursor: url(file:///C|/Users/Sethong/workspace/Design1-1/WebContent/Res/mouse.png) , auto;" >หน้าหลัก</a><br>
 </form>
 </div>
 <div id='cssmenu'>
@@ -334,13 +337,13 @@ h1 {color: white;}
       </ul></li>
    <li class='has-sub'><a href='menu.jsp'><span>สั่งอาหาร</span></a>
     <ul>
-         <li><a href='viewfood.jsp'  ><span>ตรวจสอบรายการอาหาร</span></a></li>
-         <li class='last'><a href='CheckFoodOrder.jsp'  ><span>ตรวจสอบสถานะ Order</span></a></li>
+         <li><a href='viewfood.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ตรวจสอบรายการอาหาร</span></a></li>
+         <li class='last'><a href='CheckFoodOrder.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ตรวจสอบสถานะ Order</span></a></li>
       </ul></li>
-   <li class='has-sub'><a href='#'  ><span>จัดการข้อมูลส่วนตัว</span></a>
+   <li class='has-sub'><a href='#' style="cursor: url(Res/mouse.png), auto;" ><span>จัดการข้อมูลส่วนตัว</span></a>
       <ul>
-         <li><a href='#' ><span>แก้ไขข้อมูลส่วนตัว</span></a></li>
-         <li class='last'><a href='rev_conf.jsp' ><span>ยกเลิกสมาชิก</span></a></li>
+         <li><a href='#' style="cursor: url(Res/mouse.png), auto;" ><span>แก้ไขข้อมูลส่วนตัว</span></a></li>
+         <li class='last'><a href='rev_conf.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ยกเลิกสมาชิก</span></a></li>
       </ul>
    </li>
 </ul>
@@ -349,16 +352,14 @@ h1 {color: white;}
  <%@ page import ="javax.sql.*" %>
 <div id="map-panel" align="center">
 <h1>กรุณาเลือกรายการอาหาร</h1>
+<div class="CSSTableGenerator">
+<table width="60%" align="center">
 <%String action="";
-if(request.getParameter("bFirst")!=null){action="first";} 
-if(request.getParameter("bPrevious")!=null){action="previous";}
-if(request.getParameter("bNext")!=null){action="next";}
-if(request.getParameter("bLast")!=null){action="last";}
 if(request.getParameter("bPageno")!=null)
 {try{ pa.setPageno(Integer.parseInt(request.getParameter("Pageno")));   action="Pageno";}
 catch(NumberFormatException e){}}
 Class.forName("com.mysql.jdbc.Driver");
-java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/resnew", "root","123456");
+java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/resnew", "root","root");
 Statement stmt=con.createStatement();
 String sql;ResultSet rs=null;
 int TRow=0;
@@ -373,24 +374,17 @@ rs=stmt.executeQuery(sql);
 rs.absolute(pa.getFmenu());
 do{
 %>
-<div class="CSSTableGenerator">
-<table width="60%" align="center">
-<tr><td colspan="3">Foodname :<%=rs.getString("Food_name")%></td></tr>
-<tr><td width="30%" rowspan="3"><img src="Menu/<%=rs.getString("Food_id")%>.png" width="100" height="100"></td>
+<tr><td colspan="3"><%=rs.getString("Food_name")%></td></tr>
+<tr><td width="30%" rowspan="3"><img src="Menu/<%=rs.getString("Food_id")%>.png" width="220" height="200"></td>
 <td>Food Type : <%=rs.getString("Food_Type")%></td></tr>
 <tr><td>Food price :<%=rs.getString("Food_price")%></td></tr>
-<tr><td><form action="addtocart.jsp" method="post"><input type="submit" name="food_id" value="<%=rs.getString("Food_id")%>"></form></td></tr>
-</table>
-<hr width="70%" size="1">
+<tr><td><form action="addtocart" method="post"><input type="submit" name="food_id" value="<%=rs.getString("Food_id")%>"></form></td></tr>
 <%}while(rs.next()&&rs.getRow()<=pa.getEmenu());%>
-<form action="menu.jsp" method="post"><table align="center"><tr><td><div align="center">
-<input type="submit" name="bFirst" value="First"<%if(pa.getPageno()==1){out.println("disabled");} %>>
-<input type="submit" name="bPrevious" value="Previous"<%if(pa.getPageno()==1){out.println("disabled");} %>>
-<input type="submit" name="bNext" value="Next"<%if(pa.getPageno()==pa.getTpage()){out.println("disabled");} %>>
-<input type="submit" name="bLast" value="Last"<%if(pa.getPageno()==pa.getTpage()){out.println("disabled");} %>>
+</table>
+<form  method="post"><table align="center"><tr><td><div align="center">
+<select name="Pageno" id="Pageno" ><c:forEach var="s" begin="1" end="<%=pa.getTpage() %>"><option value="${s}">${s}</c:forEach></select>
 <input type="submit" name="bPageno" value="Page">
-<input name="Pageno" type="text" id="Pageno" value="<%=pa.getPageno()%>" size="2" maxlength="3">
-/<%=pa.getTpage() %>
+
 
 </div></td></tr></table></form>
 </div>

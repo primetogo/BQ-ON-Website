@@ -144,6 +144,7 @@ h1 {color: white;}
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  cursor: url(Res/mouse.png), auto;
 }
 #user-detail-box{
     margin-top: 20px;
@@ -155,9 +156,11 @@ h1 {color: white;}
 	-moz-border-radius: 7px;
 	-webkit-border-radius: 7px;
 	border-radius: 7px;
+	/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
 	-moz-box-shadow: 0px 0px 11px #000000;
 	-webkit-box-shadow: 0px 0px 11px #000000;
 	box-shadow: 0px 0px 11px #000000;
+	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
 	font-family: RaiNgan;
 	font-size: 35px;
 }
@@ -208,15 +211,19 @@ h1 {color: white;}
     margin-right: auto;
     height: auto;
     width: 700px;
-    font-family: RaiNgan;
+      font-family: RaiNgan;
    	background-image: url("Res/pic1.jpg"); 
+   	
 	border: 2px solid #999999;
 	-moz-border-radius: 7px;
 	-webkit-border-radius: 7px;
 	border-radius: 7px;
+	/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
 	-moz-box-shadow: 0px 0px 11px #000000;
 	-webkit-box-shadow: 0px 0px 11px #000000;
 	box-shadow: 0px 0px 11px #000000;
+	cursor: url(Res/mouse.png), auto;
+	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
 }
 .CSSTableGenerator {
 	margin:0px;padding:0px;
@@ -323,8 +330,8 @@ h1 {color: white;}
 ยินดีต้อนรับ, <%= session.getAttribute("first") %>  <%= session.getAttribute("last") %>
 <br><br>
 <form action="logout" method="post" >
-	<input type="submit" value="ออกจากระบบ" class="logoutButton" />
-	<a href="index.jsp" class="logoutButton" >หน้าหลัก</a><br>
+<input type="submit" value="ออกจากระบบ" class="logoutButton" />
+<a href="index.jsp" class="logoutButton" style="cursor: url(Res/mouse.png), auto;" >หน้าหลัก</a><br>
 </form>
 </div>
 <div id='cssmenu'>
@@ -335,41 +342,41 @@ h1 {color: white;}
       </ul></li>
    <li class='has-sub'><a href='menu.jsp'><span>สั่งอาหาร</span></a>
     <ul>
-         <li><a href='viewfood.jsp' ><span>ตรวจสอบรายการอาหาร</span></a></li>
-         <li class='last'><a href='CheckFoodOrder.jsp'  ><span>ตรวจสอบสถานะ Order</span></a></li>
+         <li><a href='viewfood.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ตรวจสอบรายการอาหาร</span></a></li>
+         <li class='last'><a href='CheckFoodOrder.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ตรวจสอบสถานะ Order</span></a></li>
       </ul></li>
-   <li class='has-sub'><a href='#' ><span>จัดการข้อมูลส่วนตัว</span></a>
+   <li class='has-sub'><a href='#' style="cursor: url(Res/mouse.png), auto;" ><span>จัดการข้อมูลส่วนตัว</span></a>
       <ul>
          <li><a href='#' style="cursor: url(Res/mouse.png), auto;" ><span>แก้ไขข้อมูลส่วนตัว</span></a></li>
-         <li class='last'><a href='rev_conf.jsp' ><span>ยกเลิกสมาชิก</span></a></li>
+         <li class='last'><a href='rev_conf.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ยกเลิกสมาชิก</span></a></li>
       </ul>
    </li>
 </ul>
 </div>
 <div id="map-panel" align="center">
 <form  method="post">
-<sql:setDataSource var="ds" driver="com.mysql.jdbc.Driver" url="jdbc:mysql:///resnew" user="root" password="123456"/>
+<sql:setDataSource var="ds" driver="com.mysql.jdbc.Driver" url="jdbc:mysql:///resnew" user="root" password="root"/>
 	
 <h1>กรุณาเลือกโซนที่ท่านต้องการจอง 
 <sql:query var="rs1" dataSource="${ds}">select distinct Zone from resnew.table</sql:query>
 <select name="zone"><c:forEach var="zones" items="${rs1.rows}"><option value="${zones.Zone}">${zones.Zone}</option></c:forEach></select>
 <input type="submit" value="Go!!" name="go"></h1></form>
 <c:if test="${param.go !=null}">
-	<img  src="Res/${param.zone}.png"/>
-	<sql:query var="rs" dataSource="${ds}">select * from resnew.table where table_status="no" and Zone='${param.zone}'</sql:query>
+<img  src="Res/${param.zone}.png"/>
+<sql:query var="rs" dataSource="${ds}">select * from resnew.table where table_status="no" and Zone='${param.zone}'</sql:query>
 <div class="CSSTableGenerator">
-	<table border="1">
-		<tr>
-			<td></td>
-			<td>table_id</td>
-			<td>Seat amonut</td>
-			<td>Status</td>
-		</tr>
+<table border="1">
+<tr>
+<td></td>
+<td>table_id</td>
+<td>Seat amonut</td>
+<td>Status</td>
+</tr>
 <c:forEach var="table1" items="${rs.rows}">
-		<tr><td><form action="addtable.jsp" method="post"><input type="submit" name="table_id" value="${table1.Table_id}"></form></td>
-			<td>${table1.Table_id}</td>
-			<td>${table1.Seat_amount}</td>
-			<td>ว่าง</td></tr>
+<tr><td><form action="addtable" method="post"><input type="submit" name="table_id" value="${table1.Table_id}"></form></td>
+<td>${table1.Table_id}</td>
+<td>${table1.Seat_amount}</td>
+<td>ว่าง</td></tr>
 </c:forEach>
 </table></div>
 </c:if>
