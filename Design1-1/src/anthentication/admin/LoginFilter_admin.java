@@ -31,10 +31,6 @@ public class LoginFilter_admin implements Filter {
 			loginFlag = false;
 		} else {
 			loginFlag = flag;
-			System.out.println("--------------------------");
-			System.out.println("Admin Login possible: "+flag);
-			System.out.println("--------------------------");
-			System.out.println(" ");
 		}
 		if (!loginFlag) {
 			/* clean up all alive session attribute

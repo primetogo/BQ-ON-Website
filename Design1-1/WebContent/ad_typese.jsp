@@ -168,7 +168,7 @@ div{
 		SELECT Table_id FROM resnew.table WHERE Seat_amount='<%= session.getAttribute("seat_in") %>' AND Zone='<%= session.getAttribute("zone_in") %>' AND Table_Status='no'
 	</sql:query>
 	<div align="center">
-		<form action="order_passing" method="post">
+		<form action="portorder" method="post">
 			Table Number: <select name="table" required>
 				<c:forEach var="xx" items="${me3.rows}">
 					<option value="${xx.Table_id}">Number: ${xx.Table_id}</option>

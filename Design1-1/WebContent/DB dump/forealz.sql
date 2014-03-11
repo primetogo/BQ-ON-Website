@@ -56,7 +56,7 @@ CREATE TABLE `customer` (
   `Cus_Address` varchar(100) DEFAULT NULL,
   `Cus_Tel` varchar(25) DEFAULT NULL,
   PRIMARY KEY (`Cus_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,7 +65,6 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (1,'Panupong','Prueksa','17/3','0838479383'),(2,'ghh','ghh',NULL,NULL),(3,'null','null',NULL,NULL),(4,'gh','ghgh',NULL,NULL),(5,'hj','hj',NULL,NULL),(6,'hj','hj',NULL,NULL);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,8 +85,6 @@ CREATE TABLE `employee` (
   `Emp_Tel` varchar(25) DEFAULT NULL,
   `Emp_Email` varchar(25) DEFAULT NULL,
   `emp_Mgr_id` varchar(10) NOT NULL,
-  `username` varchar(45) DEFAULT NULL,
-  `password` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`emp_id`),
   KEY `fk_employee_employee_idx` (`emp_Mgr_id`),
   CONSTRAINT `fk_employee_employee` FOREIGN KEY (`emp_Mgr_id`) REFERENCES `employee` (`emp_id`) ON UPDATE CASCADE
@@ -100,7 +97,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES ('1','Pawarisa','Chuenchupol','F','15/2',15000,'0851512557','sand@what.com','1','sand','55070071'),('2','panupong','prueksa','M','17/3',NULL,'0838479383','panupong_pruk@hotmail.com','2','pot','55070089');
+INSERT INTO `employee` VALUES ('1','Pawarisa','Chuenchupol','F','15/2',15000,'0851512557','sand@what.com','1'),('2','panupong','prueksa','M','17/3',1200,'0838479383','panupong_pruk@hotmail.com','2'),('3','Sexton','Malee','M','16/3',20000,'0853508601','sex@gee.com','3'),('4','chayanis','tunterapong','F','12/4',NULL,'0835112131','nan@kmitl.ac.th','4');
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -143,7 +140,7 @@ CREATE TABLE `order` (
   `employee_emp_id` varchar(10) DEFAULT NULL,
   `table_Table_id` int(11) NOT NULL,
   `Food_Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Order_status` varchar(2) DEFAULT NULL,
+  `Order_status` varchar(15) DEFAULT 'Pending',
   `Payment_pay_id` int(10) DEFAULT NULL,
   PRIMARY KEY (`order_id`),
   KEY `fk_order_employee1_idx` (`employee_emp_id`),
@@ -154,7 +151,7 @@ CREATE TABLE `order` (
   CONSTRAINT `fk_order_employee1` FOREIGN KEY (`employee_emp_id`) REFERENCES `employee` (`emp_id`) ON UPDATE CASCADE,
   CONSTRAINT `fk_order_table1` FOREIGN KEY (`table_Table_id`) REFERENCES `table` (`Table_id`) ON UPDATE CASCADE,
   CONSTRAINT `fk_pay_payment` FOREIGN KEY (`Payment_pay_id`) REFERENCES `payment` (`idPayment`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -174,15 +171,14 @@ DROP TABLE IF EXISTS `order_detail`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `order_detail` (
-  `order_order_id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_order_id` int(11) NOT NULL,
   `Food_amount` int(11) NOT NULL,
   `Food_Food_id` int(11) NOT NULL,
   `check` int(11) NOT NULL,
   PRIMARY KEY (`check`),
   KEY `fk__idx` (`Food_Food_id`),
   KEY `fk_order_has_Food_order1_idx` (`order_order_id`),
-  CONSTRAINT `fk_` FOREIGN KEY (`Food_Food_id`) REFERENCES `food` (`Food_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_order_has_Food_order1_idx` FOREIGN KEY (`order_order_id`) REFERENCES `order` (`order_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_` FOREIGN KEY (`Food_Food_id`) REFERENCES `food` (`Food_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -261,13 +257,12 @@ CREATE TABLE `username` (
   `password` varchar(32) NOT NULL,
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `role` varchar(1) DEFAULT NULL,
-  `employee_emp_id` varchar(10) NOT NULL,
-  `Customer_Cus_id` int(11) NOT NULL,
+  `employee_emp_id` int(11) DEFAULT NULL,
+  `Customer_Cus_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`username`,`password`),
   KEY `fk_username_employee1_idx` (`employee_emp_id`),
   KEY `fk_cus_id_idx` (`Customer_Cus_id`),
-  CONSTRAINT `fk_cus_id` FOREIGN KEY (`Customer_Cus_id`) REFERENCES `customer` (`Cus_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_username_employee1` FOREIGN KEY (`employee_emp_id`) REFERENCES `employee` (`emp_id`) ON UPDATE CASCADE
+  CONSTRAINT `fk_cus_id` FOREIGN KEY (`Customer_Cus_id`) REFERENCES `customer` (`Cus_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -277,6 +272,7 @@ CREATE TABLE `username` (
 
 LOCK TABLES `username` WRITE;
 /*!40000 ALTER TABLE `username` DISABLE KEYS */;
+INSERT INTO `username` VALUES ('malee',NULL,'55070108','2014-03-11 12:16:17','E',3,NULL),('nunan',NULL,'555','2014-03-11 12:52:50','E',4,NULL),('phai',NULL,'55070089','2014-03-11 12:16:33','A',2,NULL),('sand',NULL,'55070071','2014-03-11 12:16:33','A',1,NULL);
 /*!40000 ALTER TABLE `username` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -289,4 +285,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-03-02 10:05:59
+-- Dump completed on 2014-03-11 21:58:41
