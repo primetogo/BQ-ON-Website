@@ -32,7 +32,6 @@ public class LoginRes_user extends HttpServlet {
     		//Get required data 
     		String user = request.getParameter("id");
     		String pass = request.getParameter("pass");
-    		//comment from Nai Pol using user and pass in SQL instead compare it to user input
     		String sql_datacheck = "select Cus_id, username, password, Cus_Fname, Cus_Lname from username join customer on (Customer_Cus_id = Cus_id) where username= "+"'"+user+"'"+"and password= "+"'"+pass+"'";
     		System.out.println("User input: Username = "+user+" Password = "+pass);
     		logincheck = conn.prepareStatement(sql_datacheck);
@@ -40,7 +39,6 @@ public class LoginRes_user extends HttpServlet {
     		//Get data from DB and checking process
     		ResultSet res = logincheck.executeQuery();
     		while(res.next()){
-    			System.out.println("From DB: Username = "+res.getString("username")+" Password = "+res.getString("password"));
     			passcheck=true;
         		loginflag=true;
         		request.getSession().setAttribute("haha", res.getString("Cus_id"));

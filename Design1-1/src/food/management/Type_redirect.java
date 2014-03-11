@@ -1,4 +1,4 @@
-package food_manage;
+package food.management;
 
 import java.io.IOException;
 
