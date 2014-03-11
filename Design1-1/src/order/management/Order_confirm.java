@@ -1,4 +1,4 @@
-package order_manage;
+package order.management;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -12,33 +12,32 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/order_check")
-public class Order_checkout extends HttpServlet {
+@WebServlet("/confirm")
+public class Order_confirm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Connection conn;
-	PreparedStatement check;
+	private PreparedStatement conf;
        
-   
-    public Order_checkout() {super();}
+    public Order_confirm() {super();}
     
     public void init() {conn = (Connection) getServletContext().getAttribute("connection");}
-    
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.sendRedirect("ad_dash.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String[] quest = request.getParameterValues("butter");
+		String[] quest = request.getParameterValues("peanut");
 		if(quest!=null){
-		try {
+		try{
 			for(int i = 0; i<quest.length; i++){
-				String sql_check ="UPDATE `resnew`.`order` SET `Order_status`='CK' WHERE `order_id`="+"'"+quest[i]+"'";
-				check=conn.prepareStatement(sql_check);
-				check.execute();
+				String sql_check ="UPDATE `resnew`.`order` SET `Order_status`='Confirmed' WHERE `order_id`="+"'"+quest[i]+"'";
+				conf=conn.prepareStatement(sql_check);
+				conf.execute();
 			}
-			request.getSession().setAttribute("incoming", "Order cooking!");
+			request.getSession().setAttribute("incoming", "Order queued!");
 			response.sendRedirect("ad_dash.jsp");
-		} catch (SQLException e) {
+		}catch(SQLException e){
 			System.out.println(e);
 		}}else{
 			response.sendRedirect("ad_dash.jsp");

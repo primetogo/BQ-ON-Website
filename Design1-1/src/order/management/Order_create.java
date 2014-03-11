@@ -1,4 +1,4 @@
-package order_manage;
+package order.management;
 
 import java.io.IOException;
 import java.sql.Connection;

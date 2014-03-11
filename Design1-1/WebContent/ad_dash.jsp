@@ -241,7 +241,7 @@ table, th, td
 	margin-top: -450px;
 	margin-left: auto;
 	margin-right: auto;
-	height: 1100px;
+	height: 1260px;
 	width: 530px;
 	font-family: RaiNgan;
 	font-size: 30px;
@@ -367,7 +367,6 @@ table, th, td
 				</table><br>
 				<input type="submit" value="Process!" class="myButton" />
 			</form><br><br>
-			<font size="5">W = Waiting, C = Confirmed, CK = Cooking, F = Finished and CL = Cancel</font>
 		</div>
 	</c:if>
 	<c:if test="${param.de=='Order Checkout'}">
@@ -397,7 +396,6 @@ table, th, td
 				</table><br>
 				<input type="submit" value="Process!" class="myButton" />
 			</form><br><br>
-			<font size="5">W = Waiting, C = Confirmed, CK = Cooking, F = Finished and CL = Cancel</font>
 		</div>
 	</c:if>
 	<!-- Here it is where it's redirect to order management (Order_create servlet) -->
@@ -457,7 +455,6 @@ table, th, td
 				</table><br>
 				<input type="submit" value="Process!" class="myButton" />
 			</form><br><br>
-			<font size="5">W = Waiting, C = Confirmed, CK = Cooking, F = Finished and CL = Cancel</font>
 		</div>
 	</c:if>
 	<c:if test="${param.de=='Order Ready'}">
@@ -487,7 +484,6 @@ table, th, td
 				</table><br>
 				<input type="submit" value="Process!" class="myButton" />
 			</form><br><br>
-			<font size="5">W = Waiting, C = Confirmed, CK = Cooking, F = Finished and CL = Cancel</font>
 		</div>
 	</c:if>
 	<c:if test="${param.de=='Order Overview'}">
@@ -514,7 +510,6 @@ table, th, td
 						</tr>
 					</c:forEach>
 				</table><br><br>
-			<font size="5">W = Waiting, C = Confirmed, CK = Cooking, F = Finished and CL = Cancel</font>
 		</div>
 	</c:if>
 	<c:if test="${param.de=='Add New Admin'}">

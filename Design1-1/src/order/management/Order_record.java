@@ -1,4 +1,4 @@
-package order_manage;
+package order.management;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -29,7 +29,7 @@ public class Order_record extends HttpServlet {
 		String cus_id = (String) request.getSession().getAttribute("cus_in");
 		String admin_id = (String) request.getSession().getAttribute("admin_id");
 		String[] all_food = request.getParameterValues("passing");
-		String recording = "INSERT INTO order (Customer_Cus_id, employee_emp_id, table_Table_id, Order_status) VALUES("+cus_id+","+admin_id+","+get_table+",'w')";
+		String recording = "INSERT INTO order (Customer_Cus_id, employee_emp_id, table_Table_id) VALUES('"+cus_id+"','"+admin_id+"','"+get_table+"')";
 		String get_or_id = "SELECT order_id FROM resnew.order WHERE Customer_Cus_id="+"'"+cus_id+"'";
 		try {
 			orderIn = conn.prepareStatement(recording);
