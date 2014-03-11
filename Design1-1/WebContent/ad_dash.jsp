@@ -277,7 +277,7 @@ table, th, td
 <input type="submit" value="Order Ready" name="de" class="firstButton" /><br>
 <input type="submit" value="Order Overview" name="de" class="firstButton" /><br>
 <input type="submit" value="New Order" name="de" class="firstButton" /><br>
-<input type="submit" value="Add New Admin" name="de" class="firstButton" /><br>
+<input type="submit" value="Add New Employee" name="de" class="firstButton" /><br>
 </form><br>
 
 	<sql:setDataSource var="ds" driver="com.mysql.jdbc.Driver"
@@ -512,7 +512,7 @@ table, th, td
 				</table><br><br>
 		</div>
 	</c:if>
-	<c:if test="${param.de=='Add New Admin'}">
+	<c:if test="${param.de=='Add New Employee'}">
 		<div id="admin"><br>
 		<font color="Green" size="10">Register new admin</font><br><br>
 		<form action="newbie" method="post">

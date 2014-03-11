@@ -1,4 +1,4 @@
-package anthentication.admin;
+package anthentication.employee;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -12,11 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
-@WebServlet("/admingo")
-public class Logout_admin extends HttpServlet {
+@WebServlet("/empgo")
+public class Logout_emp extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-    public Logout_admin() {super();}
+    public Logout_emp() {super();}
     
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -24,7 +24,7 @@ public class Logout_admin extends HttpServlet {
 		try{
 		if(session != null){
 		    session.invalidate();
-		response.sendRedirect("ad_sec.jsp");}}
+		response.sendRedirect("emp_anthen.jsp");}}
 		catch(Exception e){
 			System.out.print(e);
 		}
