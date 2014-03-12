@@ -44,17 +44,17 @@ public class User_register extends HttpServlet {
     				chet = false;
     			}
     		}
-    		
-    		System.out.println("Can register? => "+chet);
     		if(chet==true){
-    		String customer_insert = "insert into customer (Cus_Fname, Cus_Lname, Cus_Address, Cus_Tel) values('"+first+"','"+last+"','"+adr+"','"+phone+"')";
-    		String username_insert = "insert into username (username, email, password, role, Customer_Cus_id) values('"+user+"','"+email+"','"+pass+"','C',"+id+")";
+    		String customer_insert = "INSERT INTO customer (Cus_Fname, Cus_Lname, Cus_Address, Cus_Tel) VALUES('"+first+"','"+last+"','"+adr+"','"+phone+"')";
     	    insert_customer = conn.prepareStatement(customer_insert);
     	    insert_customer.execute();
-    	    insert_customer.close();
+    	    String sql_get = "SELECT Cus_id FROM resnew.customer WHERE Cus_Fname='"+first+"' AND Cus_Lname='"+last+"'";
+    	    getid = conn.prepareStatement(sql_get);
+    	    max = getid.executeQuery();
+    	    while(max.next()){id=max.getInt("Cus_id");}
+    	    String username_insert = "INSERT INTO username (username, email, password, role, Customer_Cus_id) VALUES('"+user+"','"+email+"','"+pass+"','C',"+id+")";
     	    insert_member = conn.prepareStatement(username_insert);
     	    insert_member.execute();
-    	    insert_member.close();
     	    request.getSession().setAttribute("hi1", first);
     	    request.getSession().setAttribute("hi2", last);
     	    RequestDispatcher re = request.getRequestDispatcher("suc.jsp");

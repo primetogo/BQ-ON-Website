@@ -31,7 +31,7 @@ public class User_comment extends HttpServlet {
 			String name = request.getParameter("cus_name");
 			String comment = request.getParameter("cus_comment");
 			String adr = request.getParameter("cus_adr");
-			String sql1 = "insert into comment (cus_name, comment, address) values('"+name+"','"+comment+"','"+adr+"')";
+			String sql1 = "INSERT INTO comment (cus_name, comment, address) VALUES('"+name+"','"+comment+"','"+adr+"')";
 			comment_get = conn.prepareStatement(sql1);
 			comment_get.executeQuery();
 			comment_get.close();

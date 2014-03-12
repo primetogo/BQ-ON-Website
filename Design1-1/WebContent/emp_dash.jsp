@@ -282,7 +282,7 @@ table, th, td
 	url="jdbc:mysql:///resnew" user="root" password="123456" ></sql:setDataSource>
 	
 <div id="inf_panel" align="center">
-	Admin: <%= session.getAttribute("emp_first") %> <%= session.getAttribute("emp_last") %><br>
+	Staff: <%= session.getAttribute("emp_first") %> <%= session.getAttribute("emp_last") %><br>
 	Status: 
 	<%if(session.getAttribute("incoming1")!=null){%>
 		<font color="green"><b><%= session.getAttribute("incoming1") %></b></font>

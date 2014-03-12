@@ -392,9 +392,8 @@ border-radius: 7px;
          <li><a href='viewfood.jsp' ><span>ตรวจสอบรายการอาหาร</span></a></li>
          <li class='last'><a href='CheckFoodOrder.jsp'  ><span>ตรวจสอบสถานะ Order</span></a></li>
       </ul></li>
-   <li class='has-sub'><a href='#' ><span>จัดการข้อมูลส่วนตัว</span></a>
+   <li class='has-sub'><a href='#' ><span>ระบบสมาชิก</span></a>
       <ul>
-         <li><a href='#' ><span>แก้ไขข้อมูลส่วนตัว</span></a></li>
          <li class='last'><a href='rev_conf.jsp'  ><span>ยกเลิกสมาชิก</span></a></li>
       </ul>
    </li>

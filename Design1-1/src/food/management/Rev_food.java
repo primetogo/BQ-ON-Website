@@ -27,7 +27,7 @@ public class Rev_food extends HttpServlet {
 			String[] we = request.getParameterValues("im");
 			if(we!=null){
 			for(int i=0; i<we.length;i++){
-				String sql_rev = "DELETE FROM `resnew`.`food` WHERE `Food_id`="+"'"+we[i]+"'";
+				String sql_rev = "DELETE FROM resnew.food WHERE Food_id="+"'"+we[i]+"'";
 				revv=conn.prepareStatement(sql_rev);
 				revv.execute();
 			}

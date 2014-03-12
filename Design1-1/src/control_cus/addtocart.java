@@ -15,31 +15,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.Food_Cart;
 
-/**
- * Servlet implementation class addtocart
- */
+
 @WebServlet("/addtocart")
 public class addtocart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Connection con;
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public addtocart() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+    
+    public addtocart() {super();}
+    
     public void init() {con = (Connection) getServletContext().getAttribute("connection");}
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		process(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		process(request, response);
 	}
@@ -62,8 +52,7 @@ public class addtocart extends HttpServlet {
 			}
 			response.sendRedirect("viewfood.jsp");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e);
 		}
 				
 	}
