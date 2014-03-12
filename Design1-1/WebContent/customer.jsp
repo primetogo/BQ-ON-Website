@@ -375,7 +375,7 @@ h1 {color: white;}
 <br><br>
 <form action="logout" method="post" >
 <input type="submit" value="ออกจากระบบ" class="logoutButton" />
-<a href="index.jsp" class="logoutButton" style="cursor: url(Res/mouse.png), auto;" >หน้าหลัก</a><br>
+<a href="index.jsp" class="logoutButton"  >หน้าหลัก</a><br>
 </form>
 </div>
 <div id='cssmenu'>
@@ -386,13 +386,13 @@ h1 {color: white;}
       </ul></li>
    <li class='has-sub'><a href='menu.jsp'><span>สั่งอาหาร</span></a>
     <ul>
-         <li><a href='viewfood.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ตรวจสอบรายการอาหาร</span></a></li>
-         <li class='last'><a href='CheckFoodOrder.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ตรวจสอบสถานะ Order</span></a></li>
+         <li><a href='viewfood.jsp' ><span>ตรวจสอบรายการอาหาร</span></a></li>
+         <li class='last'><a href='CheckFoodOrder.jsp'  ><span>ตรวจสอบสถานะ Order</span></a></li>
       </ul></li>
-   <li class='has-sub'><a href='#' style="cursor: url(Res/mouse.png), auto;" ><span>จัดการข้อมูลส่วนตัว</span></a>
+   <li class='has-sub'><a href='#' ><span>จัดการข้อมูลส่วนตัว</span></a>
       <ul>
-         <li><a href='#' style="cursor: url(Res/mouse.png), auto;" ><span>แก้ไขข้อมูลส่วนตัว</span></a></li>
-         <li class='last'><a href='rev_conf.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ยกเลิกสมาชิก</span></a></li>
+         <li><a href='#' ><span>แก้ไขข้อมูลส่วนตัว</span></a></li>
+         <li class='last'><a href='rev_conf.jsp'  ><span>ยกเลิกสมาชิก</span></a></li>
       </ul>
    </li>
 </ul>
@@ -404,7 +404,7 @@ h1 {color: white;}
 <h1>กรุณาเลือกโซนที่ท่านต้องการจอง 
 <sql:query var="rs1" dataSource="${ds}">select distinct Zone from resnew.table</sql:query>
 <select name="zone"><c:forEach var="zones" items="${rs1.rows}"><option value="${zones.Zone}">${zones.Zone}</option></c:forEach></select>
-<input type="submit" value="Go!!" name="go"></h1></form>
+<input type="submit" value="Go!!" name="go" class="button"></h1></form>
 <c:if test="${param.go !=null}">
 <img  src="Res/${param.zone}.png"/>
 <sql:query var="rs" dataSource="${ds}">select * from resnew.table where table_status="no" and Zone='${param.zone}'</sql:query>
