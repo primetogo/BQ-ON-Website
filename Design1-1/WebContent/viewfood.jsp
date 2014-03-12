@@ -454,7 +454,7 @@ if(cart.getItem().hasMoreElements()){
 	%>
 <tr>
 <td colspan="6"><div align="center">
-<input name="cal" type="submit" value="cal" class="button">
+<input name="cal" type="submit" value="Cal" class="button">
 <input name="buy" type="submit" value="Buy" class="button">
 </div>
 </td>
@@ -465,7 +465,7 @@ if(cart.getItem().hasMoreElements()){
 <table>
 <tr>
 <h1>กรุณาเลือกประเภท การจ่ายเงิน <select name="pay_type"><option value="OB">Online Banking</option>
-<option value="AR">At restaurant</option></select><input name="pay" type="submit" value="pay" class="button"></h1> </tr> 
+<option value="AR">At restaurant</option></select><input name="Pay" type="submit" value="pay" class="button"></h1> </tr> 
 </table></form>
 </div>
 </body>
