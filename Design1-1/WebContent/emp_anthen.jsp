@@ -29,7 +29,7 @@
         font-family:RaiNgan;
     }
     legend {
-        color:#0481b1;
+        color:#F7B817;
         font-size:35px;
         padding:0 10px;
         background:#fff;

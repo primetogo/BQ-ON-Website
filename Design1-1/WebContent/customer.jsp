@@ -144,7 +144,6 @@ h1 {color: white;}
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  cursor: url(Res/mouse.png), auto;
 }
 #user-detail-box{
     margin-top: 20px;
@@ -222,13 +221,17 @@ h1 {color: white;}
 	-moz-box-shadow: 0px 0px 11px #000000;
 	-webkit-box-shadow: 0px 0px 11px #000000;
 	box-shadow: 0px 0px 11px #000000;
-	cursor: url(Res/mouse.png), auto;
 	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
+}
+select{
+border-radius: 7px;
+	font-size:25px;
+	font-family: RaiNgan;
+	font-weight:normal;
 }
 .CSSTableGenerator {
 	margin:0px;padding:0px;
 	width:100%;
-	box-shadow: 10px 10px 5px #888888;
 	border:1px solid #000000;
 	
 	-moz-border-radius-bottomleft:20px;
@@ -284,7 +287,7 @@ h1 {color: white;}
 	border-width:0px 1px 1px 0px;
 	text-align:left;
 	padding:8px;
-	font-size:15px;
+	font-size:25px;
 	font-family: RaiNgan;
 	font-weight:normal;
 	color:#ffffff;
@@ -304,7 +307,7 @@ h1 {color: white;}
 	border:0px solid #000000;
 	text-align:center;
 	border-width:0px 0px 1px 1px;
-	font-size:14px;
+	font-size:25px;
 	font-family: RaiNgan;
 	font-weight:bold;
 	color:#ffffff;
@@ -399,7 +402,7 @@ h1 {color: white;}
 </div>
 <div id="map-panel" align="center">
 <form  method="post">
-<sql:setDataSource var="ds" driver="com.mysql.jdbc.Driver" url="jdbc:mysql:///resnew" user="root" password="root"/>
+<sql:setDataSource var="ds" driver="com.mysql.jdbc.Driver" url="jdbc:mysql:///resnew" user="root" password="123456"/>
 	
 <h1>กรุณาเลือกโซนที่ท่านต้องการจอง 
 <sql:query var="rs1" dataSource="${ds}">select distinct Zone from resnew.table</sql:query>
@@ -412,9 +415,9 @@ h1 {color: white;}
 <table border="1">
 <tr>
 <td></td>
-<td>table_id</td>
-<td>Seat amonut</td>
-<td>Status</td>
+<td>เลขที่โต๊ะ</td>
+<td>ปริมาณที่นั่ง</td>
+<td>สถานะ</td>
 </tr>
 <c:forEach var="table1" items="${rs.rows}">
 <tr><td><form action="addtable" method="post"><input type="submit" name="table_id" value="${table1.Table_id}" class="button"></form></td>

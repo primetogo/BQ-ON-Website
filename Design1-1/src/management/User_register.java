@@ -17,8 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 public class User_register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Connection conn;
-	private PreparedStatement insert_member, insert_customer, check_member;
+	private PreparedStatement insert_member, insert_customer, check_member, getid;
 	private boolean flag = true;
+	private ResultSet max;
+	private int id;
        
     public User_register() {super();}
   
@@ -45,8 +47,8 @@ public class User_register extends HttpServlet {
     		
     		System.out.println("Can register? => "+chet);
     		if(chet==true){
-    		String customer_insert = "insert into customer (Cus_id, Cus_Fname, Cus_Lname, Cus_Address, Cus_Tel) values("+0+",'"+first+"','"+last+"','"+adr+"','"+phone+"')";
-    		String username_insert = "insert into username (username, email, password) values('"+user+"','"+email+"','"+pass+"')";
+    		String customer_insert = "insert into customer (Cus_Fname, Cus_Lname, Cus_Address, Cus_Tel) values('"+first+"','"+last+"','"+adr+"','"+phone+"')";
+    		String username_insert = "insert into username (username, email, password, role, Customer_Cus_id) values('"+user+"','"+email+"','"+pass+"','C',"+id+")";
     	    insert_customer = conn.prepareStatement(customer_insert);
     	    insert_customer.execute();
     	    insert_customer.close();

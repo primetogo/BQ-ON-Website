@@ -51,16 +51,18 @@ public class addtable extends HttpServlet {
 			stmt = con.createStatement();
 			if(cart2==null){
 				cart2=new  Table_cart();
-				request.getSession().setAttribute("cart2", cart2);
-				String sql="SELECT * from resnew.table where Table_id=" + table_id;
-				ResultSet rs = stmt.executeQuery(sql);
-				System.out.print(sql);
-				while(rs.next()){
-					cart2.addTable(table_id, rs.getString("Zone"),rs.getString("Table_Status"));
+					
 				}
+			request.getSession().setAttribute("cart2", cart2);
+			String sql="SELECT * from resnew.table where Table_id=" + table_id;
+			ResultSet rs = stmt.executeQuery(sql);
+			System.out.print(sql);
+			while(rs.next()){
+				cart2.addTable(table_id, rs.getString("Zone"),rs.getString("Table_Status"));
+			}
 				response.sendRedirect("viewtable.jsp");
 			}
-		} catch (SQLException e) {
+		 catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

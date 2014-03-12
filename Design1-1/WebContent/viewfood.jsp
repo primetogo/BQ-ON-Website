@@ -191,7 +191,6 @@ h1 {color: white;}
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  cursor: url(Res/mouse.png), auto;
 }
 #user-detail-box{
     margin-top: 20px;
@@ -269,9 +268,14 @@ h1 {color: white;}
 	-moz-box-shadow: 0px 0px 11px #000000;
 	-webkit-box-shadow: 0px 0px 11px #000000;
 	box-shadow: 0px 0px 11px #000000;
-	cursor: url(Res/mouse.png), auto;
 	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
    
+}
+select{
+border-radius: 7px;
+	font-size:25px;
+	font-family: RaiNgan;
+	font-weight:normal;
 }
 .CSSTableGenerator {
 	margin:0px;padding:0px;
@@ -331,7 +335,7 @@ h1 {color: white;}
 	border-width:0px 1px 1px 0px;
 	text-align:left;
 	padding:8px;
-	font-size:15px;
+	font-size:25px;
 	font-family: RaiNgan;
 	font-weight:normal;
 	color:#ffffff;
@@ -351,7 +355,7 @@ h1 {color: white;}
 	border:0px solid #000000;
 	text-align:center;
 	border-width:0px 0px 1px 1px;
-	font-size:14px;
+	font-size:25px;
 	font-family: RaiNgan;
 	font-weight:bold;
 	color:#ffffff;

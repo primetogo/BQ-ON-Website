@@ -141,7 +141,7 @@
 
 table, th, td
 {	
-	margin-top: 100px;
+	margin-top: 30px;
 	text-align: center;
     font-family: RaiNgan;
     width: auto;
@@ -179,7 +179,7 @@ table, th, td
 }
 #moreorder{
 	text-align: center;
-	margin-top: -300px;
+	margin-top: -350px;
 	margin-left: auto;
 	margin-right: auto;
 	height: 400px;
@@ -240,7 +240,26 @@ table, th, td
 	margin-left:50px;
 }
 #all{
-	margin-top: -500px;
+	margin-top: -450px;
+	margin-left: 200px;
+	font-family: RaiNgan;
+	font-size: 30px;
+}
+#all2{
+	margin-top: -450px;
+	margin-left: 200px;
+	font-family: RaiNgan;
+	font-size: 30px;
+}
+#all3{
+	margin-top: -400px;
+	margin-left: 200px;
+	font-family: RaiNgan;
+	font-size: 30px;
+}
+#all4{
+	margin-top: -400px;
+	margin-left: 200px;
 	font-family: RaiNgan;
 	font-size: 30px;
 }
@@ -252,19 +271,21 @@ table, th, td
 <input type="submit" value="Main Page" class="firstButton" name="de" /><br>
 <input type="submit" value="Order Recieved" name="de" class="firstButton" /><br>
 <input type="submit" value="Order Terminate" name="de" class="firstButton" /><br>
-<input type="submit" value="Order Checkout" name="de" class="firstButton" /><br>
-<input type="submit" value="Order Ready" name="de" class="firstButton" /><br>
+<input type="submit" value="Order to cooking" name="de" class="firstButton" /><br>
+<input type="submit" value="Order in process" name="de" class="firstButton" /><br>
 <input type="submit" value="Order Overview" name="de" class="firstButton" /><br>
+<input type="submit" value="View Food queue" name="de" class="firstButton" /><br>
+<input type="submit" value="Payment in queue" name="de" class="firstButton" /><br>
 <input type="submit" value="New Order" name="de" class="firstButton" /><br>
 </form><br>
 	<sql:setDataSource var="ds" driver="com.mysql.jdbc.Driver"
 	url="jdbc:mysql:///resnew" user="root" password="123456" ></sql:setDataSource>
 	
 <div id="inf_panel" align="center">
-	Admin: <%= session.getAttribute("emp_first1") %> <%= session.getAttribute("emp_last1") %><br>
+	Admin: <%= session.getAttribute("emp_first") %> <%= session.getAttribute("emp_last") %><br>
 	Status: 
 	<%if(session.getAttribute("incoming1")!=null){%>
-		<font color="green"><b><%= session.getAttribute("incoming") %></b></font>
+		<font color="green"><b><%= session.getAttribute("incoming1") %></b></font>
 		<%session.setAttribute("incoming1", "Ready!"); %>
 	<%}else{%><font color="green"><b>Ready!</b></font><%} %>
 </div><br>
@@ -273,41 +294,19 @@ table, th, td
 	</form>
 <c:if test="${param.de!=null}"> 	
 	<c:if test="${param.de=='Main page'}"></c:if>
-	<c:if test="${param.de=='Removing Food'}">
-		<sql:query dataSource="${ds}" var="res">
-			SELECT DISTINCT food_type FROM resnew.food;
-		</sql:query>
-		<div id="type_panel" align="center">
-			<form action="get_food" method="post"><br>
-				<table border="1" width="80%" >
-					<tr>
-						<td><b>Food Type</b></td>
-						<td><b>check</b></td>
-					</tr>
-					<c:forEach var="gg" items="${res.rows}">
-						<tr>
-							<td><c:out value="${gg.Food_type}" /></td>
-							<td><input type="radio" name="kindy" value="${gg.Food_type}" /></td>
-						</tr>
-					</c:forEach>
-				</table>
-				<br>
-				<input type="submit" value="Next!" class="myButton" width="50%"/>
-			</form>
-		</div> 
-	</c:if>
 	<c:if test="${param.de=='Order Terminate'}">
 		<sql:query dataSource="${ds}" var="meh">
 			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id`
 		</sql:query>
 		<div id="all" align="center"><br>
-		<b>Order Terminate</b><br>
-			<form method="post">
+		<b>Order Terminate</b>
+			<form action="orderter" method="post">
 				<table border="1" width="80%">
 					<tr>
 						<td><b>Order ID</b></td>
 						<td><b>Customer first name</b></td>
 						<td><b>Customer last name</b></td>
+						<td><b>Table number</b></td>
 						<td><b>Status</b></td>
 						<td><b>Remove</b></td>
 					</tr>
@@ -316,18 +315,75 @@ table, th, td
 							<td><c:out value="${me.order_id}" /></td>
 							<td><c:out value="${me.Cus_Fname}" /></td>
 							<td><c:out value="${me.Cus_Lname}" /></td>
+							<td><c:out value="${me.table_Table_id}" /></td>
 							<td><c:out value="${me.Order_status}" /></td>
 							<td><input type="checkbox" value="${me.order_id}" name="cheese"/></td>
 						</tr>
 					</c:forEach>
 				</table><br>
-				<input type="submit" value="Process!" class="myButton" />
+				<input type="submit" value="Cancle!" class="myButton" />
 			</form><br><br>
 		</div>
 	</c:if>
-	<c:if test="${param.de=='Order Checkout'}">
+	<c:if test="${param.de=='Payment in queue'}">
+		<sql:query dataSource="${ds}" var="price">
+			SELECT Food_time, table_Table_id, Payment_amount, Payment_type, payment_status, idPayment FROM resnew.order, resnew.payment
+			WHERE payment_status='Pending' 
+		</sql:query>
+		<div id="all4" align="center">
+		<form action="paid" method="post">
+		<b>Payment in queue</b>
+			<table border="1" width="80%">
+				<tr>
+					<td><b>Ordering time</b></td>
+					<td><b>Table number</b></td>
+					<td><b>Total price</b></td>
+					<td><b>Payment type</b></td>
+					<td><b>Status</b></td>
+				</tr>
+				<c:forEach var="mem" items="${price.rows}">
+					<tr>
+						<td><c:out value="${mem.Food_time}" /></td>
+						<td><c:out value="${mem.table_Table_id}" /></td>
+						<td><c:out value="${mem.Payment_amount}" /></td>
+						<td><c:out value="${mem.Payment_type}" /></td>
+						<td><c:out value="${mem.payment_status}" /></td>
+						<td><input type="checkbox" value="${mem.idPayment}" name="uu"></td>
+					</tr>
+				</c:forEach>
+			</table><br>
+				<input type="submit" value="Paid!" class="myButton"/>
+		</form>
+		</div>
+	</c:if>
+	<c:if test="${param.de=='View Food queue'}">
+		<sql:query dataSource="${ds}" var="time">
+			SELECT order_id, Food_time, Food_amount, Food_name FROM resnew.order, resnew.order_detail, food
+			WHERE order_id=order_order_id AND Food_Food_id=Food_id AND Order_status='Cooking'
+		</sql:query>
+		<div id="all3" align="center">
+		<b>Food queue</b>
+			<table border="1" width="80%">
+				<tr>
+					<td><b>Queue number</b></td>
+					<td><b>Ordering time</b></td>
+					<td><b>Ordering amount</b></td>
+					<td><b>Name</b></td>
+				</tr>
+				<c:forEach var="hh" items="${time.rows}">
+					<tr>
+						<td><c:out value="${hh.order_id}" /></td>
+						<td><c:out value="${hh.Food_time}" /></td>
+						<td><c:out value="${hh.Food_amount}" /></td>
+						<td><c:out value="${hh.Food_name}" /></td>
+					</tr>
+				</c:forEach>
+			</table>
+		</div>
+	</c:if>
+	<c:if test="${param.de=='Order to cooking'}">
 		<sql:query dataSource="${ds}" var="meh">
-			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id` AND Order_status='C'
+			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id` AND Order_status='Confirmed'
 		</sql:query>
 		<div id="all" align="center"><br>
 		<b>Order Checkout</b><br>
@@ -337,6 +393,7 @@ table, th, td
 						<td><b>Order ID</b></td>
 						<td><b>Customer first name</b></td>
 						<td><b>Customer last name</b></td>
+						<td><b>Table number</b></td>
 						<td><b>Status</b></td>
 						<td><b>Checkout</b></td>
 					</tr>
@@ -345,12 +402,13 @@ table, th, td
 							<td><c:out value="${me.order_id}" /></td>
 							<td><c:out value="${me.Cus_Fname}" /></td>
 							<td><c:out value="${me.Cus_Lname}" /></td>
+							<td><c:out value="${me.table_Table_id}" /></td>
 							<td><c:out value="${me.Order_status}" /></td>
 							<td><input type="checkbox" value="${me.order_id}" name="butter"/></td>
 						</tr>
 					</c:forEach>
 				</table><br>
-				<input type="submit" value="Process!" class="myButton" />
+				<input type="submit" value="Cook it!" class="myButton" />
 			</form><br><br>
 		</div>
 	</c:if>
@@ -385,7 +443,7 @@ table, th, td
 	</c:if>
 	<c:if test="${param.de=='Order Recieved'}">
 		<sql:query dataSource="${ds}" var="meh">
-			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id` AND Order_status='W'
+			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id` AND Order_status='Pending'
 		</sql:query>
 		<div id="all" align="center"><br>
 		<b>Order Recieved</b><br>
@@ -395,6 +453,7 @@ table, th, td
 						<td><b>Order ID</b></td>
 						<td><b>Customer first name</b></td>
 						<td><b>Customer last name</b></td>
+						<td><b>Table number</b></td>
 						<td><b>Status</b></td>
 						<td><b>Confirm</b></td>
 					</tr>
@@ -403,18 +462,19 @@ table, th, td
 							<td><c:out value="${me.order_id}" /></td>
 							<td><c:out value="${me.Cus_Fname}" /></td>
 							<td><c:out value="${me.Cus_Lname}" /></td>
+							<td><c:out value="${me.table_Table_id}" /></td>
 							<td><c:out value="${me.Order_status}" /></td>
 							<td><input type="checkbox" value="${me.order_id}" name="peanut"/></td>
 						</tr>
 					</c:forEach>
 				</table><br>
-				<input type="submit" value="Process!" class="myButton" />
+				<input type="submit" value="Confirm!" class="myButton" />
 			</form><br><br>
 		</div>
 	</c:if>
-	<c:if test="${param.de=='Order Ready'}">
+	<c:if test="${param.de=='Order in process'}">
 		<sql:query dataSource="${ds}" var="meh">
-			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id` AND Order_status='CK'
+			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id` AND Order_status='Cooking'
 		</sql:query>
 		<div id="all" align="center"><br>
 		<b>Order Ready</b><br>
@@ -424,6 +484,7 @@ table, th, td
 						<td><b>Order ID</b></td>
 						<td><b>Customer first name</b></td>
 						<td><b>Customer last name</b></td>
+						<td><b>Table number</b></td>
 						<td><b>Status</b></td>
 						<td><b>Ready</b></td>
 					</tr>
@@ -432,12 +493,13 @@ table, th, td
 							<td><c:out value="${me.order_id}" /></td>
 							<td><c:out value="${me.Cus_Fname}" /></td>
 							<td><c:out value="${me.Cus_Lname}" /></td>
+							<td><c:out value="${me.table_Table_id}" /></td>
 							<td><c:out value="${me.Order_status}" /></td>
 							<td><input type="checkbox" value="${me.order_id}" name="yelly"/></td>
 						</tr>
 					</c:forEach>
 				</table><br>
-				<input type="submit" value="Process!" class="myButton" />
+				<input type="submit" value="Finished!" class="myButton" />
 			</form><br><br>
 		</div>
 	</c:if>
@@ -445,13 +507,14 @@ table, th, td
 		<sql:query dataSource="${ds}" var="meh">
 			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id`
 		</sql:query>
-		<div id="all" align="center"><br>
+		<div id="all2" align="center"><br>
 		<b>Order Overview</b><br>
 				<table border="1" width="80%">
 					<tr>
 						<td><b>Order ID</b></td>
 						<td><b>Customer first name</b></td>
 						<td><b>Customer last name</b></td>
+						<td><b>Table number</b></td>
 						<td><b>Date/Time</b></td>
 						<td><b>Status</b></td>
 					</tr>
@@ -460,6 +523,7 @@ table, th, td
 							<td><c:out value="${me.order_id}" /></td>
 							<td><c:out value="${me.Cus_Fname}" /></td>
 							<td><c:out value="${me.Cus_Lname}" /></td>
+							<td><c:out value="${me.table_Table_id}" /></td>
 							<td><c:out value="${me.Food_Time}" /></td>
 							<td><c:out value="${me.Order_status}" /></td>
 						</tr>

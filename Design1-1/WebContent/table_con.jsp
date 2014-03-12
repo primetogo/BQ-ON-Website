@@ -17,7 +17,7 @@ PreparedStatement pstmt1,pstmt2,pstmt3;
 int cus_id=0;
 String b=(String) session.getAttribute("first");
 Class.forName("com.mysql.jdbc.Driver");
-java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/resnew", "root","root");
+java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/resnew", "root","123456");
 String sql="SELECT Cus_id from resnew.customer where Cus_Fname='"+b+"'";
 pstmt1=con.prepareStatement(sql);
 ResultSet rs=pstmt1.executeQuery();
@@ -32,7 +32,7 @@ Enumeration e=cart2.getTable();
 	pstmt2 = con.prepareStatement("UPDATE resnew.table set Table_status='"+"YES"+"'"+"WHERE Table_id="+temp[0]);
 	pstmt2.execute();
 	pstmt2.close();
-	pstmt3 = con.prepareStatement("INSERT INTO resnew.order (table_Table_id,Customer_Cus_id,Order_status) values("+temp[0]+","+cus_id+",'"+"w"+"')");
+	pstmt3 = con.prepareStatement("INSERT INTO resnew.order (table_Table_id,Customer_Cus_id) values("+temp[0]+","+cus_id+")");
 	pstmt3.execute();
 	pstmt3.close();}}
 cart2.close();

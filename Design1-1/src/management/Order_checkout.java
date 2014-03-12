@@ -12,14 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/orderter")
-public class Order_terminate extends HttpServlet {
+@WebServlet("/order_check")
+public class Order_checkout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Connection conn;
-	PreparedStatement del;
+	PreparedStatement check;
        
    
-    public Order_terminate() {super();}
+    public Order_checkout() {super();}
     
     public void init() {conn = (Connection) getServletContext().getAttribute("connection");}
     
@@ -28,19 +28,26 @@ public class Order_terminate extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String[] quest = request.getParameterValues("cheese");
+		String[] quest = request.getParameterValues("butter");
 		if(quest!=null){
 		try {
-			for(int i=0; i<quest.length;i++){
-				String sql_del = "UPDATE `resnew`.`order` SET `Order_status`='Cancled' WHERE `order_id`="+"'"+quest[i]+"'";
-				del=conn.prepareStatement(sql_del);
-				del.execute();
+			for(int i = 0; i<quest.length; i++){
+				String sql_check ="UPDATE `resnew`.`order` SET `Order_status`='Cooking' WHERE `order_id`="+"'"+quest[i]+"'";
+				check=conn.prepareStatement(sql_check);
+				check.execute();
 			}
-			request.getSession().setAttribute("incoming", "Order cancle!");
-			response.sendRedirect("ad_dash.jsp");
+			if(request.getSession().getAttribute("admin_id")!=null){
+			request.getSession().setAttribute("incoming", "Order cooking!");
+			response.sendRedirect("ad_dash.jsp");}
+			else if(request.getSession().getAttribute("emp_id")!=null){
+				request.getSession().setAttribute("incoming1", "Order cooking!");
+				response.sendRedirect("emp_dash.jsp");
+			}
 		} catch (SQLException e) {
 			System.out.println(e);
-		}}else{response.sendRedirect("ad_dash.jsp");}
+		}}else{
+			response.sendRedirect("ad_dash.jsp");
+		}
 	}
 
 }

@@ -87,12 +87,11 @@
   background-size: cover;
 }
 #title-style{
-  top: 200px;
+  margin-left: -170px;
   font-family: RaiNgan;
   font-size: 40px;
   font-weight: bold;
   color: #FFFFFF;
-  text-align: center;
 }
 #image-logo{
    height: 150px;
@@ -129,9 +128,9 @@
 </div><br><br><br><br><br><br><br><br><br><br><br><br>
 <!-- End navigator bar -->
 <!-- Start of slider body section -->
-<div align="center">
+
 <div id="wowslider-container1">
-<div id="title-style">เมนูแนะนำสำหรับฤดูกาลนี้</div><br>
+<div id="title-style">เมนูแนะนำ</div><br>
 	<div class="ws_images"><ul>
 <li><img src="data1/images/tonkatsu.jpg" alt="Fried Pork (Tongkatsu)" title="Fried Pork (Tongkatsu)" id="wows1_0"/>Good for kids</li>
 <li><img src="data1/images/assorted_japanese_food.jpg" alt="Sushi rice set " title="Sushi rice set " id="wows1_1"/>Luxury set of Sushi</li>
@@ -150,7 +149,6 @@
 	</div>
 	<script type="text/javascript" src="engine1/wowslider.js"></script>
 	<script type="text/javascript" src="engine1/script.js"></script>
-</div>
 	<!-- End of slider body section -->
 </body>
 </html>

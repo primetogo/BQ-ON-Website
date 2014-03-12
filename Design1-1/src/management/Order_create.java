@@ -52,7 +52,7 @@ public class Order_create extends HttpServlet {
 		request.getSession().setAttribute("cus_in", cus_in);
 		request.getSession().setAttribute("seat_in", seat);
 		request.getSession().setAttribute("zone_in", zone);
-		response.sendRedirect("ad_typese.jsp");
+		response.sendRedirect("emp_typese.jsp");
 		
 	}
 

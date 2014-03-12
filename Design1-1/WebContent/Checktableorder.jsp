@@ -144,7 +144,6 @@ h1 {color: white;}
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  cursor: url(Res/mouse.png), auto;
 }
 #user-detail-box{
     margin-top: 20px;
@@ -222,7 +221,6 @@ h1 {color: white;}
 	-moz-box-shadow: 0px 0px 11px #000000;
 	-webkit-box-shadow: 0px 0px 11px #000000;
 	box-shadow: 0px 0px 11px #000000;
-	cursor: url(Res/mouse.png), auto;
 	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
 }
 .CSSTableGenerator {
@@ -283,7 +281,7 @@ h1 {color: white;}
 	border-width:0px 1px 1px 0px;
 	text-align:left;
 	padding:8px;
-	font-size:15px;
+	font-size:25px;
 	font-family: RaiNgan;
 	font-weight:normal;
 	color:#ffffff;
@@ -303,7 +301,7 @@ h1 {color: white;}
 	border:0px solid #000000;
 	text-align:center;
 	border-width:0px 0px 1px 1px;
-	font-size:14px;
+	font-size:25px;
 	font-family: RaiNgan;
 	font-weight:bold;
 	color:#ffffff;
@@ -339,11 +337,10 @@ h1 {color: white;}
     <ul>
      <li class='last'><a href='Checktableorder.jsp'><span>ตรวจสอบรายการจองโต๊ะ</span></a>
       </ul></li>
-   <li class='has-sub'><a href='#'><span>สั่งอาหาร</span></a>
+   <li class='has-sub'><a href='menu.jsp'><span>สั่งอาหาร</span></a>
     <ul>
          <li><a href='viewfood.jsp' ><span>ตรวจสอบรายการอาหาร</span></a></li>
          <li><a href='viewfood.jsp' ><span>ตรวจสอบสถานะ Order</span></a></li>
-         <li class='last'><a href='menu.jsp'><span>สั่งอาหาร</span></a></li>
       </ul></li>
    <li class='has-sub'><a href='#'  ><span>จัดการข้อมูลส่วนตัว</span></a>
       <ul>
@@ -358,7 +355,7 @@ h1 {color: white;}
 <sql:query var="rs" dataSource="jdbc/resnew">select order_id,table_Table_id,Food_Time from resnew.order where Order_status="w"</sql:query>
 <div class="CSSTableGenerator">
 <table>
-<tr><td>Order Id</td><td>Table Id</td><td>เวลาที่จองโต๊ะ</td></tr>
+<tr><td>เลขที่ออเดอร์</td><td>เลขที่โต๊ะ</td><td>เวลาที่จองโต๊ะ</td></tr>
 <c:forEach var="t" items="${rs.rows}">
 <tr><td>${t.order_id}</td><td>${t.table_Table_id}</td><td>${t.Food_Time}</td></tr>
 </c:forEach></table>

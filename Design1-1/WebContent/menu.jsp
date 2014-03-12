@@ -10,6 +10,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">
 h1 {color: white;}
+select{
+border-radius: 7px;
+	font-size:25px;
+	font-family: RaiNgan;
+	font-weight:normal;
+}
 .button {
 	-moz-box-shadow:inset 15px 1px 0px -1px #c1ed9c;
 	-webkit-box-shadow:inset 15px 1px 0px -1px #c1ed9c;
@@ -403,7 +409,7 @@ if(request.getParameter("bPageno")!=null)
 {try{ pa.setPageno(Integer.parseInt(request.getParameter("Pageno")));   action="Pageno";}
 catch(NumberFormatException e){}}
 Class.forName("com.mysql.jdbc.Driver");
-java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/resnew", "root","root");
+java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/resnew", "root","123456");
 Statement stmt=con.createStatement();
 String sql;ResultSet rs=null;
 int TRow=0;

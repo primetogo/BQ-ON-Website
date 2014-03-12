@@ -143,6 +143,7 @@
 
 table, th, td
 {
+	margin-top: 30px;
 	text-align: center;
     font-family: RaiNgan;
     width: auto;
@@ -259,7 +260,13 @@ table, th, td
 	margin-left:50px;
 }
 #all{
-	margin-top: -500px;
+	margin-top: -450px;
+	font-family: RaiNgan;
+	font-size: 30px;
+}
+#all2{
+	margin-top: -450px;
+	margin-left: 200px;
 	font-family: RaiNgan;
 	font-size: 30px;
 }
@@ -276,7 +283,6 @@ table, th, td
 <input type="submit" value="Order Checkout" name="de" class="firstButton" /><br>
 <input type="submit" value="Order Ready" name="de" class="firstButton" /><br>
 <input type="submit" value="Order Overview" name="de" class="firstButton" /><br>
-<input type="submit" value="New Order" name="de" class="firstButton" /><br>
 <input type="submit" value="Add New Employee" name="de" class="firstButton" /><br>
 </form><br>
 
@@ -346,12 +352,13 @@ table, th, td
 		</sql:query>
 		<div id="all" align="center"><br>
 		<b>Order Terminate</b><br>
-			<form method="post">
+			<form action="orderter" method="post">
 				<table border="1" width="80%">
 					<tr>
 						<td><b>Order ID</b></td>
 						<td><b>Customer first name</b></td>
 						<td><b>Customer last name</b></td>
+						<td><b>Table number</b></td>
 						<td><b>Status</b></td>
 						<td><b>Remove</b></td>
 					</tr>
@@ -360,6 +367,7 @@ table, th, td
 							<td><c:out value="${me.order_id}" /></td>
 							<td><c:out value="${me.Cus_Fname}" /></td>
 							<td><c:out value="${me.Cus_Lname}" /></td>
+							<td><c:out value="${me.table_Table_id}" /></td>
 							<td><c:out value="${me.Order_status}" /></td>
 							<td><input type="checkbox" value="${me.order_id}" name="cheese"/></td>
 						</tr>
@@ -371,7 +379,7 @@ table, th, td
 	</c:if>
 	<c:if test="${param.de=='Order Checkout'}">
 		<sql:query dataSource="${ds}" var="meh">
-			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id` AND Order_status='C'
+			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id` AND Order_status='Confirmed'
 		</sql:query>
 		<div id="all" align="center"><br>
 		<b>Order Checkout</b><br>
@@ -381,6 +389,7 @@ table, th, td
 						<td><b>Order ID</b></td>
 						<td><b>Customer first name</b></td>
 						<td><b>Customer last name</b></td>
+						<td><b>Table number</b></td>
 						<td><b>Status</b></td>
 						<td><b>Checkout</b></td>
 					</tr>
@@ -389,6 +398,7 @@ table, th, td
 							<td><c:out value="${me.order_id}" /></td>
 							<td><c:out value="${me.Cus_Fname}" /></td>
 							<td><c:out value="${me.Cus_Lname}" /></td>
+							<td><c:out value="${me.table_Table_id}" /></td>
 							<td><c:out value="${me.Order_status}" /></td>
 							<td><input type="checkbox" value="${me.order_id}" name="butter"/></td>
 						</tr>
@@ -398,39 +408,9 @@ table, th, td
 			</form><br><br>
 		</div>
 	</c:if>
-	<!-- Here it is where it's redirect to order management (Order_create servlet) -->
-	<c:if test="${param.de=='New Order'}">
-		<sql:query dataSource="${ds}" var="person">
-			SELECT DISTINCT Seat_amount FROM `table` WHERE Table_Status='no' ORDER BY Seat_amount ASC
-		</sql:query>
-		<sql:query dataSource="${ds}" var="zone">
-			SELECT DISTINCT Zone FROM `table` WHERE Table_Status='no' ORDER BY Zone ASC
-		</sql:query>
-		<div id="moreorder">
-		<br><font size="10"><b>New order insert</b></font>
-		<form action="neworder" method="post">
-			<div id="inorder1">
-			<b>Customer name:</b><br>
-				<b>First name</b> <input type="text" name="outer_first" class="loginInputBox" /><br>
-				<b>Last name</b> <input type="text" name="outer_last" class="loginInputBox" /><br>
-				<b>Amount of person</b> <select name="seat_check">
-				<c:forEach var="tab1" items="${person.rows}">
-				<option value="${tab1.Seat_amount}">${tab1.Seat_amount} person</option>
-				</c:forEach>
-				</select><br><font color="red" size="5">*highest number that's max person per table</font><br>
-				<b>Table zone </b><select name="zone_check">
-				<c:forEach var="tab2" items="${zone.rows}">
-				<option value="${tab2.Zone}">${tab2.Zone} zone</option>
-				</c:forEach>
-				</select>
-			</div><br>
-			<input type="submit" value="Next!" class="myButton" />
-		</form>
-		</div>
-	</c:if>
 	<c:if test="${param.de=='Order Recieved'}">
 		<sql:query dataSource="${ds}" var="meh">
-			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id` AND Order_status='W'
+			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id` AND Order_status='Pending'
 		</sql:query>
 		<div id="all" align="center"><br>
 		<b>Order Recieved</b><br>
@@ -440,6 +420,7 @@ table, th, td
 						<td><b>Order ID</b></td>
 						<td><b>Customer first name</b></td>
 						<td><b>Customer last name</b></td>
+						<td><b>Table number</b></td>
 						<td><b>Status</b></td>
 						<td><b>Confirm</b></td>
 					</tr>
@@ -448,6 +429,7 @@ table, th, td
 							<td><c:out value="${me.order_id}" /></td>
 							<td><c:out value="${me.Cus_Fname}" /></td>
 							<td><c:out value="${me.Cus_Lname}" /></td>
+							<td><c:out value="${me.table_Table_id}" /></td>
 							<td><c:out value="${me.Order_status}" /></td>
 							<td><input type="checkbox" value="${me.order_id}" name="peanut"/></td>
 						</tr>
@@ -459,7 +441,7 @@ table, th, td
 	</c:if>
 	<c:if test="${param.de=='Order Ready'}">
 		<sql:query dataSource="${ds}" var="meh">
-			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id` AND Order_status='CK'
+			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id` AND Order_status='Cooking'
 		</sql:query>
 		<div id="all" align="center"><br>
 		<b>Order Ready</b><br>
@@ -469,6 +451,7 @@ table, th, td
 						<td><b>Order ID</b></td>
 						<td><b>Customer first name</b></td>
 						<td><b>Customer last name</b></td>
+						<td><b>Table number</b></td>
 						<td><b>Status</b></td>
 						<td><b>Ready</b></td>
 					</tr>
@@ -477,6 +460,7 @@ table, th, td
 							<td><c:out value="${me.order_id}" /></td>
 							<td><c:out value="${me.Cus_Fname}" /></td>
 							<td><c:out value="${me.Cus_Lname}" /></td>
+							<td><c:out value="${me.table_Table_id}" /></td>
 							<td><c:out value="${me.Order_status}" /></td>
 							<td><input type="checkbox" value="${me.order_id}" name="yelly"/></td>
 						</tr>
@@ -490,13 +474,14 @@ table, th, td
 		<sql:query dataSource="${ds}" var="meh">
 			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id`
 		</sql:query>
-		<div id="all" align="center"><br>
+		<div id="all2" align="center"><br>
 		<b>Order Overview</b><br>
 				<table border="1" width="80%">
 					<tr>
 						<td><b>Order ID</b></td>
 						<td><b>Customer first name</b></td>
 						<td><b>Customer last name</b></td>
+						<td><b>Table number</b></td>
 						<td><b>Date/Time</b></td>
 						<td><b>Status</b></td>
 					</tr>
@@ -505,6 +490,7 @@ table, th, td
 							<td><c:out value="${me.order_id}" /></td>
 							<td><c:out value="${me.Cus_Fname}" /></td>
 							<td><c:out value="${me.Cus_Lname}" /></td>
+							<td><c:out value="${me.table_Table_id}" /></td>
 							<td><c:out value="${me.Food_Time}" /></td>
 							<td><c:out value="${me.Order_status}" /></td>
 						</tr>

@@ -22,10 +22,6 @@ public class Order_ready extends HttpServlet {
     
     public void init() {conn = (Connection) getServletContext().getAttribute("connection");}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("ad_dash.jsp");
-	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String[] quest=request.getParameterValues("yelly");
 		if(quest!=null){
@@ -35,11 +31,18 @@ public class Order_ready extends HttpServlet {
 				ready=conn.prepareStatement(sql_check);
 				ready.execute();
 			}
-			request.getSession().setAttribute("incoming", "Order ready!");
-			response.sendRedirect("ad_dash.jsp");
+			if(request.getSession().getAttribute("admin_id")!=null){
+				request.getSession().setAttribute("incoming", "Order ready!");
+				response.sendRedirect("ad_dash.jsp");}
+				else if(request.getSession().getAttribute("emp_id")!=null){
+					request.getSession().setAttribute("incoming1", "Order ready!");
+					response.sendRedirect("emp_dash.jsp");}
 		}catch(SQLException e){
 			System.out.println(e);
-		}}else{response.sendRedirect("ad_dash.jsp");}
+		}}else{if(request.getSession().getAttribute("admin_id")!=null){
+			response.sendRedirect("ad_dash.jsp");}
+			else if(request.getSession().getAttribute("emp_id")!=null){
+				response.sendRedirect("emp_dash.jsp");}}
 	}
 
 }

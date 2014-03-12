@@ -17,8 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Login_emp extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Connection conn;
-	private PreparedStatement get;
-	private ResultSet res;
+	private PreparedStatement gett;
        
     
     public Login_emp() {super();}
@@ -29,23 +28,21 @@ public class Login_emp extends HttpServlet {
 		boolean loginflag = false;
 		String name = request.getParameter("name");
 		String password = request.getParameter("pass");
-		String sql_emp ="SELECT Emp_Fname, Emp_Lname, emp_id FROM employee, username WHERE username='"+name+"' AND password='"+password+"' AND role='A' OR role='E'";
-		
-		try {
-			get=conn.prepareStatement(sql_emp);
-			res = get.executeQuery();
+		try{
+			String sql_admin = "SELECT Emp_Fname, Emp_Lname, emp_id FROM employee, username WHERE username='"+name+"'and password= '"+password+"' and emp_id=employee_emp_id";
+			gett = conn.prepareStatement(sql_admin);
+			ResultSet res = gett.executeQuery();
 			while(res.next()){
 				loginflag = true;
-				request.getSession().setAttribute("emp_first1", res.getString("Emp_Fname"));
-				request.getSession().setAttribute("emp_last1", res.getString("Emp_Lname"));
-				request.getSession().setAttribute("emp_id1", res.getString("emp_id"));
-			}
-		} catch (SQLException e) {
+				request.getSession().setAttribute("emp_first", res.getString("Emp_Fname"));
+				request.getSession().setAttribute("emp_last", res.getString("Emp_Lname"));
+				request.getSession().setAttribute("emp_id", res.getString("emp_id"));
+			}	
+		}catch(Exception e){
 			System.out.println(e);
 		}
 		request.getSession().setAttribute("emp", loginflag);
         response.sendRedirect("emp_dash.jsp");
-		
 	}
 
 }

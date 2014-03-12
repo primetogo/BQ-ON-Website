@@ -32,7 +32,7 @@ public class LoginRes_user extends HttpServlet {
     		//Get required data 
     		String user = request.getParameter("id");
     		String pass = request.getParameter("pass");
-    		String sql_datacheck = "select Cus_id, username, password, Cus_Fname, Cus_Lname from username join customer on (Customer_Cus_id = Cus_id) where username= "+"'"+user+"'"+"and password= "+"'"+pass+"'";
+    		String sql_datacheck = "select Cus_id, username, password, Cus_Fname, Cus_Lname from resnew.username, resnew.customer where Customer_Cus_id=Cus_id AND username= "+"'"+user+"'"+"and password= "+"'"+pass+"'";
     		System.out.println("User input: Username = "+user+" Password = "+pass);
     		logincheck = conn.prepareStatement(sql_datacheck);
     		

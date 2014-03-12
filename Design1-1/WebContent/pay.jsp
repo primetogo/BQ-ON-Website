@@ -6,7 +6,7 @@
 <%@page import="java.util.Enumeration"%>
 <jsp:useBean id="cart" class="model.Food_Cart" scope="session"/>
 <%String[] temp;
-java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/resnew","root","root");
+java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/resnew","root","123456");
 PreparedStatement pstmt,pstmt1,pq,pb;
 String b=(String) session.getAttribute("first");
 String pay_type=request.getParameter("pay_type");
@@ -42,7 +42,7 @@ while(enu.hasMoreElements()){
 	pstmt = con.prepareStatement("Insert Into order_detail(order_order_id,Food_amount,Food_Food_id) values('"+order_id+"','"+temp[2]+"','"+Integer.parseInt(temp[0])+"')");
 	pstmt.execute();
 	pstmt.close();}
-pstmt1 = con.prepareStatement("Insert Into payment(Payment_amount,Payment_type,payment_status) values('"+Integer.toString(amount) +"','"+pay_type+"','w')");
+pstmt1 = con.prepareStatement("Insert Into payment(Payment_amount,Payment_type,pay_id) values("+amount +",'"+pay_type+"',"+order_id+")");
 pstmt1.execute();
 pstmt1.close();
 cart.close();
