@@ -125,6 +125,7 @@
   left: -1px;
   min-width: 100%;
   text-align: center;
+  /* IE7 */
 
   *width: 100%;
 }
@@ -146,6 +147,7 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  cursor: url(/Res/mouse.png) , auto;
 }
 #user-detail-box{
     margin-top: 20px;
@@ -157,9 +159,11 @@
 	-moz-border-radius: 7px;
 	-webkit-border-radius: 7px;
 	border-radius: 7px;
+	/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
 	-moz-box-shadow: 0px 0px 11px #000000;
 	-webkit-box-shadow: 0px 0px 11px #000000;
 	box-shadow: 0px 0px 11px #000000;
+	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
 	font-family: RaiNgan;
 	font-size: 35px;
 }
@@ -215,9 +219,13 @@
 	-moz-border-radius: 7px;
 	-webkit-border-radius: 7px;
 	border-radius: 7px;
+	/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
 	-moz-box-shadow: 0px 0px 11px #000000;
 	-webkit-box-shadow: 0px 0px 11px #000000;
-	box-shadow: 0px 0px 11px #000000;  
+	box-shadow: 0px 0px 11px #000000;
+	
+	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
+   
 }
 .CSSTableGenerator {
 	margin:0px;padding:0px;
@@ -325,7 +333,7 @@
 <br><br>
 <form action="logout" method="post" >
 <input type="submit" value="ออกจากระบบ" class="logoutButton" />
-<a href="index.jsp" class="logoutButton"  >หน้าหลัก</a><br>
+<a href="index.jsp" class="logoutButton" style="cursor: url(Res/mouse.png) , auto;" >หน้าหลัก</a><br>
 </form>
 </div>
 <div id='cssmenu'>
@@ -336,33 +344,26 @@
       </ul></li>
    <li class='has-sub'><a href='menu.jsp'><span>สั่งอาหาร</span></a>
     <ul>
-         <li><a href='viewfood.jsp' ><span>ตรวจสอบรายการอาหาร</span></a></li>
-         <li class='last'><a href='CheckFoodOrder.jsp' ><span>ตรวจสอบสถานะ Order</span></a></li>
+         <li><a href='viewfood.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ตรวจสอบรายการอาหาร</span></a></li>
+         <li class='last'><a href='CheckFoodOrder.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ตรวจสอบสถานะ Order</span></a></li>
       </ul></li>
-   <li class='has-sub'><a href='#' ><span>จัดการข้อมูลส่วนตัว</span></a>
+   <li class='has-sub'><a href='#' style="cursor: url(Res/mouse.png), auto;" ><span>จัดการข้อมูลส่วนตัว</span></a>
       <ul>
-         <li><a href='#' ><span>แก้ไขข้อมูลส่วนตัว</span></a></li>
-         <li class='last'><a href='rev_conf.jsp' ><span>ยกเลิกสมาชิก</span></a></li>
+         <li><a href='#' style="cursor: url(Res/mouse.png), auto;" ><span>แก้ไขข้อมูลส่วนตัว</span></a></li>
+         <li class='last'><a href='rev_conf.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ยกเลิกสมาชิก</span></a></li>
       </ul>
    </li>
 </ul>
 </div>
 <div id="map-panel" align="center">
-	<h1>กรุณายืนยันรายการ</h1>
-<jsp:useBean id="pa" class="model.MENUBEAN" scope="session"/>
+<h1>กรุณายืนยันรายการ</h1>
 <form method="post" action="pay.jsp">
-	<sql:setDataSource var="ds" driver="com.mysql.jdbc.Driver" url="jdbc:mysql:///resnew" user="root" password="root"/>
-	<h2>รายการโต๊ะที่จอง</h2>
-<c:forEach var="Table" items="${sessionScope.tc.table_reserve}">
-	<h3>หมายเลขโต๊ะ : ${Table.table_id}</h3>
-	<h3>โซนที่นั่ง : ${Table.zone}</h3> 
-	<h3>จำนวนที่นั่ง : ${Table.seat_amount}</h3> 
-</c:forEach>
-
 <%String[] temp;
-java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/resnew","root","123456");
+java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/resnew","root","root");
 PreparedStatement pstmt,pstmt1,pq,pb;
 String b=(String) session.getAttribute("first");
+String pay_type=request.getParameter("pay_type");
+System.out.print(pay_type);
 Class.forName("com.mysql.jdbc.Driver");
 int cus_id=0;
 String order_id="";
@@ -394,7 +395,7 @@ while(enu.hasMoreElements()){
 	pstmt = con.prepareStatement("Insert Into order_detail(order_order_id,Food_amount,Food_Food_id) values('"+order_id+"','"+temp[2]+"','"+Integer.parseInt(temp[0])+"')");
 	pstmt.execute();
 	pstmt.close();}
-pstmt1 = con.prepareStatement("Insert Into payment(Payment_amount,Payment_type,payment_status) values('"+Integer.toString(amount) +"','ATM','w')");
+pstmt1 = con.prepareStatement("Insert Into payment(Payment_amount,Payment_type,payment_status) values('"+Integer.toString(amount) +"','"+pay_type+"','w')");
 pstmt1.execute();
 pstmt1.close();
 cart.close();
