@@ -276,14 +276,14 @@ table, th, td
 <body id="bg">
 <form method="post">
 <input type="submit" value="Main Page" class="firstButton" name="de" /><br>
-<input type="submit" value="Removing Food" name="de" class="firstButton" /><br>
-<input type="submit" value="Add More Food" name="de" class="firstButton" /><br>
-<input type="submit" value="Order Recieved" name="de" class="firstButton" /><br>
-<input type="submit" value="Order Terminate" name="de" class="firstButton" /><br>
-<input type="submit" value="Order Checkout" name="de" class="firstButton" /><br>
-<input type="submit" value="Order Ready" name="de" class="firstButton" /><br>
-<input type="submit" value="Order Overview" name="de" class="firstButton" /><br>
-<input type="submit" value="Add New Employee" name="de" class="firstButton" /><br>
+<input type="submit" value="Removing food" name="de" class="firstButton" /><br>
+<input type="submit" value="Add more food" name="de" class="firstButton" /><br>
+<input type="submit" value="Order recieved" name="de" class="firstButton" /><br>
+<input type="submit" value="Order to terminate" name="de" class="firstButton" /><br>
+<input type="submit" value="Order to cook" name="de" class="firstButton" /><br>
+<input type="submit" value="Order in process" name="de" class="firstButton" /><br>
+<input type="submit" value="Order overview" name="de" class="firstButton" /><br>
+<input type="submit" value="Add new employee" name="de" class="firstButton" /><br>
 </form><br>
 
 	<sql:setDataSource var="ds" driver="com.mysql.jdbc.Driver"
@@ -303,7 +303,7 @@ table, th, td
 	</form>
 <c:if test="${param.de!=null}">     
 	<c:if test="${param.de=='Main page'}"></c:if>	
-	<c:if test="${param.de=='Removing Food'}">
+	<c:if test="${param.de=='Removing food'}">
 		<sql:query dataSource="${ds}" var="res">
 			SELECT DISTINCT food_type FROM resnew.food;
 		</sql:query>
@@ -327,7 +327,7 @@ table, th, td
 		</div> 
 		
 	</c:if>
-	<c:if test="${param.de=='Add More Food'}">
+	<c:if test="${param.de=='Add more food'}">
 		<sql:query dataSource="${ds}" var="shi">
 			SELECT DISTINCT food_type FROM resnew.food;
 		</sql:query>
@@ -346,12 +346,12 @@ table, th, td
 			</form>
 		</div>
 	</c:if>
-	<c:if test="${param.de=='Order Terminate'}">
+	<c:if test="${param.de=='Order to terminate'}">
 		<sql:query dataSource="${ds}" var="meh">
 			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id`
 		</sql:query>
 		<div id="all" align="center"><br>
-		<b>Order Terminate</b><br>
+		<b>Order to terminate</b><br>
 			<form action="orderter" method="post">
 				<table border="1" width="80%">
 					<tr>
@@ -373,16 +373,16 @@ table, th, td
 						</tr>
 					</c:forEach>
 				</table><br>
-				<input type="submit" value="Process!" class="myButton" />
+				<input type="submit" value="Cancle!" class="myButton" />
 			</form><br><br>
 		</div>
 	</c:if>
-	<c:if test="${param.de=='Order Checkout'}">
+	<c:if test="${param.de=='Order to cook'}">
 		<sql:query dataSource="${ds}" var="meh">
 			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id` AND Order_status='Confirmed'
 		</sql:query>
 		<div id="all" align="center"><br>
-		<b>Order Checkout</b><br>
+		<b>Order to cook</b><br>
 			<form action="order_check" method="post">
 				<table border="1" width="80%">
 					<tr>
@@ -404,16 +404,16 @@ table, th, td
 						</tr>
 					</c:forEach>
 				</table><br>
-				<input type="submit" value="Process!" class="myButton" />
+				<input type="submit" value="Cook it!" class="myButton" />
 			</form><br><br>
 		</div>
 	</c:if>
-	<c:if test="${param.de=='Order Recieved'}">
+	<c:if test="${param.de=='Order recieved'}">
 		<sql:query dataSource="${ds}" var="meh">
 			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id` AND Order_status='Pending'
 		</sql:query>
 		<div id="all" align="center"><br>
-		<b>Order Recieved</b><br>
+		<b>Order recieved</b><br>
 			<form action="confirm" method="post">
 				<table border="1" width="80%">
 					<tr>
@@ -435,16 +435,16 @@ table, th, td
 						</tr>
 					</c:forEach>
 				</table><br>
-				<input type="submit" value="Process!" class="myButton" />
+				<input type="submit" value="Confirm!" class="myButton" />
 			</form><br><br>
 		</div>
 	</c:if>
-	<c:if test="${param.de=='Order Ready'}">
+	<c:if test="${param.de=='Order in process'}">
 		<sql:query dataSource="${ds}" var="meh">
 			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id` AND Order_status='Cooking'
 		</sql:query>
 		<div id="all" align="center"><br>
-		<b>Order Ready</b><br>
+		<b>Order in process</b><br>
 			<form action="rea" method="post">
 				<table border="1" width="80%">
 					<tr>
@@ -466,16 +466,16 @@ table, th, td
 						</tr>
 					</c:forEach>
 				</table><br>
-				<input type="submit" value="Process!" class="myButton" />
+				<input type="submit" value="Finished!" class="myButton" />
 			</form><br><br>
 		</div>
 	</c:if>
-	<c:if test="${param.de=='Order Overview'}">
+	<c:if test="${param.de=='Order overview'}">
 		<sql:query dataSource="${ds}" var="meh">
 			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id`
 		</sql:query>
 		<div id="all2" align="center"><br>
-		<b>Order Overview</b><br>
+		<b>Order overview</b><br>
 				<table border="1" width="80%">
 					<tr>
 						<td><b>Order ID</b></td>
@@ -498,9 +498,9 @@ table, th, td
 				</table><br><br>
 		</div>
 	</c:if>
-	<c:if test="${param.de=='Add New Employee'}">
+	<c:if test="${param.de=='Add new employee'}">
 		<div id="admin"><br>
-		<font color="Green" size="10">Register new admin</font><br><br>
+		<font color="Green" size="10">Register new employee</font><br><br>
 		<form action="newbie" method="post">
 		<div id="shift1">
 		    <b>Basic Information:</b><br><br>
