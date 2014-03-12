@@ -11,6 +11,51 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">
 h1 {color: white;}
+.button {
+	-moz-box-shadow:inset 15px 1px 0px -1px #c1ed9c;
+	-webkit-box-shadow:inset 15px 1px 0px -1px #c1ed9c;
+	box-shadow:inset 0px 1px 0px 0px #c1ed9c;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #9dce2c), color-stop(1, #8cb82b) );
+	background:-moz-linear-gradient( center top, #9dce2c 5%, #8cb82b 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#9dce2c', endColorstr='#8cb82b');
+	background-color:#9dce2c;
+	-webkit-border-top-left-radius:42px;
+	-moz-border-radius-topleft:42px;
+	border-top-left-radius:42px;
+	-webkit-border-top-right-radius:0px;
+	-moz-border-radius-topright:0px;
+	border-top-right-radius:0px;
+	-webkit-border-bottom-right-radius:42px;
+	-moz-border-radius-bottomright:42px;
+	border-bottom-right-radius:42px;
+	-webkit-border-bottom-left-radius:0px;
+	-moz-border-radius-bottomleft:0px;
+	border-bottom-left-radius:0px;
+	text-indent:0px;
+	border:4px solid #83c41a;
+	display:inline-block;
+	color:#ffffff;
+	font-family:'RaiNgan';
+	font-size:30px;
+	font-weight:bold;
+	font-style:normal;
+	height:37px;
+	line-height:37px;
+	width:110px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:2px -3px 0px #689324;
+}
+.button:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #8cb82b), color-stop(1, #9dce2c) );
+	background:-moz-linear-gradient( center top, #8cb82b 5%, #9dce2c 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#8cb82b', endColorstr='#9dce2c');
+	background-color:#8cb82b;
+}.button:active {
+	position:relative;
+	top:1px;
+}
+/* This button was generated using CSSButtonGenerator.com */
 @font-face {
 	font-family: 'RaiNgan';
 	src: url('Res/RaiNgan.ttf'); /* IE9 Compat Modes */
@@ -409,8 +454,8 @@ if(cart.getItem().hasMoreElements()){
 	%>
 <tr>
 <td colspan="6"><div align="center">
-<input name="cal" type="submit" value="cal">
-<input name="buy" type="submit" value="Buy">
+<input name="cal" type="submit" value="cal" class="button">
+<input name="buy" type="submit" value="Buy" class="button">
 </div>
 </td>
 </tr>  
@@ -420,7 +465,7 @@ if(cart.getItem().hasMoreElements()){
 <table>
 <tr>
 <h1>กรุณาเลือกประเภท การจ่ายเงิน <select name="pay_type"><option value="OB">Online Banking</option>
-<option value="AR">At restaurant</option></select><input name="pay" type="submit" value="pay"></h1> </tr> 
+<option value="AR">At restaurant</option></select><input name="pay" type="submit" value="pay" class="button"></h1> </tr> 
 </table></form>
 </div>
 </body>

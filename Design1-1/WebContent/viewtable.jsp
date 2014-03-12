@@ -7,6 +7,50 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">
+.button {
+	-moz-box-shadow:inset 15px 1px 0px -1px #c1ed9c;
+	-webkit-box-shadow:inset 15px 1px 0px -1px #c1ed9c;
+	box-shadow:inset 0px 1px 0px 0px #c1ed9c;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #9dce2c), color-stop(1, #8cb82b) );
+	background:-moz-linear-gradient( center top, #9dce2c 5%, #8cb82b 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#9dce2c', endColorstr='#8cb82b');
+	background-color:#9dce2c;
+	-webkit-border-top-left-radius:42px;
+	-moz-border-radius-topleft:42px;
+	border-top-left-radius:42px;
+	-webkit-border-top-right-radius:0px;
+	-moz-border-radius-topright:0px;
+	border-top-right-radius:0px;
+	-webkit-border-bottom-right-radius:42px;
+	-moz-border-radius-bottomright:42px;
+	border-bottom-right-radius:42px;
+	-webkit-border-bottom-left-radius:0px;
+	-moz-border-radius-bottomleft:0px;
+	border-bottom-left-radius:0px;
+	text-indent:0px;
+	border:4px solid #83c41a;
+	display:inline-block;
+	color:#ffffff;
+	font-family:'RaiNgan';
+	font-size:30px;
+	font-weight:bold;
+	font-style:normal;
+	height:37px;
+	line-height:37px;
+	width:200px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:2px -3px 0px #689324;
+}
+.button:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #8cb82b), color-stop(1, #9dce2c) );
+	background:-moz-linear-gradient( center top, #8cb82b 5%, #9dce2c 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#8cb82b', endColorstr='#9dce2c');
+	background-color:#8cb82b;
+}.button:active {
+	position:relative;
+	top:1px;
+}
 h1 {color: white;}
 @font-face {
 	font-family: 'RaiNgan';
@@ -121,6 +165,7 @@ h1 {color: white;}
   left: -1px;
   min-width: 100%;
   text-align: center;
+  /* IE7 */
 
   *width: 100%;
 }
@@ -142,6 +187,7 @@ h1 {color: white;}
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  cursor: url(Res/mouse.png), auto;
 }
 #user-detail-box{
     margin-top: 20px;
@@ -153,9 +199,11 @@ h1 {color: white;}
 	-moz-border-radius: 7px;
 	-webkit-border-radius: 7px;
 	border-radius: 7px;
+	/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
 	-moz-box-shadow: 0px 0px 11px #000000;
 	-webkit-box-shadow: 0px 0px 11px #000000;
 	box-shadow: 0px 0px 11px #000000;
+	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
 	font-family: RaiNgan;
 	font-size: 35px;
 }
@@ -212,9 +260,13 @@ h1 {color: white;}
 	-moz-border-radius: 7px;
 	-webkit-border-radius: 7px;
 	border-radius: 7px;
+	/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
 	-moz-box-shadow: 0px 0px 11px #000000;
 	-webkit-box-shadow: 0px 0px 11px #000000;
 	box-shadow: 0px 0px 11px #000000;
+	cursor: url(Res/mouse.png), auto;
+	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
+   
 }
 .CSSTableGenerator {
 	margin:0px;padding:0px;
@@ -322,7 +374,7 @@ h1 {color: white;}
 <br><br>
 <form action="logout" method="post" >
 <input type="submit" value="ออกจากระบบ" class="logoutButton" />
-<a href="index.jsp" class="logoutButton">หน้าหลัก</a><br>
+<a href="index.jsp" class="logoutButton" style="cursor: url(Res/mouse.png), auto;" >หน้าหลัก</a><br>
 </form>
 </div>
 <div id='cssmenu'>
@@ -333,13 +385,13 @@ h1 {color: white;}
       </ul></li>
    <li class='has-sub'><a href='menu.jsp'><span>สั่งอาหาร</span></a>
     <ul>
-         <li><a href='viewfood.jsp'><span>ตรวจสอบรายการอาหาร</span></a></li>
-         <li class='last'><a href='CheckFoodOrder.jsp'><span>ตรวจสอบสถานะ Order</span></a></li>
+         <li><a href='viewfood.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ตรวจสอบรายการอาหาร</span></a></li>
+         <li class='last'><a href='CheckFoodOrder.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ตรวจสอบสถานะ Order</span></a></li>
       </ul></li>
-   <li class='has-sub'><a href='#'><span>จัดการข้อมูลส่วนตัว</span></a>
+   <li class='has-sub'><a href='#' style="cursor: url(Res/mouse.png), auto;" ><span>จัดการข้อมูลส่วนตัว</span></a>
       <ul>
-         <li><a href='#'><span>แก้ไขข้อมูลส่วนตัว</span></a></li>
-         <li class='last'><a href='rev_conf.jsp'><span>ยกเลิกสมาชิก</span></a></li>
+         <li><a href='#' style="cursor: url(Res/mouse.png), auto;" ><span>แก้ไขข้อมูลส่วนตัว</span></a></li>
+         <li class='last'><a href='rev_conf.jsp' style="cursor: url(Res/mouse.png), auto;" ><span>ยกเลิกสมาชิก</span></a></li>
       </ul>
    </li>
 </ul>
@@ -385,9 +437,9 @@ if(cart2.getTable().hasMoreElements()){
 }%>
 <tr>
 <td colspan="6"><div align="center">
-<input name="del" type="submit" value="ยกเลิกการจองโต๊ะ">
-<input name="buy" type="submit" value="จองโต๊ะเพิ่มเติม">
-<input name="pay" type="submit" value="ยืนยันการจองโต๊ะ"></div>
+<input name="del" type="submit" value="ยกเลิกการจองโต๊ะ" class="button">
+<input name="buy" type="submit" value="จองโต๊ะเพิ่มเติม" class="button" >
+<input name="pay" type="submit" value="ยืนยันการจองโต๊ะ" class="button" ></div>
 </td>
 </tr>   
 </table>
