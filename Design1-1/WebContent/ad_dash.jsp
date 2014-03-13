@@ -270,6 +270,12 @@ table, th, td
 	font-family: RaiNgan;
 	font-size: 30px;
 }
+#all4{
+	margin-top: -400px;
+	margin-left: 200px;
+	font-family: RaiNgan;
+	font-size: 30px;
+}
 </style>
 <title>ส่วนควบคุม:จัดการ</title>
 </head>
@@ -284,10 +290,11 @@ table, th, td
 <input type="submit" value="Order in process" name="de" class="firstButton" /><br>
 <input type="submit" value="Order overview" name="de" class="firstButton" /><br>
 <input type="submit" value="Add new employee" name="de" class="firstButton" /><br>
+<input type="submit" value="Check on table" name="de" class="firstButton" /><br>
 </form><br>
 
 	<sql:setDataSource var="ds" driver="com.mysql.jdbc.Driver"
-	url="jdbc:mysql:///resnew" user="root" password="123456" ></sql:setDataSource>
+	url="jdbc:mysql://localhost:3307/resnew" user="root" password="123456" ></sql:setDataSource>
 
 
 <div id="inf_panel" align="center">
@@ -468,6 +475,31 @@ table, th, td
 				</table><br>
 				<input type="submit" value="Finished!" class="myButton" />
 			</form><br><br>
+		</div>
+	</c:if>
+	<c:if test="${param.de=='Check on table'}">
+		<sql:query dataSource="${ds}" var="XD">
+			SELECT Table_id, Zone FROM resnew.table WHERE Table_Status="Reserved" 
+		</sql:query>
+		<div id="all4" align="center">
+		<form action="clearing" method="post">
+			<b>Clear table</b>
+			<table border="1" align="center">
+				<tr>
+					<td><b>Table number</b></td>
+					<td><b>Zone</b></td>
+					<td><b>Clear</b></td>
+				</tr>
+				<c:forEach items="${XD.rows}" var="mg">
+					<tr>
+						<td><c:out value="${mg.Table_id}" /></td>
+						<td><c:out value="${mg.Zone}" /></td>
+						<td><input type="checkbox" value="${mg.Table_id}" name="clr" /></td>
+					</tr>
+				</c:forEach>
+			</table><br>
+			<input type="submit" value="Clear table!" class="myButton" />
+		</form>
 		</div>
 	</c:if>
 	<c:if test="${param.de=='Order overview'}">

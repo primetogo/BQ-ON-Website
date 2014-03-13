@@ -38,7 +38,7 @@ public class Login_emp extends HttpServlet {
 				request.getSession().setAttribute("emp_last", res.getString("Emp_Lname"));
 				request.getSession().setAttribute("emp_id", res.getString("emp_id"));
 			}	
-		}catch(Exception e){
+		}catch(SQLException e){
 			System.out.println(e);
 		}
 		request.getSession().setAttribute("emp", loginflag);

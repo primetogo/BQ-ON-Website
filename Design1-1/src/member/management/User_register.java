@@ -18,7 +18,6 @@ public class User_register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Connection conn;
 	private PreparedStatement insert_member, insert_customer, check_member, getid;
-	private boolean flag = true;
 	private ResultSet max;
 	private int id;
        

@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Order_record extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Connection conn;
-	private PreparedStatement orderIn, getid, insertFood, price, upprice;
+	private PreparedStatement orderIn, getid, insertFood, price, upprice, table_in;
 	private ResultSet aa, bb; 
 	private int orderxd, foodamount=1;
 	private float total;
@@ -64,6 +64,12 @@ public class Order_record extends HttpServlet {
 			orderIn.close();
 			insertFood.close();
 			getid.close();
+			
+			String sql_res = "UPDATE resnew.table SET Table_Status='Reserved' WHERE Table_id="+String.valueOf(get_table);
+			table_in=conn.prepareStatement(sql_res);
+			table_in.execute();
+			table_in.close();
+			
 			request.getSession().setAttribute("incoming1", "Order inserted!");
 			response.sendRedirect("emp_dash.jsp");		
 		} catch (SQLException e) {

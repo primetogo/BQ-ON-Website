@@ -155,11 +155,9 @@ h1 {color: white;}
 	-moz-border-radius: 7px;
 	-webkit-border-radius: 7px;
 	border-radius: 7px;
-	/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
 	-moz-box-shadow: 0px 0px 11px #000000;
 	-webkit-box-shadow: 0px 0px 11px #000000;
 	box-shadow: 0px 0px 11px #000000;
-	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
 	font-family: RaiNgan;
 	font-size: 35px;
 }
@@ -350,9 +348,11 @@ h1 {color: white;}
    </li>
 </ul>
 </div>
+<sql:setDataSource var="ds" driver="com.mysql.jdbc.Driver"
+	url="jdbc:mysql://localhost:3307/resnew" user="root" password="123456" ></sql:setDataSource>
 <div id="map-panel" align="center">
 <h1>ตรวจสอบการจองโต๊ะ</h1>
-<sql:query var="rs" dataSource="jdbc/resnew">select order_id,table_Table_id,Food_Time from resnew.order where Order_status="w"</sql:query>
+<sql:query var="rs" dataSource="${ds}">select order_id,table_Table_id,Food_Time from resnew.order where Order_status="w"</sql:query>
 <div class="CSSTableGenerator">
 <table>
 <tr><td>เลขที่ออเดอร์</td><td>เลขที่โต๊ะ</td><td>เวลาที่จองโต๊ะ</td></tr>

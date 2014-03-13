@@ -26,8 +26,6 @@ public class User_remover extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		   HttpSession session = request.getSession(false);
 		try {			
-			String userF = (String) session.getAttribute("first");
-		    String userL = (String) session.getAttribute("last");
 		    String id = (String) session.getAttribute("haha");
 		    
 		    //starting query data to check with user data attribute

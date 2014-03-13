@@ -409,7 +409,7 @@ if(request.getParameter("bPageno")!=null)
 {try{ pa.setPageno(Integer.parseInt(request.getParameter("Pageno")));   action="Pageno";}
 catch(NumberFormatException e){}}
 Class.forName("com.mysql.jdbc.Driver");
-java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/resnew", "root","123456");
+java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3307/resnew", "root","123456");
 Statement stmt=con.createStatement();
 String sql;ResultSet rs=null;
 int TRow=0;

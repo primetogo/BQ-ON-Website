@@ -277,10 +277,10 @@ table, th, td
 <input type="submit" value="View food queue" name="de" class="firstButton" /><br>
 <input type="submit" value="Payment in queue" name="de" class="firstButton" /><br>
 <input type="submit" value="Submit new order" name="de" class="firstButton" /><br>
-<input type="submit" value="Check on table" name="de" class="forstButton" /><br>
+<input type="submit" value="Table to clean" name="de" class="firstButton" /><br>
 </form><br>
 	<sql:setDataSource var="ds" driver="com.mysql.jdbc.Driver"
-	url="jdbc:mysql:///resnew" user="root" password="123456" ></sql:setDataSource>
+	url="jdbc:mysql://localhost:3307/resnew" user="root" password="123456" ></sql:setDataSource>
 	
 <div id="inf_panel" align="center">
 	Staff: <%= session.getAttribute("emp_first") %> <%= session.getAttribute("emp_last") %><br>
@@ -295,7 +295,7 @@ table, th, td
 	</form>
 <c:if test="${param.de!=null}"> 	
 	<c:if test="${param.de=='Main page'}"></c:if>
-	<c:if test="${param.de=='Order terminate'}">
+	<c:if test="${param.de=='Order to terminate'}">
 		<sql:query dataSource="${ds}" var="meh">
 			SELECT * FROM `customer`, `order` WHERE `customer`.`Cus_id` = `order`.`Customer_Cus_id`
 		</sql:query>
@@ -357,6 +357,31 @@ table, th, td
 		</form>
 		</div>
 	</c:if>
+	<c:if test="${param.de=='Table to clean'}">
+		<sql:query dataSource="${ds}" var="XD">
+			SELECT Table_id, Zone FROM resnew.table WHERE Table_Status="Clearing"
+		</sql:query>
+		<div id="all4" align="center">
+		<form action="setfree" method="post">
+			<b>Table to clean</b>
+			<table border="1" align="center">
+				<tr>
+					<td><b>Table number</b></td>
+					<td><b>Zone</b></td>
+					<td><b>Clear</b></td>
+				</tr>
+				<c:forEach items="${XD.rows}" var="mg">
+					<tr>
+						<td><c:out value="${mg.Table_id}" /></td>
+						<td><c:out value="${mg.Zone}" /></td>
+						<td><input type="checkbox" value="${mg.Table_id}" name="clr" /></td>
+					</tr>
+				</c:forEach>
+			</table><br>
+			<input type="submit" value="Clear table!" class="myButton" />
+		</form>
+		</div>
+	</c:if>
 	<c:if test="${param.de=='View food queue'}">
 		<sql:query dataSource="${ds}" var="time">
 			SELECT order_id, Food_time, Food_amount, Food_name FROM resnew.order, resnew.order_detail, food
@@ -415,10 +440,10 @@ table, th, td
 	</c:if>
 	<c:if test="${param.de=='Submit new order'}">
 		<sql:query dataSource="${ds}" var="person">
-			SELECT DISTINCT Seat_amount FROM `table` WHERE Table_Status='no' ORDER BY Seat_amount ASC
+			SELECT DISTINCT Seat_amount FROM `table` WHERE Table_Status='Available' ORDER BY Seat_amount ASC
 		</sql:query>
 		<sql:query dataSource="${ds}" var="zone">
-			SELECT DISTINCT Zone FROM `table` WHERE Table_Status='no' ORDER BY Zone ASC
+			SELECT DISTINCT Zone FROM `table` WHERE Table_Status='Available' ORDER BY Zone ASC
 		</sql:query>
 		<div id="moreorder">
 		<br><font size="10"><b>New order insert</b></font>

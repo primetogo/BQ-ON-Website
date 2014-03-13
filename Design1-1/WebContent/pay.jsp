@@ -6,7 +6,7 @@
 <%@page import="java.util.Enumeration"%>
 <jsp:useBean id="cart" class="model.Food_Cart" scope="session"/>
 <%String[] temp;
-java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/resnew","root","123456");
+java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3307/resnew","root","123456");
 PreparedStatement pstmt,pstmt1,pq,pb;
 String b=(String) session.getAttribute("first");
 String pay_type=request.getParameter("pay_type");

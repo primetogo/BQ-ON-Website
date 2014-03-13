@@ -146,7 +146,7 @@ div{
 </head>
 <body id="bg">
 	<sql:setDataSource var="dsf_t" driver="com.mysql.jdbc.Driver"
-	url="jdbc:mysql:///resnew" user="root" password="123456" ></sql:setDataSource>
+	url="jdbc:mysql://localhost:3307/resnew" user="root" password="123456" ></sql:setDataSource>
     <sql:query dataSource="${dsf_t}" var="me1" >
     	SELECT DISTINCT Food_type FROM food
     </sql:query>	
@@ -165,7 +165,7 @@ div{
 		SELECT Food_name, Food_price, Food_id FROM food WHERE Food_type='<%= request.getParameter("tp") %>' 
 	</sql:query>
 	<sql:query dataSource="${dsf_t}" var="me3">
-		SELECT Table_id FROM resnew.table WHERE Seat_amount='<%= session.getAttribute("seat_in") %>' AND Zone='<%= session.getAttribute("zone_in") %>' AND Table_Status='no'
+		SELECT Table_id FROM resnew.table WHERE Seat_amount='<%= session.getAttribute("seat_in") %>' AND Zone='<%= session.getAttribute("zone_in") %>' AND Table_Status='Available'
 	</sql:query>
 	<div align="center">
 		<form action="portorder" method="post">

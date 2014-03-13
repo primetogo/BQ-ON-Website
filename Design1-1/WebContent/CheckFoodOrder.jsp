@@ -217,11 +217,9 @@ h1 {color: white;}
 	-moz-border-radius: 7px;
 	-webkit-border-radius: 7px;
 	border-radius: 7px;
-	/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
 	-moz-box-shadow: 0px 0px 11px #000000;
 	-webkit-box-shadow: 0px 0px 11px #000000;
 	box-shadow: 0px 0px 11px #000000;
-	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
 }
 .CSSTableGenerator {
 	margin:0px;padding:0px;
@@ -350,9 +348,11 @@ h1 {color: white;}
    </li>
 </ul>
 </div>
+<sql:setDataSource var="ds" driver="com.mysql.jdbc.Driver"
+	url="jdbc:mysql://localhost:3307/resnew" user="root" password="123456" ></sql:setDataSource>
 <div id="map-panel" align="center">
 <h1>ตรวจสอบสถานะการสั่งอาหาร</h1>
-<sql:query var="rs" dataSource="jdbc/resnew">select Food_Food_id,Food_name,Food_amount,order_order_id from order_detail JOIN resnew.order ON(order_order_id=order_id)  JOIN resnew.Food ON(Food_Food_id=Food_id)where Order_status="w"</sql:query>
+<sql:query var="rs" dataSource="${ds}">select Food_Food_id,Food_name,Food_amount,order_order_id from order_detail JOIN resnew.order ON(order_order_id=order_id)  JOIN resnew.Food ON(Food_Food_id=Food_id)where Order_status="w"</sql:query>
 <div class="CSSTableGenerator">
 <table>
 <tr><td>รหัสอาหาร</td><td>ชื่ออาหาร</td><td>จำนวน</td><td>เลขที่ใบจอง</td><td>สถานะของใบจอง</td></tr>

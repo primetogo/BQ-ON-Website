@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
     <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-     <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -401,7 +400,7 @@ border-radius: 7px;
 </div>
 <div id="map-panel" align="center">
 <form  method="post">
-<sql:setDataSource var="ds" driver="com.mysql.jdbc.Driver" url="jdbc:mysql:///resnew" user="root" password="123456"/>
+<sql:setDataSource var="ds" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3307/resnew" user="root" password="123456"/>
 	
 <h1>กรุณาเลือกโซนที่ท่านต้องการจอง 
 <sql:query var="rs1" dataSource="${ds}">select distinct Zone from resnew.table</sql:query>

@@ -153,7 +153,7 @@ table, th, td
 </head>
 <body id="bg">    
 	<sql:setDataSource var="ds" driver="com.mysql.jdbc.Driver"
-	url="jdbc:mysql:///resnew" user="root" password="123456" ></sql:setDataSource>
+	url="jdbc:mysql://localhost:3307/resnew" user="root" password="123456" ></sql:setDataSource>
 	<%if(request.getSession().getAttribute("typo").equals("Appetizer")){ %>
 		<sql:query dataSource="${ds}" var="res">
 			select Food_name, Food_price, Food_id from resnew.food where Food_type='Appetizer';
