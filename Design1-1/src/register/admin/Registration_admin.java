@@ -51,6 +51,8 @@ public class Registration_admin extends HttpServlet {
 			response.sendRedirect("ad_dash.jsp");
 		} catch (SQLException e) {
 			System.out.println(e);
+			request.getSession().setAttribute("incoming", "Can't add new admin!");
+			response.sendRedirect("ad_dash.jsp");
 		}
 	}
 
