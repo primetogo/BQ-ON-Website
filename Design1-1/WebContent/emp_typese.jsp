@@ -26,6 +26,12 @@ table, th, td
 	-webkit-border-radius:6px;
 	border-radius:6px;
 }
+html, body {
+   width: 100% ;
+   height: 100% ;
+   min-width: 900px ;
+   min-height: 500px ;
+}
 #bg{
   background: url(Res/emp1.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;

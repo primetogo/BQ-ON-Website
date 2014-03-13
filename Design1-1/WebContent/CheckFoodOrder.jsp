@@ -137,7 +137,12 @@ h1 {color: white;}
   padding: 9px 5px;
   text-align: center;
 }
-
+html, body {
+   width: 100% ;
+   height: 100% ;
+   min-width: 900px ;
+   min-height: 500px ;
+}
 #bg{
   background: url(Res/login.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
@@ -265,10 +270,6 @@ h1 {color: white;}
 	-moz-border-radius-bottomleft:20px;
 	-webkit-border-bottom-left-radius:20px;
 	border-bottom-left-radius:20px;
-}.CSSTableGenerator tr:hover td{
-	background-color:#ffffff;
-		
-
 }
 .CSSTableGenerator td{
 	vertical-align:middle;
@@ -352,12 +353,12 @@ h1 {color: white;}
 	url="jdbc:mysql://localhost:3307/resnew" user="root" password="123456" ></sql:setDataSource>
 <div id="map-panel" align="center">
 <h1>ตรวจสอบสถานะการสั่งอาหาร</h1>
-<sql:query var="rs" dataSource="${ds}">select Food_Food_id,Food_name,Food_amount,order_order_id from order_detail JOIN resnew.order ON(order_order_id=order_id)  JOIN resnew.Food ON(Food_Food_id=Food_id)where Order_status="w"</sql:query>
+<sql:query var="rs" dataSource="${ds}">select Food_Food_id,Food_name,Food_amount,order_order_id,Order_status from order_detail JOIN resnew.order ON(order_order_id=order_id)  JOIN resnew.Food ON(Food_Food_id=Food_id)</sql:query>
 <div class="CSSTableGenerator">
 <table>
 <tr><td>รหัสอาหาร</td><td>ชื่ออาหาร</td><td>จำนวน</td><td>เลขที่ใบจอง</td><td>สถานะของใบจอง</td></tr>
 <c:forEach var="t" items="${rs.rows}">
-<tr><td>${t.Food_Food_id}</td><td>${t.Food_name}</td><td>${t.Food_amount}</td><td>${t.order_order_id}</td><td>Waiting</td></tr>
+<tr><td>${t.Food_Food_id}</td><td>${t.Food_name}</td><td>${t.Food_amount}</td><td>${t.order_order_id}</td><td>${t.Order_status}</td></tr>
 </c:forEach></table>
 </div>
 </div>

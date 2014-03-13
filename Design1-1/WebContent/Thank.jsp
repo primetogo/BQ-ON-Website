@@ -122,8 +122,6 @@ h1 {color: white;}
   left: -1px;
   min-width: 100%;
   text-align: center;
-  /* IE7 */
-
   *width: 100%;
 }
 #cssmenu .has-sub ul li {
@@ -137,14 +135,18 @@ h1 {color: white;}
   padding: 9px 5px;
   text-align: center;
 }
-
+html, body {
+   width: 100% ;
+   height: 100% ;
+   min-width: 900px ;
+   min-height: 500px ;
+}
 #bg{
   background: url(Res/login.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  cursor: url(Res/mouse.png), auto;
 }
 #user-detail-box{
     margin-top: 20px;
@@ -211,9 +213,8 @@ h1 {color: white;}
     margin-right: auto;
     height: auto;
     width: 700px;
-      font-family: RaiNgan;
+    font-family: RaiNgan;
    	background-image: url("Res/pic1.jpg"); 
-   	
 	border: 2px solid #999999;
 	-moz-border-radius: 7px;
 	-webkit-border-radius: 7px;
@@ -222,7 +223,6 @@ h1 {color: white;}
 	-moz-box-shadow: 0px 0px 11px #000000;
 	-webkit-box-shadow: 0px 0px 11px #000000;
 	box-shadow: 0px 0px 11px #000000;
-	cursor: url(Res/mouse.png), auto;
 	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
 }
 .CSSTableGenerator {

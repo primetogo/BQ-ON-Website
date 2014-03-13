@@ -14,12 +14,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/login.do")
-public class LoginRes_user extends HttpServlet {
+public class Login_user extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Connection conn;
 	PreparedStatement logincheck = null;
 	
-    public LoginRes_user() {super();}
+    public Login_user() {super();}
     
     public void init() {conn = (Connection) getServletContext().getAttribute("connection");}
    

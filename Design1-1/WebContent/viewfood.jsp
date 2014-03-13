@@ -184,7 +184,12 @@ h1 {color: white;}
   padding: 9px 5px;
   text-align: center;
 }
-
+html, body {
+   width: 100% ;
+   height: 100% ;
+   min-width: 900px ;
+   min-height: 500px ;
+}
 #bg{
    background: url(Res/login.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -321,16 +326,10 @@ border-radius: 7px;
 	-moz-border-radius-bottomleft:20px;
 	-webkit-border-bottom-left-radius:20px;
 	border-bottom-left-radius:20px;
-}.CSSTableGenerator tr:hover td{
-	background-color:#ffffff;
-		
-
 }
 .CSSTableGenerator td{
 	vertical-align:middle;
-	
 	background-color:#211103;
-
 	border:1px solid #000000;
 	border-width:0px 1px 1px 0px;
 	text-align:left;

@@ -188,7 +188,12 @@ border-radius: 7px;
   padding: 9px 5px;
   text-align: center;
 }
-
+html, body {
+   width: 100% ;
+   height: 100% ;
+   min-width: 900px ;
+   min-height: 500px ;
+}
 #bg{
  background: url(Res/login.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;

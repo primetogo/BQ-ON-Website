@@ -136,7 +136,12 @@ h1 {color: white;}
   padding: 9px 5px;
   text-align: center;
 }
-
+html, body {
+   width: 100% ;
+   height: 100% ;
+   min-width: 900px ;
+   min-height: 500px ;
+}
 #bg{
   background: url(Res/login.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
@@ -216,14 +221,12 @@ h1 {color: white;}
 	-moz-border-radius: 7px;
 	-webkit-border-radius: 7px;
 	border-radius: 7px;
-	/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
 	-moz-box-shadow: 0px 0px 11px #000000;
 	-webkit-box-shadow: 0px 0px 11px #000000;
 	box-shadow: 0px 0px 11px #000000;
-	/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
 }
 select{
-border-radius: 7px;
+	border-radius: 7px;
 	font-size:25px;
 	font-family: RaiNgan;
 	font-weight:normal;
@@ -272,10 +275,6 @@ border-radius: 7px;
 	-moz-border-radius-bottomleft:20px;
 	-webkit-border-bottom-left-radius:20px;
 	border-bottom-left-radius:20px;
-}.CSSTableGenerator tr:hover td{
-	background-color:#ffffff;
-		
-
 }
 .CSSTableGenerator td{
 	vertical-align:middle;
@@ -408,9 +407,9 @@ border-radius: 7px;
 <input type="submit" value="Go!!" name="go" class="button"></h1></form>
 <c:if test="${param.go !=null}">
 <img  src="Res/${param.zone}.png"/>
-<sql:query var="rs" dataSource="${ds}">select * from resnew.table where table_status="no" and Zone='${param.zone}'</sql:query>
+<sql:query var="rs" dataSource="${ds}">select * from resnew.table where table_status="Available" and Zone='${param.zone}'</sql:query>
 <div class="CSSTableGenerator">
-<table border="1">
+<table >
 <tr>
 <td></td>
 <td>เลขที่โต๊ะ</td>
@@ -423,7 +422,8 @@ border-radius: 7px;
 <td>${table1.Seat_amount}</td>
 <td>ว่าง</td></tr>
 </c:forEach>
-</table></div>
+</table>
+</div>
 </c:if>
 </div>
 </body>

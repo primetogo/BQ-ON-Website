@@ -36,6 +36,7 @@
 }
 #cssmenu {
   margin-top: 300px;
+  width: 100%;
   zoom: 1;
   height: 69px;
   background: url(Res/bottom-bg.png) repeat-x center bottom;
@@ -78,6 +79,12 @@
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.35);
   opacity: 1;
 }
+html, body {
+   width: 100% ;
+   height: 100% ;
+   min-width: 900px ;
+   min-height: 500px ;
+}
 /* Start css menu style */
 .bg{
   background: url(Res/WelPage10.jpg) no-repeat fixed; 
@@ -85,6 +92,12 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+html, body {
+   width: 100% ;
+   height: 100% ;
+   min-width: 900px ;
+   min-height: 500px ;
 }
 #title-style{
   margin-left: -170px;
@@ -116,6 +129,7 @@
 <title>ยินดีต้อนรับสู่ Shizen!</title>
 </head>
 <body class="bg">
+<div id="wrapper">
 <!-- Start navigator bar -->
 <div id='cssmenu'>
 <ul>
@@ -150,5 +164,6 @@
 	<script type="text/javascript" src="engine1/wowslider.js"></script>
 	<script type="text/javascript" src="engine1/script.js"></script>
 	<!-- End of slider body section -->
+</div>
 </body>
 </html>

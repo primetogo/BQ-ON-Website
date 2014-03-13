@@ -137,7 +137,12 @@ h1 {color: white;}
   padding: 9px 5px;
   text-align: center;
 }
-
+html, body {
+   width: 100% ;
+   height: 100% ;
+   min-width: 900px ;
+   min-height: 500px ;
+}
 #bg{
   background: url(Res/login.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
@@ -265,16 +270,10 @@ h1 {color: white;}
 	-moz-border-radius-bottomleft:20px;
 	-webkit-border-bottom-left-radius:20px;
 	border-bottom-left-radius:20px;
-}.CSSTableGenerator tr:hover td{
-	background-color:#ffffff;
-		
-
 }
 .CSSTableGenerator td{
 	vertical-align:middle;
-	
 	background-color:#211103;
-
 	border:1px solid #000000;
 	border-width:0px 1px 1px 0px;
 	text-align:left;
@@ -352,7 +351,7 @@ h1 {color: white;}
 	url="jdbc:mysql://localhost:3307/resnew" user="root" password="123456" ></sql:setDataSource>
 <div id="map-panel" align="center">
 <h1>ตรวจสอบการจองโต๊ะ</h1>
-<sql:query var="rs" dataSource="${ds}">select order_id,table_Table_id,Food_Time from resnew.order where Order_status="w"</sql:query>
+<sql:query var="rs" dataSource="${ds}">select order_id,table_Table_id,Food_Time from resnew.order where Order_status="Pending"</sql:query>
 <div class="CSSTableGenerator">
 <table>
 <tr><td>เลขที่ออเดอร์</td><td>เลขที่โต๊ะ</td><td>เวลาที่จองโต๊ะ</td></tr>

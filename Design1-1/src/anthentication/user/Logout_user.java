@@ -22,8 +22,6 @@ public class Logout_user extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		try{
 		if(session != null){
-			System.out.println("Logout process: Cleared all session...");
-			System.out.println("");
 		    session.invalidate();
 		    response.sendRedirect("customer.jsp");
 		    }}
